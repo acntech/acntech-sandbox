@@ -1,0 +1,23 @@
+# Maven
+target/
+generated/
+
+# Eclipse
+.project
+.classpath
+.settings/
+
+# IntelliJ
+*.iml
+.idea/
+
+# NetBeans
+nb-configuration.xml
+nbactions.xml
+
+# Project
+*.log
+
+# SonarLint
+*.sonarlint/
+.sonar_lock
