@@ -1,0 +1,20 @@
+<nav class="navbar navbar-default">
+  <div class="container">
+    <ul class="nav navbar-nav">
+      <li><a routerLink="/" routerLinkActive="active">{{ 'frontpage.link.frontpage' | translate }}</a></li>
+      <li><a routerLink="/list" routerLinkActive="active">{{ 'frontpage.link.todos' | translate }}</a></li>
+      <li><a routerLink="/new" routerLinkActive="active">{{ 'frontpage.link.new' | translate }}</a></li>
+    </ul>
+
+    <ul class="nav nav-pills navbar-right">
+        <li *ngFor="let lang of supportedLangs" [class.active]="isCurrentLang(lang.value)">
+          <a href="#" (click)="selectLang(lang.value, $event)">
+            {{ lang.display }}
+          </a>
+        </li>
+    </ul>
+  </div>
+</nav>
+<div class="container">
+  <router-outlet></router-outlet>
+</div>
