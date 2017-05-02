@@ -1,0 +1,34 @@
+<form *ngIf="!submitted" (ngSubmit)="save()" #newTodoForm="ngForm">
+  <div class="form-group">
+    <label>Description:</label>
+    <textarea class="form-control" name="description" [(ngModel)]="todo.description" required></textarea>
+  </div>
+  <div class="form-group">
+    <label>
+      <span>Follow'upper (name):</span>
+      <input class="form-control" name="owner" type="text" [(ngModel)]="todo.owner" required/>
+    </label>
+  </div>
+  <div class="form-group">
+    <label>
+      <span>Deadline:</span>
+      <input class="form-control" name="owner" type="date" [(ngModel)]="todo.deadline"/>
+    </label>
+
+  </div>
+  <button class="btn btn-success" type="submit">Save</button>
+</form>
+
+<div *ngIf="!submitted" class="container">
+  <br/>
+  <code>{{modelDebug(todo)}}</code>
+</div>
+
+<div *ngIf="submitted" class="container">
+  <p>Hurray, this was saved on the server:</p>
+  <div class="well well-lg">
+    <code>{{modelDebug(savedTodo)}}</code>
+  </div>
+  <a class="btn btn-success" href="list">Go to list</a>
+  <button class="btn btn-success" (click)="makeNewTodo()">New todo</button>
+</div>
