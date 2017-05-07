@@ -1,0 +1,44 @@
+CREATE TABLE "USERS"
+(
+  USERNAME   VARCHAR(255) NOT NULL
+  ,
+  PASSWORD   VARCHAR(255) NOT NULL
+  ,
+  SALT       VARCHAR(255) NOT NULL
+  ,
+  FIRST_NAME VARCHAR(255)
+  ,
+  LAST_NAME  VARCHAR(255)
+  ,
+  EMAIL      VARCHAR(255)
+  ,
+  CONSTRAINT PK_USERS_USERNAME PRIMARY KEY (USERNAME)
+  ,
+  CONSTRAINT UC_USERS_SALT UNIQUE (SALT)
+);
+
+INSERT INTO "USERS"
+(USERNAME
+  , PASSWORD
+  , SALT
+  , FIRST_NAME
+  , EMAIL)
+VALUES
+  ('user'
+    , 'Ebc5fdYBEDWekWJ8n2SLQirg8Jhiv5Kpp3ofrpnG9GZqPB/biwfRV3RcLrRR0yNFv83GKbAqsGnw7G4zljzwYg=='
+    , '3AGyFvgoyBJVZZKqtmYg0bKMEw4FwUrNP2FBwHI/1U2JHlspNlHUqAQImvbaoGTbndVzLoe2tYJlrnt8bSEs/Q=='
+    , 'User'
+    , 'user@acntech.no');
+
+INSERT INTO "USERS"
+(USERNAME
+  , PASSWORD
+  , SALT
+  , FIRST_NAME
+  , EMAIL)
+VALUES
+  ('admin'
+    , '2vetvf1BRhrJLZ3zGgMgOBY31/LKmvPzZIKg3TPg7/JMfSIh8h67ozOD8I5JfIGiUh1Ey6eBo9YvBi2SXuxRdQ=='
+    , 'p5edhMQiZ+aYbAxamjC7y1bJ5RMFFOv21BW6cFIfDPyFxUwTCzdImU0+Hkolj1d31ztYV8YI076cxRXmqHO3Yg=='
+    , 'Admin'
+    , 'admin@acntech.no');

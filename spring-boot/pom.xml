@@ -68,6 +68,11 @@
         <webjars.jquery.version>3.2.0</webjars.jquery.version>
         <webjars.bootstrap.version>3.3.7</webjars.bootstrap.version>
         <webjars.locator.version>0.32-1</webjars.locator.version>
+        <!-- Database -->
+        <h2.version>1.4.195</h2.version>
+        <flyway.version>4.1.2</flyway.version>
+        <!-- Security -->
+        <bouncycastle.version>1.56</bouncycastle.version>
 
         <!-- Maven Plugins -->
         <maven-source-plugin.version>3.0.1</maven-source-plugin.version>
@@ -80,6 +85,7 @@
     <modules>
         <module>simple-webapp</module>
         <module>simple-login-webapp</module>
+        <module>advanced-login-webapp</module>
     </modules>
 
     <!-- DEPENDENCIES -->
@@ -130,6 +136,13 @@
                 <groupId>org.webjars</groupId>
                 <artifactId>webjars-locator</artifactId>
                 <version>${webjars.locator.version}</version>
+            </dependency>
+
+            <!-- Security -->
+            <dependency>
+                <groupId>org.bouncycastle</groupId>
+                <artifactId>bcprov-jdk15on</artifactId>
+                <version>${bouncycastle.version}</version>
             </dependency>
         </dependencies>
     </dependencyManagement>
