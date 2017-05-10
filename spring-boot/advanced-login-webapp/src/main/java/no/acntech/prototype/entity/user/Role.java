@@ -16,11 +16,11 @@ public class Role implements Serializable {
 
     @Id
     private String role;
-    @JoinTable(name = "USER_ROLES",
+    /*@JoinTable(name = "USER_ROLES",
             joinColumns = @JoinColumn(name = "ROLE"),
             inverseJoinColumns = @JoinColumn(name = "USERNAME"))
     @ManyToMany(fetch = FetchType.LAZY)
-    private List<User> users;
+    private List<User> users;*/
 
     public String getRole() {
         return role;
@@ -29,12 +29,12 @@ public class Role implements Serializable {
     public void setRole(String role) {
         this.role = role;
     }
-
+/*
     public List<User> getUsers() {
         return users;
     }
 
     public void setUsers(List<User> users) {
         this.users = users;
-    }
+    }*/
 }

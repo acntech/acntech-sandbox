@@ -4,8 +4,6 @@ import org.bouncycastle.crypto.PBEParametersGenerator;
 import org.bouncycastle.crypto.generators.PKCS5S2ParametersGenerator;
 import org.bouncycastle.crypto.params.KeyParameter;
 
-import java.security.NoSuchAlgorithmException;
-import java.security.NoSuchProviderException;
 import java.security.SecureRandom;
 import java.util.Base64;
 
@@ -19,19 +17,19 @@ public final class SecurityUtils {
     private SecurityUtils() {
     }
 
-    public static Password encryptPassword(String plaintextPassword) throws NoSuchProviderException, NoSuchAlgorithmException {
+    public static Password encryptPassword(String plaintextPassword) {
         byte[] salt = generateSalt();
         String encodedSalt = encode(salt);
         return encryptPassword(plaintextPassword, encodedSalt);
     }
 
-    public static Password encryptPassword(String plaintextPassword, String encodedSalt) throws NoSuchProviderException, NoSuchAlgorithmException {
+    public static Password encryptPassword(String plaintextPassword, String encodedSalt) {
         byte[] hashedPassword = digest(plaintextPassword, encodedSalt, CRYPTO_KEY_LENGTH, CRYPTO_ITERATION_COUNT);
         String encodedHashedPassword = encode(hashedPassword);
         return new Password(encodedHashedPassword, encodedSalt);
     }
 
-    public static boolean verifyPassword(String plaintextPassword, Password password) throws NoSuchProviderException, NoSuchAlgorithmException {
+    public static boolean verifyPassword(String plaintextPassword, Password password) {
         if (password == null) {
             throw new IllegalArgumentException("Input password object is null");
         }
@@ -39,7 +37,7 @@ public final class SecurityUtils {
         return passwordToVerify.equals(password);
     }
 
-    private static byte[] digest(String plaintextPassword, String encodedSalt, int keyLength, int iterationCount) throws NoSuchProviderException, NoSuchAlgorithmException {
+    private static byte[] digest(String plaintextPassword, String encodedSalt, int keyLength, int iterationCount) {
         if (plaintextPassword == null) {
             throw new IllegalArgumentException("Input plaintext password is null");
         }

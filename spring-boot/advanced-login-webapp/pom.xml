@@ -65,6 +65,13 @@
             <scope>provided</scope>
         </dependency>
 
+        <!-- Development -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-devtools</artifactId>
+            <optional>true</optional>
+        </dependency>
+
         <!-- JSTL for JSP -->
         <dependency>
             <groupId>javax.servlet</groupId>
