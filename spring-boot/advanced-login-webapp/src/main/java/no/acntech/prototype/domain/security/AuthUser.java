@@ -1,4 +1,4 @@
-package no.acntech.prototype.domain.user;
+package no.acntech.prototype.domain.security;
 
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.User;

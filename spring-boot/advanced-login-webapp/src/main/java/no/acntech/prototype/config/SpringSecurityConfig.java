@@ -1,7 +1,7 @@
 package no.acntech.prototype.config;
 
-import no.acntech.prototype.service.auth.AuthUserDetailsService;
-import no.acntech.prototype.service.auth.AuthPasswordEncoder;
+import no.acntech.prototype.service.security.AuthPasswordEncoder;
+import no.acntech.prototype.service.security.AuthUserDetailsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -14,7 +14,7 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
-@EnableWebSecurity(debug = true)
+@EnableWebSecurity
 @Configuration
 public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
 

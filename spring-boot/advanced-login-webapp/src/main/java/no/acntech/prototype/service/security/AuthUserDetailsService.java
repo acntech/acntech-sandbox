@@ -1,6 +1,6 @@
-package no.acntech.prototype.service.auth;
+package no.acntech.prototype.service.security;
 
-import no.acntech.prototype.domain.user.AuthUser;
+import no.acntech.prototype.domain.security.AuthUser;
 import no.acntech.prototype.entity.user.User;
 import no.acntech.prototype.repository.user.UserRepository;
 import org.slf4j.Logger;
@@ -20,7 +20,6 @@ import java.util.stream.Collectors;
 public class AuthUserDetailsService implements UserDetailsService {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(AuthUserDetailsService.class);
-    private static final String MERGED_PASSWORD_FORMAT = "%s{%s}";
 
     private final UserRepository userRepository;
 
@@ -36,13 +35,11 @@ public class AuthUserDetailsService implements UserDetailsService {
         if (user == null) {
             throw new UsernameNotFoundException("No user found for username " + username);
         } else {
-            String password = String.format(MERGED_PASSWORD_FORMAT, user.getPassword(), user.getSalt());
-
             List<GrantedAuthority> authorities = user.getRoles().stream()
                     .map(role -> new SimpleGrantedAuthority("ROLE_" + role.getRole()))
                     .collect(Collectors.toList());
 
-            LOGGER.info("Creating auth user:\n{}\n{}\n{}\n{}", user.getUsername(), user.getPassword(), user.getSalt(), authorities);
+            LOGGER.info("Creating security user:\n\t{}\n\t{}\n\t{}\n\t{}", user.getUsername(), user.getPassword(), user.getSalt(), authorities);
 
             return new AuthUser(user.getUsername(), user.getPassword(), user.getSalt(), authorities);
         }

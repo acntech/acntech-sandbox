@@ -12,9 +12,4 @@ public class DefaultController {
     public String indexPage() {
         return "index";
     }
-/*
-    @RequestMapping(path = "/login", method = GET)
-    public String loginPage() {
-        return "login";
-    }*/
 }

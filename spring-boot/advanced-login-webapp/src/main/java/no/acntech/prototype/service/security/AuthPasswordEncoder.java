@@ -1,4 +1,4 @@
-package no.acntech.prototype.service.auth;
+package no.acntech.prototype.service.security;
 
 import no.acntech.prototype.util.security.Password;
 import no.acntech.prototype.util.security.SecurityUtils;
@@ -11,7 +11,7 @@ public class AuthPasswordEncoder extends BasePasswordEncoder {
         if (plaintextPassword == null || salt == null) {
             return null;
         }
-        Password password = encryptPassword(plaintextPassword, salt);
+        Password password = SecurityUtils.encryptPassword(plaintextPassword, salt.toString());
         return password.getHashedPassword();
     }
 
@@ -20,17 +20,7 @@ public class AuthPasswordEncoder extends BasePasswordEncoder {
         if (hashedPassword == null || plaintextPassword == null || salt == null) {
             return false;
         }
-        Password password = encryptPassword(plaintextPassword, salt);
-        return hashedPassword.equals(password.getHashedPassword());
-    }
-
-    private Password encryptPassword(String plaintextPassword, Object salt) {
-        if (plaintextPassword == null) {
-            throw new IllegalArgumentException("Input plaintext password is null");
-        }
-        if (salt == null) {
-            throw new IllegalArgumentException("Input salt is null");
-        }
-        return SecurityUtils.encryptPassword(plaintextPassword, salt.toString());
+        Password password = new Password(hashedPassword, salt.toString());
+        return SecurityUtils.verifyPassword(plaintextPassword, password);
     }
 }
