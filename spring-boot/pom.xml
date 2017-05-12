@@ -11,14 +11,14 @@
         <version>1.5.2.RELEASE</version>
     </parent>
 
-    <groupId>no.acntech.prototype.spring-boot</groupId>
-    <artifactId>acntech-spring-boot-prototyping</artifactId>
+    <groupId>no.acntech.sandbox</groupId>
+    <artifactId>acntech-spring-boot-sandbox</artifactId>
     <packaging>pom</packaging>
     <version>1.0.0-SNAPSHOT</version>
 
-    <name>AcnTech Spring Boot Prototyping</name>
-    <description>AcnTech testing and prototyping of Spring Boot applications</description>
-    <url>https://github.com/acntech/prototyping</url>
+    <name>AcnTech Spring Boot Sandbox</name>
+    <description>AcnTech sandbox testing and prototyping of Spring Boot applications</description>
+    <url>https://github.com/acntech/acntech-sandbox</url>
 
     <!-- LICENSES -->
     <licenses>
@@ -41,9 +41,9 @@
 
     <!-- SCM -->
     <scm>
-        <connection>scm:git:https://github.com/acntech/prototyping.git</connection>
-        <developerConnection>scm:git:ssh://github.com:acntech/prototyping.git</developerConnection>
-        <url>https://github.com/acntech/prototyping/tree/develop</url>
+        <connection>scm:git:https://github.com/acntech/acntech-sandbox.git</connection>
+        <developerConnection>scm:git:ssh://github.com:acntech/acntech-sandbox.git</developerConnection>
+        <url>https://github.com/acntech/acntech-sandbox</url>
     </scm>
 
     <!-- PROPERTIES -->

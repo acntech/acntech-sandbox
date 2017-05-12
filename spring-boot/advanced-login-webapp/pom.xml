@@ -6,8 +6,8 @@
 
     <!-- PROJECT -->
     <parent>
-        <groupId>no.acntech.prototype.spring-boot</groupId>
-        <artifactId>acntech-spring-boot-prototyping</artifactId>
+        <groupId>no.acntech.sandbox</groupId>
+        <artifactId>acntech-spring-boot-sandbox</artifactId>
         <version>1.0.0-SNAPSHOT</version>
     </parent>
 
