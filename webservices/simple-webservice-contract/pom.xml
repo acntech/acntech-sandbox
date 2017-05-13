@@ -12,4 +12,7 @@
     </parent>
 
     <artifactId>simple-webservice-contract</artifactId>
+
+    <name>Simple Webservice Contract</name>
+    <description>Contract files for simple webservice</description>
 </project>

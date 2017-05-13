@@ -13,6 +13,9 @@
 
     <artifactId>simple-webservice-api</artifactId>
 
+    <name>Simple Webservice API</name>
+    <description>Simple webservice API generated using Apache CXF</description>
+
     <!-- PROPERTIES -->
     <properties>
         <wsdl>classpath:wsdl/no/acntech/sandbox/webservice/simple/v1.0/simple.wsdl</wsdl>
