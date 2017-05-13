@@ -73,6 +73,8 @@
         <flyway.version>4.1.2</flyway.version>
         <!-- Security -->
         <bouncycastle.version>1.56</bouncycastle.version>
+        <!-- Webservice -->
+        <cxf.version>3.1.11</cxf.version>
 
         <!-- Maven Plugins -->
         <maven-source-plugin.version>3.0.1</maven-source-plugin.version>
@@ -86,6 +88,7 @@
         <module>simple-webapp</module>
         <module>simple-login-webapp</module>
         <module>advanced-login-webapp</module>
+        <module>simple-webservice</module>
     </modules>
 
     <!-- DEPENDENCIES -->
@@ -152,6 +155,20 @@
                 <groupId>org.bouncycastle</groupId>
                 <artifactId>bcprov-jdk15on</artifactId>
                 <version>${bouncycastle.version}</version>
+            </dependency>
+
+            <!-- Webservice -->
+            <dependency>
+                <groupId>org.apache.cxf</groupId>
+                <artifactId>cxf-spring-boot-starter-jaxws</artifactId>
+                <version>${cxf.version}</version>
+            </dependency>
+
+            <!-- AcnTech -->
+            <dependency>
+                <groupId>no.acntech.sandbox</groupId>
+                <artifactId>simple-webservice-api</artifactId>
+                <version>${project.version}</version>
             </dependency>
         </dependencies>
     </dependencyManagement>
