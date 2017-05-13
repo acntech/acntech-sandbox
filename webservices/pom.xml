@@ -7,8 +7,8 @@
     <!-- PROJECT -->
     <groupId>no.acntech.sandbox</groupId>
     <artifactId>acntech-webservice-sandbox</artifactId>
-    <packaging>pom</packaging>
     <version>1.0.0-SNAPSHOT</version>
+    <packaging>pom</packaging>
 
     <name>AcnTech Webservice Sandbox</name>
     <description>AcnTech sandbox testing and prototyping of webservices</description>
@@ -67,10 +67,13 @@
         <maven-javadoc-plugin.version>2.10.4</maven-javadoc-plugin.version>
         <nexus-staging-maven-plugin.version>1.5.1</nexus-staging-maven-plugin.version>
         <maven-gpg-plugin.version>1.6</maven-gpg-plugin.version>
+        <cxf-codegen-plugin.version>3.1.11</cxf-codegen-plugin.version>
     </properties>
 
     <!-- MODULES -->
     <modules>
+        <module>simple-webservice-contract</module>
+        <module>simple-webservice-api</module>
     </modules>
 
     <!-- DEPENDENCIES -->
@@ -196,11 +199,40 @@
                         </execution>
                     </executions>
                 </plugin>
+
+                <plugin>
+                    <groupId>org.apache.cxf</groupId>
+                    <artifactId>cxf-codegen-plugin</artifactId>
+                    <version>${cxf-codegen-plugin.version}</version>
+                    <executions>
+                        <execution>
+                            <id>generate-service</id>
+                            <phase>generate-sources</phase>
+                            <configuration>
+                                <encoding>UTF-8</encoding>
+                                <wsdlOptions>
+                                    <wsdlOption>
+                                        <wsdl>${wsdl}</wsdl>
+                                        <wsdlLocation>${wsdl.location}</wsdlLocation>
+                                        <extraargs>
+                                            <extraarg>-client</extraarg>
+                                            <extraarg>-verbose</extraarg>
+                                            <extraarg>-xjc-npa</extraarg>
+                                        </extraargs>
+                                    </wsdlOption>
+                                </wsdlOptions>
+                            </configuration>
+                            <goals>
+                                <goal>wsdl2java</goal>
+                            </goals>
+                        </execution>
+                    </executions>
+                </plugin>
             </plugins>
         </pluginManagement>
     </build>
 
-    <!-- PLUGINS -->
+    <!-- PROFILES -->
     <profiles>
         <profile>
             <id>acntech-nexus</id>

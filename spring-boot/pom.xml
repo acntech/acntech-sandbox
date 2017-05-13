@@ -225,7 +225,7 @@
         </pluginManagement>
     </build>
 
-    <!-- PLUGINS -->
+    <!-- PROFILES -->
     <profiles>
         <profile>
             <id>acntech-nexus</id>
