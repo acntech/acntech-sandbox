@@ -20,7 +20,8 @@
     <jsp:body>
         <div class="container">
             <div class="starter-template">
-                <h1>Login</h1>
+                <h1><spring:message code="main.title"/></h1>
+                <h3><spring:message code="login.page.title"/></h3>
                 <form action="${pageContext.request.contextPath}/login" method="post">
                     <div class="form-group">
                         <label for="username"><spring:message code="login.form.username"/></label>

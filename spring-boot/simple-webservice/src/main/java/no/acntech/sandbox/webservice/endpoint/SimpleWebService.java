@@ -1,10 +1,10 @@
-package no.acntech.sandbox.endpoint;
+package no.acntech.sandbox.webservice.endpoint;
 
-import no.acntech.sandbox.webservice.simple.wsdl.SimplePortType;
+import no.acntech.sandbox.webservice.simple.v1_0.wsdl.SimplePortType;
 import org.springframework.ws.server.endpoint.annotation.Endpoint;
 
 @Endpoint
-public class SimpleEndpoint implements SimplePortType {
+public class SimpleWebService implements SimplePortType {
 
     @Override
     public String sayHello(String firstName) {
