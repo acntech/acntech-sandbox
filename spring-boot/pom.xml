@@ -75,6 +75,7 @@
         <bouncycastle.version>1.56</bouncycastle.version>
         <!-- Webservice -->
         <cxf.version>3.1.11</cxf.version>
+        <simple-webservice-api.version>1.0.0-SNAPSHOT</simple-webservice-api.version>
 
         <!-- Maven Plugins -->
         <maven-source-plugin.version>3.0.1</maven-source-plugin.version>
@@ -168,7 +169,7 @@
             <dependency>
                 <groupId>no.acntech.sandbox.webservice</groupId>
                 <artifactId>simple-webservice-api</artifactId>
-                <version>${project.version}</version>
+                <version>${simple-webservice-api.version}</version>
             </dependency>
         </dependencies>
     </dependencyManagement>
