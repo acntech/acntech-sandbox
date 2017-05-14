@@ -11,7 +11,7 @@
         <version>1.5.2.RELEASE</version>
     </parent>
 
-    <groupId>no.acntech.sandbox</groupId>
+    <groupId>no.acntech.sandbox.spring.boot</groupId>
     <artifactId>acntech-spring-boot-sandbox</artifactId>
     <packaging>pom</packaging>
     <version>1.0.0-SNAPSHOT</version>
@@ -85,9 +85,9 @@
 
     <!-- MODULES -->
     <modules>
-        <module>simple-webapp</module>
-        <module>simple-login-webapp</module>
-        <module>advanced-login-webapp</module>
+        <module>simple-mvc-webapp</module>
+        <module>simple-login-mvc-webapp</module>
+        <module>advanced-login-mvc-webapp</module>
         <module>simple-webservice</module>
     </modules>
 
@@ -166,7 +166,7 @@
 
             <!-- AcnTech -->
             <dependency>
-                <groupId>no.acntech.sandbox</groupId>
+                <groupId>no.acntech.sandbox.webservice</groupId>
                 <artifactId>simple-webservice-api</artifactId>
                 <version>${project.version}</version>
             </dependency>

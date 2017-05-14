@@ -5,7 +5,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <!-- PROJECT -->
-    <groupId>no.acntech.sandbox</groupId>
+    <groupId>no.acntech.sandbox.spring</groupId>
     <artifactId>acntech-spring-sandbox</artifactId>
     <packaging>pom</packaging>
     <version>1.0.0-SNAPSHOT</version>
@@ -82,7 +82,7 @@
 
     <!-- MODULES -->
     <modules>
-        <module>simple-webapp</module>
+        <module>simple-mvc-webapp</module>
     </modules>
 
     <!-- DEPENDENCIES -->
