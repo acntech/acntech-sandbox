@@ -8,7 +8,7 @@
     <groupId>no.acntech.sandbox.spring</groupId>
     <artifactId>acntech-spring-sandbox</artifactId>
     <packaging>pom</packaging>
-    <version>1.0.0</version>
+    <version>1.0.1-SNAPSHOT</version>
 
     <name>AcnTech Spring Sandbox</name>
     <description>AcnTech sandbox testing and prototyping of Spring applications</description>

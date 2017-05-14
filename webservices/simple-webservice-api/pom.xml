@@ -8,7 +8,7 @@
     <parent>
         <groupId>no.acntech.sandbox.webservice</groupId>
         <artifactId>acntech-webservice-sandbox</artifactId>
-        <version>1.0.0</version>
+        <version>1.0.1-SNAPSHOT</version>
     </parent>
 
     <artifactId>simple-webservice-api</artifactId>

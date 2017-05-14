@@ -14,7 +14,7 @@
     <groupId>no.acntech.sandbox.spring.boot</groupId>
     <artifactId>acntech-spring-boot-sandbox</artifactId>
     <packaging>pom</packaging>
-    <version>1.0.0</version>
+    <version>1.0.1-SNAPSHOT</version>
 
     <name>AcnTech Spring Boot Sandbox</name>
     <description>AcnTech sandbox testing and prototyping of Spring Boot applications</description>
@@ -75,7 +75,7 @@
         <bouncycastle.version>1.56</bouncycastle.version>
         <!-- Webservice -->
         <cxf.version>3.1.11</cxf.version>
-        <simple-webservice-api.version>1.0.0-SNAPSHOT</simple-webservice-api.version>
+        <simple-webservice-api.version>1.0.0</simple-webservice-api.version>
 
         <!-- Maven Plugins -->
         <maven-source-plugin.version>3.0.1</maven-source-plugin.version>
