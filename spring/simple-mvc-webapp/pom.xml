@@ -8,7 +8,7 @@
     <parent>
         <groupId>no.acntech.sandbox.spring</groupId>
         <artifactId>acntech-spring-sandbox</artifactId>
-        <version>1.0.0-SNAPSHOT</version>
+        <version>1.0.0</version>
     </parent>
 
     <artifactId>simple-mvc-webapp</artifactId>
