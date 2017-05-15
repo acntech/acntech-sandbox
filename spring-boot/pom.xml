@@ -90,6 +90,7 @@
         <module>simple-login-mvc-webapp</module>
         <module>advanced-login-mvc-webapp</module>
         <module>simple-restful-webapp</module>
+        <module>simple-hateoas-webapp</module>
         <module>simple-webservice</module>
     </modules>
 

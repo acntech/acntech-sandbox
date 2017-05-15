@@ -24,9 +24,9 @@ public class SpringWebserviceConfig {
 
     @Autowired
     @Bean
-    public Endpoint simpleEndpoint(final SimpleWebService simpleWebService) {
+    public Endpoint simpleEndpoint(final SimpleWebService simpleWebService, @Value("${simple.webservice.path}") String simpleWebServicePath) {
         EndpointImpl endpoint = new EndpointImpl(bus, simpleWebService);
-        endpoint.publish("/v1.0/simple");
+        endpoint.publish(simpleWebServicePath);
         return endpoint;
     }
 
