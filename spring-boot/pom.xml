@@ -75,7 +75,7 @@
         <bouncycastle.version>1.56</bouncycastle.version>
         <!-- Webservice -->
         <cxf.version>3.1.11</cxf.version>
-        <simple-webservice-api.version>1.0.0</simple-webservice-api.version>
+        <simple-webservice-api.version>1.0.1-SNAPSHOT</simple-webservice-api.version>
 
         <!-- Maven Plugins -->
         <maven-source-plugin.version>3.0.1</maven-source-plugin.version>
@@ -89,6 +89,7 @@
         <module>simple-mvc-webapp</module>
         <module>simple-login-mvc-webapp</module>
         <module>advanced-login-mvc-webapp</module>
+        <module>simple-restful-webapp</module>
         <module>simple-webservice</module>
     </modules>
 

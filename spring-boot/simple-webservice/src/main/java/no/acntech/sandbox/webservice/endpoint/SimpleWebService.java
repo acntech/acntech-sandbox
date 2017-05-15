@@ -1,6 +1,6 @@
 package no.acntech.sandbox.webservice.endpoint;
 
-import no.acntech.sandbox.webservice.simple.v1_0.wsdl.SimplePortType;
+import no.acntech.sandbox.webservice.simple.v1_0.SimplePortType;
 import org.springframework.ws.server.endpoint.annotation.Endpoint;
 
 @Endpoint

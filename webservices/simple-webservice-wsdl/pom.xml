@@ -11,8 +11,8 @@
         <version>1.0.1-SNAPSHOT</version>
     </parent>
 
-    <artifactId>simple-webservice-contract</artifactId>
+    <artifactId>simple-webservice-wsdl</artifactId>
 
-    <name>Simple Webservice Contract</name>
-    <description>Contract files for simple webservice</description>
+    <name>Simple Webservice WSDL</name>
+    <description>WSDL contract files for simple webservice</description>
 </project>

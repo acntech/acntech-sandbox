@@ -1,7 +1,7 @@
 package no.acntech.sandbox.config;
 
 import no.acntech.sandbox.webservice.endpoint.SimpleWebService;
-import no.acntech.sandbox.webservice.simple.v1_0.wsdl.SimplePortType;
+import no.acntech.sandbox.webservice.simple.v1_0.SimplePortType;
 import org.apache.cxf.Bus;
 import org.apache.cxf.jaxws.EndpointImpl;
 import org.apache.cxf.jaxws.JaxWsProxyFactoryBean;
@@ -26,7 +26,7 @@ public class SpringWebserviceConfig {
     @Bean
     public Endpoint simpleEndpoint(final SimpleWebService simpleWebService) {
         EndpointImpl endpoint = new EndpointImpl(bus, simpleWebService);
-        endpoint.publish("/simple");
+        endpoint.publish("/v1.0/simple");
         return endpoint;
     }
 

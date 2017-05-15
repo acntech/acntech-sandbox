@@ -72,7 +72,7 @@
 
     <!-- MODULES -->
     <modules>
-        <module>simple-webservice-contract</module>
+        <module>simple-webservice-wsdl</module>
         <module>simple-webservice-api</module>
     </modules>
 

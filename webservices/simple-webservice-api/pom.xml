@@ -18,7 +18,7 @@
 
     <!-- PROPERTIES -->
     <properties>
-        <wsdl>classpath:wsdl/no/acntech/sandbox/webservice/simple/v1.0/simple.wsdl</wsdl>
+        <wsdl>classpath:wsdl/no/acntech/sandbox/webservice/simple/v1.0/SimpleService.wsdl</wsdl>
         <wsdl.location>${wsdl}</wsdl.location>
     </properties>
 
@@ -26,7 +26,7 @@
     <dependencies>
         <dependency>
             <groupId>no.acntech.sandbox.webservice</groupId>
-            <artifactId>simple-webservice-contract</artifactId>
+            <artifactId>simple-webservice-wsdl</artifactId>
             <version>${project.version}</version>
         </dependency>
     </dependencies>
