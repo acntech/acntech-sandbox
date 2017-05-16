@@ -13,8 +13,10 @@
         <div class="container">
             <div class="starter-template">
                 <h1><spring:message code="main.title"/></h1>
-                <c:if test="${message != null}">
-                    <h3>${message}</h3>
+                <c:if test="${greeting != null}">
+                    <h3>${greeting}</h3>
+                    <h5>Created ${created}s ago</h5>
+                    <h5>Expires in ${expiry}s</h5>
                 </c:if>
                 <form action="${pageContext.request.contextPath}" method="post">
                     <div class="form-group">
