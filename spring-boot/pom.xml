@@ -93,6 +93,7 @@
         <module>simple-hateoas-webapp</module>
         <module>simple-webservice</module>
         <module>simple-ehcache-webapp</module>
+        <module>simple-angular-restful-webapp</module>
     </modules>
 
     <!-- DEPENDENCIES -->
