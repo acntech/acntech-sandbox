@@ -1,0 +1,32 @@
+version: "2"
+
+services:
+  acntech_zookeeper:
+      image: acntechie/zookeeper:latest
+      container_name: acntech_zookeeper
+      ports:
+        - "2181:2181"
+        - "2888:2888"
+        - "3888:3888"
+      environment:
+        - ZOOKEEPER_ID=1
+        - ZOOKEEPER_HOSTS=acntech_zookeeper
+        - ZOOKEEPER_PATHS=kafka
+        - ZOO_LOG4J_PROP=INFO,CONSOLE,ROLLINGFILE
+      networks:
+        - acntech_sandbox
+
+  acntech_kafka:
+    image: acntechie/kafka:latest
+    container_name: acntech_kafka
+    ports:
+      - "9000:9000"
+      - "9092:9092"
+    environment:
+      - KAFKA_BROKER_ID=1
+      - ZOOKEEPER_HOSTS=acntech_zookeeper
+    networks:
+      - acntech_sandbox
+
+networks:
+  acntech_sandbox:
