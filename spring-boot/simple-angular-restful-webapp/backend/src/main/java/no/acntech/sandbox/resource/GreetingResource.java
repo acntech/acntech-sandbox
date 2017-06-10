@@ -1,13 +1,15 @@
 package no.acntech.sandbox.resource;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.Queue;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import no.acntech.sandbox.domain.Greeting;
+import no.acntech.sandbox.util.ArrayNonBlockingQueue;
 
 import static org.springframework.web.bind.annotation.RequestMethod.GET;
 
@@ -15,17 +17,20 @@ import static org.springframework.web.bind.annotation.RequestMethod.GET;
 @RestController
 public class GreetingResource {
 
+    private static final Logger LOGGER = LoggerFactory.getLogger(GreetingResource.class);
+    private static final Queue<Greeting> PAST_GREETINGS = new ArrayNonBlockingQueue<>(100);
+
     @RequestMapping(value = "/{name}", method = GET)
     public Greeting get(@PathVariable(value = "name") String name) {
-        return new Greeting("Hello " + name + "!");
+        LOGGER.debug("Get operation called");
+        Greeting greeting = new Greeting("Hello " + name + "!");
+        PAST_GREETINGS.add(greeting);
+        return greeting;
     }
 
     @RequestMapping(value = "", method = GET)
     public Iterable<Greeting> find() {
-        List<Greeting> greetings = new ArrayList<>();
-        greetings.add(new Greeting("Hello John!"));
-        greetings.add(new Greeting("Hello Jane!"));
-        greetings.add(new Greeting("Hello Jonathan!"));
-        return greetings;
+        LOGGER.debug("Find operation called");
+        return PAST_GREETINGS;
     }
 }

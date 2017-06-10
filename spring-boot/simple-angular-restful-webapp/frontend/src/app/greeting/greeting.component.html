@@ -1,3 +1,11 @@
-<div>
-{{greetings}}
+<div id="greeting">
+  <form [formGroup]="greetingForm" (ngSubmit)="greetingFormPost(greetingForm.value)">
+    <div class="form-container">
+      <div class="row columns">
+        <label for="greeting-form">Name</label>
+        <input id="greeting-form" type="text" formControlName="name">
+        <input type="submit" class="button expanded" value="Get!" [disabled]="!greetingForm.valid">
+      </div>
+    </div>
+  </form>
 </div>

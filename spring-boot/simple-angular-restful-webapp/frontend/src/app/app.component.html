@@ -5,8 +5,11 @@
     </div>
     <div id="navbar" class="collapse navbar-collapse">
       <ul class="nav navbar-nav">
-        <li class="active">
-          <a href="#">{{navbar_link_home}}</a>
+        <li class="nav-item" [routerLinkActive]="['active']">
+          <a class="nav-link" [routerLink]="['/']">{{navbar_link_home}}</a>
+        </li>
+        <li class="nav-item" [routerLinkActive]="['active']">
+          <a class="nav-link" [routerLink]="['/greeting']">{{navbar_link_greeting}}</a>
         </li>
       </ul>
     </div>
@@ -15,5 +18,7 @@
 <div class="container">
   <div class="starter-template">
     <h1>{{main_title}}</h1>
+    <greeting></greeting>
+    <greeting-list></greeting-list>
   </div>
 </div>

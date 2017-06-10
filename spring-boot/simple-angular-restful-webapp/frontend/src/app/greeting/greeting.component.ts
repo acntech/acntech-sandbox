@@ -1,5 +1,7 @@
 import {Component, OnInit} from "@angular/core";
-import {GreetingService} from "./greeting.service";
+import {GreetingService} from "./service/greeting.service";
+import {Greeting} from "./model/greeting";
+import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 
 @Component({
   selector: 'greeting',
@@ -8,12 +10,29 @@ import {GreetingService} from "./greeting.service";
 })
 export class GreetingComponent implements OnInit {
 
-  greetings;
+  greetingForm: FormGroup;
+  post: any;
+  greeting: Greeting;
 
-  constructor(private greetingService: GreetingService) {
+  constructor(private formBuilder: FormBuilder, private greetingService: GreetingService) {
+    this.greetingForm = formBuilder.group({
+      'name': [null, Validators.compose([
+        Validators.required,
+        Validators.minLength(1),
+        Validators.maxLength(100)
+      ])]
+    });
   }
 
   ngOnInit() {
-    this.greetings = this.greetingService.findGreetings();
+  }
+
+  greetingFormPost(post) {
+    this.getGreeting(post.name);
+  }
+
+  getGreeting(name: string) {
+    this.greetingService.getGreeting(name)
+      .subscribe((data: Greeting) => this.greeting = data);
   }
 }
