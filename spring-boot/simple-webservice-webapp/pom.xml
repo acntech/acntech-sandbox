@@ -11,11 +11,11 @@
         <version>1.0.1-SNAPSHOT</version>
     </parent>
 
-    <artifactId>simple-webservice</artifactId>
+    <artifactId>simple-webservice-webapp</artifactId>
     <packaging>war</packaging>
 
-    <name>Simple Spring Boot Webservice</name>
-    <description>Spring Boot Webservice</description>
+    <name>Simple Spring Boot Webservice WebApp</name>
+    <description>Spring Boot WebApp with webservice</description>
 
     <!-- PROPERTIES -->
     <properties>

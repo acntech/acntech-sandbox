@@ -91,7 +91,7 @@
         <module>advanced-login-mvc-webapp</module>
         <module>simple-restful-webapp</module>
         <module>simple-hateoas-webapp</module>
-        <module>simple-webservice</module>
+        <module>simple-webservice-webapp</module>
         <module>simple-ehcache-webapp</module>
         <module>simple-angular-restful-webapp</module>
         <module>simple-cqrs-webapp</module>
