@@ -1,10 +1,10 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ taglib prefix="t" tagdir="/WEB-INF/tags" %>
 
 <t:defaultPage>
-
     <jsp:attribute name="header">
       <t:defaultHeader/>
     </jsp:attribute>
@@ -14,6 +14,7 @@
             <div class="starter-template">
                 <h1><spring:message code="main.title"/></h1>
             </div>
+            <h2><spring:message code="main.heading.books"/></h2>
         </div>
     </jsp:body>
 
