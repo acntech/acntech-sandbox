@@ -94,7 +94,7 @@
         <module>simple-webservice</module>
         <module>simple-ehcache-webapp</module>
         <module>simple-angular-restful-webapp</module>
-        <module>cqrs-webapp</module>
+        <module>simple-cqrs-webapp</module>
     </modules>
 
     <!-- DEPENDENCIES -->
