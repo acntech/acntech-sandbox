@@ -7,15 +7,15 @@
     <!-- PROJECT -->
     <parent>
         <groupId>no.acntech.sandbox.spring.boot</groupId>
-        <artifactId>acntech-spring-boot-sandbox</artifactId>
+        <artifactId>simple-angular-restful</artifactId>
         <version>1.0.1-SNAPSHOT</version>
     </parent>
 
-    <artifactId>simple-webservice-webapp</artifactId>
+    <artifactId>simple-angular-restful-webapp</artifactId>
     <packaging>war</packaging>
 
-    <name>Simple Spring Boot Webservice WebApp</name>
-    <description>Spring Boot WebApp with webservice</description>
+    <name>Simple Spring Boot Angular 4 RESTful WebApp</name>
+    <description>Spring Boot RESTful web application with Angular 4 - Backend module</description>
 
     <!-- PROPERTIES -->
     <properties>
@@ -45,7 +45,7 @@
         <!-- Spring Framework -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-web-services</artifactId>
+            <artifactId>spring-boot-starter-web</artifactId>
         </dependency>
 
         <!-- Tomcat embedded container-->
@@ -82,18 +82,6 @@
             <groupId>org.apache.tomcat.embed</groupId>
             <artifactId>tomcat-embed-jasper</artifactId>
             <scope>provided</scope>
-        </dependency>
-
-        <!-- Webservice -->
-        <dependency>
-            <groupId>org.apache.cxf</groupId>
-            <artifactId>cxf-spring-boot-starter-jaxws</artifactId>
-        </dependency>
-
-        <!-- AcnTech -->
-        <dependency>
-            <groupId>no.acntech.sandbox.webservice</groupId>
-            <artifactId>simple-webservice-api</artifactId>
         </dependency>
     </dependencies>
 

@@ -75,12 +75,12 @@
         <bouncycastle.version>1.56</bouncycastle.version>
         <!-- Webservice -->
         <cxf.version>3.1.11</cxf.version>
-        <simple-webservice-api.version>1.0.1-SNAPSHOT</simple-webservice-api.version>
 
         <!-- Maven Plugins -->
         <maven-source-plugin.version>3.0.1</maven-source-plugin.version>
         <maven-javadoc-plugin.version>2.10.4</maven-javadoc-plugin.version>
         <nexus-staging-maven-plugin.version>1.5.1</nexus-staging-maven-plugin.version>
+        <cxf-codegen-plugin.version>3.1.11</cxf-codegen-plugin.version>
         <maven-gpg-plugin.version>1.6</maven-gpg-plugin.version>
     </properties>
 
@@ -91,9 +91,9 @@
         <module>advanced-login-mvc-webapp</module>
         <module>simple-restful-webapp</module>
         <module>simple-hateoas-webapp</module>
-        <module>simple-webservice-webapp</module>
+        <module>simple-webservice</module>
         <module>simple-ehcache-webapp</module>
-        <module>simple-angular-restful-webapp</module>
+        <module>simple-angular-restful</module>
         <module>simple-cqrs-webapp</module>
     </modules>
 
@@ -169,13 +169,6 @@
                 <artifactId>cxf-spring-boot-starter-jaxws</artifactId>
                 <version>${cxf.version}</version>
             </dependency>
-
-            <!-- AcnTech -->
-            <dependency>
-                <groupId>no.acntech.sandbox.webservice</groupId>
-                <artifactId>simple-webservice-api</artifactId>
-                <version>${simple-webservice-api.version}</version>
-            </dependency>
         </dependencies>
     </dependencyManagement>
 
@@ -243,6 +236,12 @@
                             </goals>
                         </execution>
                     </executions>
+                </plugin>
+
+                <plugin>
+                    <groupId>org.apache.cxf</groupId>
+                    <artifactId>cxf-codegen-plugin</artifactId>
+                    <version>${cxf-codegen-plugin.version}</version>
                 </plugin>
             </plugins>
         </pluginManagement>

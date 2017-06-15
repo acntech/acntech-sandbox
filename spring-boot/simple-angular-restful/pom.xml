@@ -7,18 +7,25 @@
     <!-- PROJECT -->
     <parent>
         <groupId>no.acntech.sandbox.spring.boot</groupId>
-        <artifactId>simple-angular-restful-webapp</artifactId>
+        <artifactId>acntech-spring-boot-sandbox</artifactId>
         <version>1.0.1-SNAPSHOT</version>
     </parent>
 
-    <artifactId>simple-angular-restful-webapp-frontend</artifactId>
+    <artifactId>simple-angular-restful</artifactId>
+    <packaging>pom</packaging>
 
-    <name>Simple Spring Boot Angular 4 RESTful WebApp Frontend</name>
-    <description>Spring Boot RESTful web application with Angular 4 - Frontend module</description>
+    <name>Simple Spring Boot Angular 4 RESTful</name>
+    <description>Spring Boot RESTful web application with Angular 4</description>
 
     <!-- PROPERTIES -->
     <properties>
     </properties>
+
+    <!-- MODULES -->
+    <modules>
+        <module>frontend</module>
+        <module>webapp</module>
+    </modules>
 
     <!-- DEPENDENCIES -->
     <dependencies>

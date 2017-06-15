@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <!-- PROJECT -->
+    <parent>
+        <groupId>no.acntech.sandbox.spring.boot</groupId>
+        <artifactId>simple-webservice</artifactId>
+        <version>1.0.1-SNAPSHOT</version>
+    </parent>
+
+    <artifactId>simple-webservice-api</artifactId>
+
+    <name>Simple Spring Boot Webservice API</name>
+    <description>Simple webservice API generated using Apache CXF</description>
+
+    <!-- PROPERTIES -->
+    <properties>
+        <wsdl>classpath:wsdl/no/acntech/sandbox/webservice/simple/v1.0/SimpleService.wsdl</wsdl>
+        <wsdl.location>${wsdl}</wsdl.location>
+    </properties>
+
+    <!-- DEPENDENCIES -->
+    <dependencies>
+        <dependency>
+            <groupId>no.acntech.sandbox.spring.boot</groupId>
+            <artifactId>simple-webservice-wsdl</artifactId>
+        </dependency>
+    </dependencies>
+
+    <!-- BUILD -->
+    <build>
+        <!-- PLUGINS -->
+        <plugins>
+            <plugin>
+                <groupId>org.apache.cxf</groupId>
+                <artifactId>cxf-codegen-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>generate-service</id>
+                        <phase>generate-sources</phase>
+                        <configuration>
+                            <encoding>UTF-8</encoding>
+                            <wsdlOptions>
+                                <wsdlOption>
+                                    <wsdl>${wsdl}</wsdl>
+                                    <wsdlLocation>${wsdl.location}</wsdlLocation>
+                                    <extraargs>
+                                        <extraarg>-client</extraarg>
+                                        <extraarg>-verbose</extraarg>
+                                        <extraarg>-xjc-npa</extraarg>
+                                    </extraargs>
+                                </wsdlOption>
+                            </wsdlOptions>
+                        </configuration>
+                        <goals>
+                            <goal>wsdl2java</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
+</project>
