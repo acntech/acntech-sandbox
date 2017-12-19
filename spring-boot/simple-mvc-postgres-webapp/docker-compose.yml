@@ -28,5 +28,16 @@ services:
     networks:
       - simple_mvc_postgres
 
+  simple_mvc_postgres_admin:
+    image: adminer
+    container_name: simple_mvc_postgres_admin
+    ports:
+      - 8090:8080
+    depends_on:
+      - simple_mvc_postgres_database
+    networks:
+      - simple_mvc_postgres
+
+
 networks:
   simple_mvc_postgres:

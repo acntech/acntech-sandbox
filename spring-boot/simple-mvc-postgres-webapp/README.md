@@ -2,7 +2,7 @@
 
 This is a simple Spring MVC webapp with a PostgreSQL database backend.
 
-To run:
+### To run
 * Build Java code with Maven:
 ```
 mvn clean package
@@ -16,5 +16,15 @@ docker-compose build
 docker-compose up
 ```
 
-Navigate to webapp in browser:
+### Navigate to webapp in browser
 * [http://localhost:8080](http://localhost:8080)
+
+### Navigate to Adminer in browser
+* [http://localhost:8090](http://localhost:8090)
+
+* Login with:
+  * System: PostgreSQL
+  * Server: simple_mvc_postgres_database
+  * Username: foo
+  * Password: abcd1234
+  * Database: foo
