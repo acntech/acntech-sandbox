@@ -5,14 +5,10 @@
     <modelVersion>4.0.0</modelVersion>
 
     <!-- PROJECT -->
-    <groupId>no.acntech.sandbox.spring</groupId>
-    <artifactId>acntech-spring-sandbox</artifactId>
+    <groupId>no.acntech.sandbox</groupId>
+    <artifactId>acntech-sandbox-spring</artifactId>
     <packaging>pom</packaging>
-    <version>1.0.1-SNAPSHOT</version>
-
-    <name>AcnTech Spring Sandbox</name>
-    <description>AcnTech sandbox testing and prototyping of Spring applications</description>
-    <url>https://github.com/acntech/acntech-sandbox</url>
+    <version>1.0.0-SNAPSHOT</version>
 
     <!-- LICENSES -->
     <licenses>
@@ -82,7 +78,7 @@
 
     <!-- MODULES -->
     <modules>
-        <module>simple-mvc-webapp</module>
+        <module>simple-mvc</module>
     </modules>
 
     <!-- DEPENDENCIES -->
@@ -294,101 +290,4 @@
             </plugins>
         </pluginManagement>
     </build>
-
-    <!-- PROFILES -->
-    <profiles>
-        <profile>
-            <id>acntech-nexus</id>
-
-            <!-- REPOSITORIES -->
-            <repositories>
-                <repository>
-                    <id>acntech-nexus-releases</id>
-                    <name>AcnTech Nexus Releases</name>
-                    <url>https://nexus.acntech.no/content/repositories/releases</url>
-                    <releases>
-                        <enabled>true</enabled>
-                        <updatePolicy>never</updatePolicy>
-                        <checksumPolicy>warn</checksumPolicy>
-                    </releases>
-                    <snapshots>
-                        <enabled>false</enabled>
-                    </snapshots>
-                </repository>
-
-                <repository>
-                    <id>acntech-nexus-snapshots</id>
-                    <name>AcnTech Nexus Snapshots</name>
-                    <url>https://nexus.acntech.no/content/repositories/snapshots</url>
-                    <releases>
-                        <enabled>false</enabled>
-                    </releases>
-                    <snapshots>
-                        <enabled>true</enabled>
-                        <updatePolicy>always</updatePolicy>
-                        <checksumPolicy>fail</checksumPolicy>
-                    </snapshots>
-                </repository>
-            </repositories>
-
-            <!-- PLUGIN REPOSITORIES -->
-            <pluginRepositories>
-                <pluginRepository>
-                    <id>acntech-nexus-plugins</id>
-                    <name>AcnTech Nexus Plugins</name>
-                    <url>https://nexus.acntech.no/content/groups/public</url>
-                </pluginRepository>
-            </pluginRepositories>
-
-            <!-- DISTRIBUTION MANAGEMENT -->
-            <distributionManagement>
-                <repository>
-                    <id>acntech-nexus-releases</id>
-                    <name>AcnTech Nexus Releases</name>
-                    <url>https://nexus.acntech.no/content/repositories/releases</url>
-                </repository>
-
-                <snapshotRepository>
-                    <id>acntech-nexus-snapshots</id>
-                    <name>AcnTech Nexus Snapshots</name>
-                    <url>https://nexus.acntech.no/content/repositories/snapshots</url>
-                </snapshotRepository>
-            </distributionManagement>
-
-            <!-- BUILD -->
-            <build>
-                <!-- PLUGINS -->
-                <plugins>
-                    <plugin>
-                        <groupId>org.apache.maven.plugins</groupId>
-                        <artifactId>maven-source-plugin</artifactId>
-                    </plugin>
-
-                    <plugin>
-                        <groupId>org.apache.maven.plugins</groupId>
-                        <artifactId>maven-javadoc-plugin</artifactId>
-                    </plugin>
-
-                    <plugin>
-                        <groupId>org.apache.maven.plugins</groupId>
-                        <artifactId>maven-gpg-plugin</artifactId>
-                        <configuration>
-                            <keyname>${gpg.keyname}</keyname>
-                            <passphraseServerId>${gpg.keyname}</passphraseServerId>
-                        </configuration>
-                    </plugin>
-
-                    <plugin>
-                        <groupId>org.sonatype.plugins</groupId>
-                        <artifactId>nexus-staging-maven-plugin</artifactId>
-                        <configuration>
-                            <serverId>acntech-nexus</serverId>
-                            <nexusUrl>https://nexus.acntech.no</nexusUrl>
-                            <skipStaging>true</skipStaging>
-                        </configuration>
-                    </plugin>
-                </plugins>
-            </build>
-        </profile>
-    </profiles>
 </project>

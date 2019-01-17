@@ -6,16 +6,13 @@
 
     <!-- PROJECT -->
     <parent>
-        <groupId>no.acntech.sandbox.spring.boot</groupId>
-        <artifactId>acntech-spring-boot-sandbox</artifactId>
-        <version>1.0.1-SNAPSHOT</version>
+        <groupId>no.acntech.sandbox</groupId>
+        <artifactId>acntech-sandbox-spring-boot</artifactId>
+        <version>1.0.0-SNAPSHOT</version>
     </parent>
 
-    <artifactId>simple-cqrs-webapp</artifactId>
+    <artifactId>spring-boot-simple-cqrs</artifactId>
     <packaging>war</packaging>
-
-    <name>Simple Spring Boot CQRS WebApp</name>
-    <description>Spring Boot web application using CQRS</description>
 
     <!-- PROPERTIES -->
     <properties>

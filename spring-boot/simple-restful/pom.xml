@@ -6,16 +6,13 @@
 
     <!-- PROJECT -->
     <parent>
-        <groupId>no.acntech.sandbox.spring.boot</groupId>
-        <artifactId>simple-angular-restful</artifactId>
-        <version>1.0.1-SNAPSHOT</version>
+        <groupId>no.acntech.sandbox</groupId>
+        <artifactId>acntech-sandbox-spring-boot</artifactId>
+        <version>1.0.0-SNAPSHOT</version>
     </parent>
 
-    <artifactId>simple-angular-restful-webapp</artifactId>
+    <artifactId>spring-boot-simple-restful</artifactId>
     <packaging>war</packaging>
-
-    <name>Simple Spring Boot Angular 4 RESTful WebApp</name>
-    <description>Spring Boot RESTful web application with Angular 4 - Backend module</description>
 
     <!-- PROPERTIES -->
     <properties>

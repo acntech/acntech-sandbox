@@ -6,16 +6,13 @@
 
     <!-- PROJECT -->
     <parent>
-        <groupId>no.acntech.sandbox.spring.boot</groupId>
-        <artifactId>simple-webservice</artifactId>
-        <version>1.0.1-SNAPSHOT</version>
+        <groupId>no.acntech.sandbox</groupId>
+        <artifactId>spring-boot-simple-webservice</artifactId>
+        <version>1.0.0-SNAPSHOT</version>
     </parent>
 
-    <artifactId>simple-webservice-webapp</artifactId>
+    <artifactId>spring-boot-simple-webservice-webapp</artifactId>
     <packaging>war</packaging>
-
-    <name>Simple Spring Boot Webservice WebApp</name>
-    <description>Spring Boot WebApp with webservice</description>
 
     <!-- PROPERTIES -->
     <properties>

@@ -6,15 +6,12 @@
 
     <!-- PROJECT -->
     <parent>
-        <groupId>no.acntech.sandbox.spring.boot</groupId>
-        <artifactId>simple-webservice</artifactId>
-        <version>1.0.1-SNAPSHOT</version>
+        <groupId>no.acntech.sandbox</groupId>
+        <artifactId>spring-boot-simple-webservice</artifactId>
+        <version>1.0.0-SNAPSHOT</version>
     </parent>
 
-    <artifactId>simple-webservice-api</artifactId>
-
-    <name>Simple Spring Boot Webservice API</name>
-    <description>Simple webservice API generated using Apache CXF</description>
+    <artifactId>spring-boot-simple-webservice-api</artifactId>
 
     <!-- PROPERTIES -->
     <properties>

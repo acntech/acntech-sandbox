@@ -6,16 +6,13 @@
 
     <!-- PROJECT -->
     <parent>
-        <groupId>no.acntech.sandbox.spring.boot</groupId>
-        <artifactId>acntech-spring-boot-sandbox</artifactId>
-        <version>1.0.1-SNAPSHOT</version>
+        <groupId>no.acntech.sandbox</groupId>
+        <artifactId>acntech-sandbox-spring-boot</artifactId>
+        <version>1.0.0-SNAPSHOT</version>
     </parent>
 
-    <artifactId>simple-login-mvc-webapp</artifactId>
+    <artifactId>spring-boot-simple-form-login</artifactId>
     <packaging>war</packaging>
-
-    <name>Simple Spring Boot Login MVC WebApp</name>
-    <description>Spring Boot MVC based web application with login</description>
 
     <!-- PROPERTIES -->
     <properties>

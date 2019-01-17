@@ -6,20 +6,16 @@
 
     <!-- PROJECT -->
     <parent>
-        <groupId>no.acntech.sandbox.spring.boot</groupId>
-        <artifactId>acntech-spring-boot-sandbox</artifactId>
-        <version>1.0.1-SNAPSHOT</version>
+        <groupId>no.acntech.sandbox</groupId>
+        <artifactId>acntech-sandbox-spring-boot</artifactId>
+        <version>1.0.0-SNAPSHOT</version>
     </parent>
 
-    <artifactId>simple-ehcache-webapp</artifactId>
+    <artifactId>spring-boot-simple-ehcache</artifactId>
     <packaging>war</packaging>
-
-    <name>Simple Spring Boot EhCache WebApp</name>
-    <description>Spring Boot web application with EhCache</description>
 
     <!-- PROPERTIES -->
     <properties>
-
     </properties>
 
     <!-- DEPENDENCIES -->
