@@ -1,8 +1,5 @@
 package no.acntech.sandbox.config;
 
-import org.h2.server.web.WebServlet;
-import org.springframework.boot.web.servlet.ServletRegistrationBean;
-import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.Ordered;
 import org.springframework.web.servlet.config.annotation.DefaultServletHandlerConfigurer;
@@ -28,12 +25,5 @@ public class SpringWebConfig extends WebMvcConfigurerAdapter {
     @Override
     public void configureDefaultServletHandling(DefaultServletHandlerConfigurer configurer) {
         configurer.enable();
-    }
-
-    @Bean
-    public ServletRegistrationBean h2WebServlet() {
-        ServletRegistrationBean registrationBean = new ServletRegistrationBean(new WebServlet());
-        registrationBean.addUrlMappings("/console/*");
-        return registrationBean;
     }
 }

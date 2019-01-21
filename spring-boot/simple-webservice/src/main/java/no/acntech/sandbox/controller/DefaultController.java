@@ -23,12 +23,12 @@ public class DefaultController {
 
     @RequestMapping(method = GET)
     public String indexPage() {
-        return "index";
+        return "WEB-INF/views/index.jsp";
     }
 
     @RequestMapping(method = POST)
     public ModelAndView indexPagePost(@RequestParam("firstName") String firstName) {
-        ModelAndView mav = new ModelAndView("index");
+        ModelAndView mav = new ModelAndView("WEB-INF/views/index.jsp");
         String message = simpleConsumer.sayHello(firstName);
         mav.addObject("message", "Reply from webservice: " + message);
         return mav;

@@ -2,9 +2,9 @@ package no.acntech.sandbox.service.security;
 
 import no.acntech.sandbox.util.security.Password;
 import no.acntech.sandbox.util.security.SecurityUtils;
-import org.springframework.security.authentication.encoding.BasePasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 
-public class AuthPasswordEncoder extends BasePasswordEncoder {
+public class AuthPasswordEncoder extends PasswordEncoder {
 
     @Override
     public String encodePassword(String plaintextPassword, Object salt) {
