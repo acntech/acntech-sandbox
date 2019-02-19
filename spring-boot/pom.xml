@@ -78,6 +78,7 @@
         <module>simple-restful-angular</module>
         <module>simple-cqrs</module>
         <module>simple-postgres</module>
+        <module>security-preauth-login</module>
     </modules>
 
     <!-- DEPENDENCIES -->

@@ -12,9 +12,9 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
         basePackageClasses = {Jsr310JpaConverters.class},
         basePackages = {"no.acntech.sandbox.domain"})
 @SpringBootApplication
-public class Application {
+public class SpringBootSimplePostgresApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(Application.class, args);
+        SpringApplication.run(SpringBootSimplePostgresApplication.class, args);
     }
 }

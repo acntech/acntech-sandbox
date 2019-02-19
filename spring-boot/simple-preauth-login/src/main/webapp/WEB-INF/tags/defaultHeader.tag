@@ -12,11 +12,6 @@
                         <spring:message code="navbar.link.home"/>
                     </a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">
-                        <spring:message code="navbar.link.about"/>
-                    </a>
-                </li>
             </ul>
         </div>
     </nav>

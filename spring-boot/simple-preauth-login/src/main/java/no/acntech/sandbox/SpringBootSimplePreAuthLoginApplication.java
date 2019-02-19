@@ -6,14 +6,14 @@ import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.boot.web.servlet.support.SpringBootServletInitializer;
 
 @SpringBootApplication
-public class SpringBootSimpleMvcApplication extends SpringBootServletInitializer {
+public class SpringBootSimplePreAuthLoginApplication extends SpringBootServletInitializer {
 
     @Override
     protected SpringApplicationBuilder configure(SpringApplicationBuilder application) {
-        return application.sources(SpringBootSimpleMvcApplication.class);
+        return application.sources(SpringBootSimplePreAuthLoginApplication.class);
     }
 
     public static void main(String[] args) {
-        SpringApplication.run(SpringBootSimpleMvcApplication.class, args);
+        SpringApplication.run(SpringBootSimplePreAuthLoginApplication.class, args);
     }
 }

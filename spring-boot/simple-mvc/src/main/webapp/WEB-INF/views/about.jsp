@@ -12,7 +12,7 @@
     <jsp:body>
         <div class="container">
             <div class="starter-template">
-                <h3><spring:message code="main.title"/></h3>
+                <h3><spring:message code="about.title"/></h3>
             </div>
         </div>
     </jsp:body>

@@ -2,7 +2,6 @@ package no.acntech.sandbox.controller;
 
 import no.acntech.sandbox.domain.Greeting;
 import no.acntech.sandbox.service.GreetingService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -17,8 +16,7 @@ public class GreetingController {
 
     private final GreetingService simpleService;
 
-    @Autowired
-    public GreetingController(GreetingService simpleService) {
+    public GreetingController(final GreetingService simpleService) {
         this.simpleService = simpleService;
     }
 
