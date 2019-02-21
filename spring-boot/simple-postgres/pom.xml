@@ -16,7 +16,6 @@
 
     <!-- PROPERTIES -->
     <properties>
-        <postgresql.version>42.1.4</postgresql.version>
     </properties>
 
     <!-- DEPENDENCIES -->
@@ -76,7 +75,6 @@
         <dependency>
             <groupId>org.postgresql</groupId>
             <artifactId>postgresql</artifactId>
-            <version>${postgresql.version}</version>
         </dependency>
         <dependency>
             <groupId>org.flywaydb</groupId>
