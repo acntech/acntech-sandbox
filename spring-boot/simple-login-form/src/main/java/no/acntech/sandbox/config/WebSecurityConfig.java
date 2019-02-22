@@ -15,25 +15,33 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(final HttpSecurity http) throws Exception {
-        http.authorizeRequests()
+        http
+                .authorizeRequests()
                 .antMatchers("/**").access("hasRole('USER')")
-                .and().formLogin().loginPage("/login").defaultSuccessUrl("/").failureUrl("/login?error").permitAll()
-                .and().logout()
+                .anyRequest().authenticated()
+                .and()
+                .formLogin().loginPage("/login").defaultSuccessUrl("/").failureUrl("/login?error").permitAll()
+                .and()
+                .logout()
                 .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
                 .logoutSuccessUrl("/login?logout")
                 .deleteCookies("JSESSIONID")
                 .invalidateHttpSession(true).permitAll()
-                .and().csrf().requireCsrfProtectionMatcher(new AntPathRequestMatcher("**/login"));
+                .and()
+                .csrf().requireCsrfProtectionMatcher(new AntPathRequestMatcher("**/login"));
     }
 
     @Override
-    public void configure(final WebSecurity web) throws Exception {
-        web.ignoring().antMatchers("/webjars/**", "/resources/**");
+    public void configure(final WebSecurity web) {
+        web
+                .ignoring()
+                .antMatchers("/webjars/**", "/resources/**");
     }
 
     @Override
     protected void configure(final AuthenticationManagerBuilder auth) throws Exception {
-        auth.inMemoryAuthentication()
+        auth
+                .inMemoryAuthentication()
                 .withUser("user").password("{noop}user").roles("USER")
                 .and()
                 .withUser("admin").password("{noop}admin").roles("USER", "ADMIN");

@@ -3,14 +3,15 @@ package no.acntech.sandbox.controller;
 import no.acntech.sandbox.domain.Greeting;
 import no.acntech.sandbox.service.GreetingService;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.time.Duration;
 import java.time.LocalDateTime;
 
-@RequestMapping(path = "/")
 @Controller
 public class GreetingController {
 
@@ -20,7 +21,7 @@ public class GreetingController {
         this.simpleService = simpleService;
     }
 
-    @RequestMapping
+    @RequestMapping(path = "/", method = {RequestMethod.GET, RequestMethod.POST})
     public ModelAndView indexPage(@RequestParam(value = "firstName", required = false) String firstName) {
         ModelAndView mav = new ModelAndView("index");
         if (firstName != null && !firstName.isEmpty()) {

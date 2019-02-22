@@ -1,4 +1,4 @@
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page contentType="text/html;charset=UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ taglib prefix="t" tagdir="/WEB-INF/tags" %>
@@ -6,13 +6,9 @@
 <t:defaultPage>
 
     <jsp:attribute name="header">
-      <nav class="navbar navbar-inverse">
-          <div class="container">
-              <div class="navbar-header">
-                  <a class="navbar-brand" href="#"><spring:message code="navbar.brand"/></a>
-              </div>
-              <div id="navbar" class="collapse navbar-collapse">
-              </div>
+      <nav class="navbar navbar-dark bg-primary">
+          <div class="navbar-brand">
+              <h1><spring:message code="navbar.brand"/></h1>
           </div>
       </nav>
     </jsp:attribute>
@@ -20,8 +16,7 @@
     <jsp:body>
         <div class="container">
             <div class="starter-template">
-                <h1><spring:message code="main.title"/></h1>
-                <h3><spring:message code="login.page.title"/></h3>
+                <h3><spring:message code="login.title"/></h3>
                 <form action="${pageContext.request.contextPath}/login" method="post">
                     <div class="form-group">
                         <label for="username"><spring:message code="login.form.username"/></label>

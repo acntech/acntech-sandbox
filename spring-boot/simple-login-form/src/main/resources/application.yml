@@ -1,15 +1,16 @@
-# Server
+### Server ###
 server:
   port: 8080
 
-# Logging
+### Logging ###
 logging:
   level:
     org.springframework: INFO
+    org.springframework.security: DEBUG
     no.acntech: DEBUG
     web: DEBUG
 
-# Spring
+### Spring ###
 spring:
   # Web
   mvc:
@@ -17,5 +18,6 @@ spring:
       prefix: /WEB-INF/views/
       suffix: .jsp
 
+  # Messages
   messages:
     basename: locale/messages

@@ -36,6 +36,6 @@ spring:
   # Datasource
   datasource:
     driver-class-name: org.postgresql.Driver
-    url: jdbc:postgresql://localhost:5432/foo
-    username: foo
+    url: jdbc:postgresql://localhost:5432/sandbox
+    username: sandbox
     password: abcd1234

@@ -1,14 +1,10 @@
 package no.acntech.sandbox.controller;
 
+import no.acntech.sandbox.repository.FooRepository;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.servlet.ModelAndView;
 
-import no.acntech.sandbox.repository.FooRepository;
-
-import static org.springframework.web.bind.annotation.RequestMethod.GET;
-
-@RequestMapping(path = "/")
 @Controller
 public class DefaultController {
 
@@ -18,7 +14,7 @@ public class DefaultController {
         this.fooRepository = fooRepository;
     }
 
-    @RequestMapping(method = GET)
+    @GetMapping(path = "/")
     public ModelAndView indexPage() {
         ModelAndView mav = new ModelAndView("index");
         mav.addObject("data", fooRepository.findAll());

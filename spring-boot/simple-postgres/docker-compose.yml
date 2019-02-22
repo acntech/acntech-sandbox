@@ -3,13 +3,13 @@ version: "3"
 services:
   simple_postgres_database:
     image: postgres
-    container_name: simple_postgres_database
+    container_name: simple-postgres-database
     ports:
       - 5432:5432
     environment:
-      - POSTGRES_USER=foo
+      - POSTGRES_DB=sandbox
+      - POSTGRES_USER=sandbox
       - POSTGRES_PASSWORD=abcd1234
-      - POSTGRES_ROOT_PASSWORD=abcd1234
       - POSTGRES_INITDB_ARGS="--encoding=UTF8"
     networks:
       - simple_postgres
