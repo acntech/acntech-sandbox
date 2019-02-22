@@ -12,9 +12,9 @@
     <jsp:body>
         <div class="container">
             <div class="starter-template">
-                <h1><spring:message code="main.title"/></h1>
+                <h3><spring:message code="main.title"/></h3>
             </div>
-            <h2><spring:message code="main.heading.authors"/></h2>
+            <h5><spring:message code="main.heading.authors"/></h5>
 
             <div class="panel-group">
                 <div class="panel panel-default">

@@ -5,9 +5,7 @@ import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import no.acntech.sandbox.command.service.AuthorCommandService;
@@ -37,7 +35,7 @@ public class AuthorController {
         this.commandService = commandService;
     }
 
-    @RequestMapping(method = GET)
+    @GetMapping
     public ModelAndView get(@RequestParam(value = REQUEST_PARAM_KEY, required = false) String list) {
         ModelAndView modelAndView = new ModelAndView(VIEW_NAME);
         modelAndView.addObject(AUTHOR_MODEL_ATTR, new Author());
@@ -47,7 +45,7 @@ public class AuthorController {
         return modelAndView;
     }
 
-    @RequestMapping(method = POST)
+    @PostMapping
     public ModelAndView post(@Valid @ModelAttribute(AUTHOR_MODEL_ATTR) Author author, BindingResult result) {
         if (result.hasErrors()) {
             return new ModelAndView(ERROR_VIEW_NAME);

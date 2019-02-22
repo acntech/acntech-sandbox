@@ -59,7 +59,6 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Bean
     public RequestHeaderAuthenticationFilter authenticationFilter() {
         RequestHeaderAuthenticationFilter authenticationFilter = new RequestHeaderAuthenticationFilter();
-        authenticationFilter.setPrincipalRequestHeader("user-id");
         authenticationFilter.setAuthenticationManager(authenticationManager());
         return authenticationFilter;
     }

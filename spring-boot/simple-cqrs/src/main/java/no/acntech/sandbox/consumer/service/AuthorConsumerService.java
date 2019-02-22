@@ -30,7 +30,7 @@ public class AuthorConsumerService {
         repository.save(author);
     }
 
-    @KafkaListener(id = "authors", topics = "authors", group = "authors")
+    @KafkaListener(id = "authors", topics = "authors", groupId = "authors")
     public void listen(ConsumerRecord<String, String> record) {
         try {
             if (LOGGER.isDebugEnabled()) {

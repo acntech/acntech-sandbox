@@ -4,6 +4,7 @@ import java.util.Queue;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -20,7 +21,7 @@ public class GreetingResource {
     private static final Logger LOGGER = LoggerFactory.getLogger(GreetingResource.class);
     private static final Queue<Greeting> PAST_GREETINGS = new ArrayNonBlockingQueue<>(100);
 
-    @RequestMapping(value = "/{name}", method = GET)
+    @GetMapping(value = "/{name}")
     public Greeting get(@PathVariable(value = "name") String name) {
         LOGGER.debug("Get operation called");
         Greeting greeting = new Greeting("Hello " + name + "!");
@@ -28,7 +29,7 @@ public class GreetingResource {
         return greeting;
     }
 
-    @RequestMapping(value = "", method = GET)
+    @GetMapping
     public Iterable<Greeting> find() {
         LOGGER.debug("Find operation called");
         return PAST_GREETINGS;
