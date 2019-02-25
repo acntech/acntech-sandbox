@@ -63,7 +63,6 @@
         <webjars-locator.version>0.36</webjars-locator.version>
         <!-- Security -->
         <cxf.version>3.3.0</cxf.version>
-        <bouncycastle.version>1.61</bouncycastle.version>
         <!-- Database -->
         <postgresql.version>42.2.5</postgresql.version>
     </properties>
@@ -116,13 +115,6 @@
                 <groupId>org.webjars</groupId>
                 <artifactId>webjars-locator</artifactId>
                 <version>${webjars-locator.version}</version>
-            </dependency>
-
-            <!-- Security -->
-            <dependency>
-                <groupId>org.bouncycastle</groupId>
-                <artifactId>bcprov-jdk15on</artifactId>
-                <version>${bouncycastle.version}</version>
             </dependency>
 
             <!-- Database -->

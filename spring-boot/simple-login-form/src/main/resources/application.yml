@@ -8,7 +8,6 @@ logging:
     org.springframework: INFO
     org.springframework.security: DEBUG
     no.acntech: DEBUG
-    web: DEBUG
 
 ### Spring ###
 spring:

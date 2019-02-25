@@ -1,4 +1,4 @@
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page contentType="text/html;charset=UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ taglib prefix="t" tagdir="/WEB-INF/tags" %>
@@ -20,8 +20,8 @@
     <jsp:body>
         <div class="container">
             <div class="starter-template">
-                <h1><spring:message code="main.title"/></h1>
-                <h3><spring:message code="login.page.title"/></h3>
+                <h3><spring:message code="main.title"/></h3>
+                <h4><spring:message code="login.page.title"/></h4>
                 <form action="${pageContext.request.contextPath}/login" method="post">
                     <div class="form-group">
                         <label for="username"><spring:message code="login.form.username"/></label>

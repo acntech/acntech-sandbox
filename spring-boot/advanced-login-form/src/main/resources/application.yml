@@ -1,13 +1,17 @@
-# Server
+### AcnTech ###
+acntech:
+
+### Server ###
 server:
   port: 8080
 
-# Logging
+### Logging ###
 logging:
   level:
     org.springframework: INFO
     no.acntech: DEBUG
 
+### Spring ###
 spring:
   # Web
   mvc:
@@ -15,25 +19,24 @@ spring:
       prefix: /WEB-INF/views/
       suffix: .jsp
 
+  # Messages
   messages:
     basename: locale/messages
-
-  resources:
-    cache:
-      period: 31556926
 
   # H2 Database
   datasource:
     driver-class-name: org.h2.Driver
-    url: jdbc:h2:mem:prototype;DB_CLOSE_ON_EXIT=FALSE;DB_CLOSE_DELAY=-1;MODE=Oracle
+    url: jdbc:h2:mem:prototype;DB_CLOSE_ON_EXIT=FALSE;DB_CLOSE_DELAY=-1
     username: sa
     password:
+
   # JPA
   jpa:
-    database-platform: org.hibernate.dialect.Oracle12cDialect
+    database-platform: org.hibernate.dialect.H2Dialect
     show-sql: true
     hibernate:
       ddl-auto: none
+
   # Enable H2 database console
   h2:
     console:
