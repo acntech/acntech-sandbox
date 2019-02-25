@@ -16,8 +16,8 @@
 
     <!-- PROPERTIES -->
     <properties>
-        <wsdl>classpath:wsdl/no/acntech/sandbox/webservice/simple/v1.0/SimpleService.wsdl</wsdl>
-        <wsdl.location>${wsdl}</wsdl.location>
+        <wsdl>${project.basedir}/src/main/resources/wsdl/no/acntech/sandbox/webservice/simple/v1.0/SimpleService.wsdl
+        </wsdl>
     </properties>
 
     <!-- DEPENDENCIES -->
@@ -32,14 +32,11 @@
         <!-- Spring Framework -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-web-services</artifactId>
+            <artifactId>spring-boot-starter-web</artifactId>
         </dependency>
-
-        <!-- Tomcat embedded container-->
         <dependency>
             <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-tomcat</artifactId>
-            <scope>provided</scope>
+            <artifactId>spring-boot-starter-web-services</artifactId>
         </dependency>
 
         <!-- JSTL for JSP -->
@@ -53,12 +50,10 @@
             <groupId>org.webjars</groupId>
             <artifactId>jquery</artifactId>
         </dependency>
-
         <dependency>
             <groupId>org.webjars</groupId>
             <artifactId>bootstrap</artifactId>
         </dependency>
-
         <dependency>
             <groupId>org.webjars</groupId>
             <artifactId>webjars-locator</artifactId>
@@ -68,7 +63,6 @@
         <dependency>
             <groupId>org.apache.tomcat.embed</groupId>
             <artifactId>tomcat-embed-jasper</artifactId>
-            <scope>provided</scope>
         </dependency>
 
         <!-- Webservice -->
@@ -99,7 +93,6 @@
                             <wsdlOptions>
                                 <wsdlOption>
                                     <wsdl>${wsdl}</wsdl>
-                                    <wsdlLocation>${wsdl.location}</wsdlLocation>
                                     <extraargs>
                                         <extraarg>-client</extraarg>
                                         <extraarg>-verbose</extraarg>
