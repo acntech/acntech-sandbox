@@ -79,7 +79,8 @@
         <module>simple-restful-angular</module>
         <module>simple-cqrs</module>
         <module>simple-postgres</module>
-        <module>simple-login-preauth</module>
+        <module>simple-login-pre-auth</module>
+        <module>simple-login-basic-auth</module>
     </modules>
 
     <!-- DEPENDENCIES -->
