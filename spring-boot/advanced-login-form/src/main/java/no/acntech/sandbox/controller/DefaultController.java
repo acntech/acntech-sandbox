@@ -1,6 +1,7 @@
 package no.acntech.sandbox.controller;
 
 import no.acntech.sandbox.domain.User;
+import no.acntech.sandbox.domain.UserModel;
 import no.acntech.sandbox.repository.UserRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -32,13 +33,13 @@ public class DefaultController {
         return "login";
     }
 
-    @GetMapping(path = "/user")
+    @GetMapping(path = "/users")
     public ModelAndView userPage() {
-        List<User> users = new ArrayList<>();
+        List<UserModel> users = new ArrayList<>();
         Iterable<User> result = userRepository.findAll();
-        result.forEach(users::add);
+        result.forEach(user -> users.add(UserModel.fromUser(user).build()));
         LOGGER.info("Found {} users", users.size());
-        ModelAndView mav = new ModelAndView("user");
+        ModelAndView mav = new ModelAndView("users");
         mav.addObject("users", users);
         return mav;
     }

@@ -5,8 +5,9 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title><spring:message code="main.title"/></title>
+    <title><spring:message code="navbar.brand"/></title>
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/webjars/bootstrap/css/bootstrap.min.css"/>
+    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/default.css"/>
 </head>
 <body>
 <jsp:invoke fragment="header"/>
@@ -15,7 +16,7 @@
 
 <jsp:invoke fragment="footer"/>
 <script type="text/javascript" src="${pageContext.request.contextPath}/webjars/jquery/jquery.js"></script>
-<script type="text/javascript" src="${pageContext.request.contextPath}/webjars/popper.js/popper.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/webjars/bootstrap/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/default.js"></script>
 </body>
 </html>

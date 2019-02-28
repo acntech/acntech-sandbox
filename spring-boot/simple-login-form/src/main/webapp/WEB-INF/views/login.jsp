@@ -6,17 +6,13 @@
 <t:defaultPage>
 
     <jsp:attribute name="header">
-      <nav class="navbar navbar-dark bg-primary">
-          <div class="navbar-brand">
-              <h1><spring:message code="navbar.brand"/></h1>
-          </div>
-      </nav>
+      <t:loginHeader/>
     </jsp:attribute>
 
     <jsp:body>
-        <div class="container">
+        <main class="container login-container" role="main">
             <div class="starter-template">
-                <h3><spring:message code="login.title"/></h3>
+                <h3><spring:message code="login.page.title"/></h3>
                 <form action="${pageContext.request.contextPath}/login" method="post">
                     <div class="form-group">
                         <label for="username"><spring:message code="login.form.username"/></label>
@@ -30,13 +26,17 @@
                     <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
                 </form>
                 <c:if test="${param.error != null}">
-                    <h4 style="color: darkred"><spring:message code="login.invalid.credentials"/></h4>
+                    <div class="alert alert-danger" role="alert">
+                        <spring:message code="login.invalid.credentials"/>
+                    </div>
                 </c:if>
                 <c:if test="${param.logout != null}">
-                    <h4 style="color: darkgreen"><spring:message code="logout.successful"/></h4>
+                    <div class="alert alert-success" role="alert">
+                        <spring:message code="logout.successful"/>
+                    </div>
                 </c:if>
             </div>
-        </div>
+        </main>
     </jsp:body>
 
 </t:defaultPage>

@@ -10,21 +10,23 @@
     </jsp:attribute>
 
     <jsp:body>
-        <div class="container">
+        <main class="container" role="main">
             <div class="starter-template">
-                <h3><spring:message code="main.title"/></h3>
-                <c:if test="${message != null}">
-                    <h4>${message}</h4>
-                </c:if>
-                <form action="${pageContext.request.contextPath}" method="post">
-                    <div class="form-group">
-                        <label for="firstName"><spring:message code="form.firstName"/></label>
-                        <input type="text" class="form-control" id="firstName" name="firstName">
-                    </div>
-                    <button type="submit" class="btn btn-success"><spring:message code="form.button"/></button>
-                </form>
+                <div class="jumbotron">
+                    <h3><spring:message code="index.page.title"/></h3>
+                    <form action="${pageContext.request.contextPath}" method="post">
+                        <div class="form-group">
+                            <label for="firstName"><spring:message code="form.firstName"/></label>
+                            <input type="text" class="form-control" id="firstName" name="firstName">
+                        </div>
+                        <button type="submit" class="btn btn-success"><spring:message code="form.button"/></button>
+                    </form>
+                    <c:if test="${message != null}">
+                        <div class="alert alert-success" role="alert">${message}</div>
+                    </c:if>
+                </div>
             </div>
-        </div>
+        </main>
     </jsp:body>
 
 </t:defaultPage>

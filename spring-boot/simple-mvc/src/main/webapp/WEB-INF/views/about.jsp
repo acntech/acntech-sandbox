@@ -10,11 +10,14 @@
     </jsp:attribute>
 
     <jsp:body>
-        <div class="container">
+        <main class="container" role="main">
             <div class="starter-template">
-                <h3><spring:message code="about.title"/></h3>
+                <div class="jumbotron">
+                    <h1><spring:message code="about.page.title"/></h1>
+                    </p>
+                </div>
             </div>
-        </div>
+        </main>
     </jsp:body>
 
 </t:defaultPage>
