@@ -1,0 +1,41 @@
+### Server ###
+server:
+  port: 8080
+
+### Logging ###
+logging:
+  level:
+    org.springframework: INFO
+    org.apache.kafka.clients.consumer.ConsumerConfig: WARN
+    org.apache.kafka.clients.producer.ProducerConfig: WARN
+    no.acntech: DEBUG
+
+### String ###
+spring:
+  # Web
+  mvc:
+    view:
+      prefix: /WEB-INF/views/
+      suffix: .jsp
+
+  # Messages
+  messages:
+    basename: locale/messages
+
+  # JPA
+  jpa:
+    database-platform: org.hibernate.dialect.H2Dialect
+    hibernate:
+      ddl-auto: update
+
+  # Datasource
+  datasource:
+    driver-class-name: org.h2.Driver
+    url: jdbc:h2:mem:sandbox;DB_CLOSE_ON_EXIT=FALSE;DB_CLOSE_DELAY=-1
+    username: sa
+    password:
+
+  # H2 Database
+  h2:
+    console:
+      enabled: true

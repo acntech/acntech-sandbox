@@ -1,0 +1,19 @@
+version: '3.5'
+
+services:
+  acntech_sandbox_postgres_database:
+    image: postgres
+    container_name: acntech-sandbox-postgres-database
+    ports:
+      - 5432:5432
+    environment:
+      - POSTGRES_DB=sandbox
+      - POSTGRES_USER=sandbox
+      - POSTGRES_PASSWORD=abcd1234
+      - POSTGRES_INITDB_ARGS="--encoding=UTF8"
+    networks:
+      - acntech_sandbox_postgres_database
+
+networks:
+  acntech_sandbox_postgres_database:
+    name: acntech-sandbox-postgres-database

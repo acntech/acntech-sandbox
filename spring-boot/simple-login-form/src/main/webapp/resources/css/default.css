@@ -1,0 +1,11 @@
+.header {
+    margin-bottom: 1rem;
+}
+
+.login-container {
+    max-width: 420px;
+}
+
+.login-container form {
+    margin-bottom: 1rem;
+}

@@ -6,39 +6,107 @@
 
     <!-- PROJECT -->
     <parent>
-        <groupId>no.acntech.sandbox.spring.boot</groupId>
-        <artifactId>acntech-spring-boot-sandbox</artifactId>
-        <version>1.0.1-SNAPSHOT</version>
+        <groupId>no.acntech.sandbox</groupId>
+        <artifactId>acntech-sandbox-spring-boot</artifactId>
+        <version>1.0.0-SNAPSHOT</version>
     </parent>
 
-    <artifactId>simple-webservice</artifactId>
-    <packaging>pom</packaging>
+    <artifactId>spring-boot-simple-webservice</artifactId>
+    <packaging>war</packaging>
 
-    <name>Simple Spring Boot Webservice</name>
-    <description>Simple webservice with Spring Boot</description>
-
-    <!-- MODULES -->
-    <modules>
-        <module>wsdl</module>
-        <module>api</module>
-        <module>webapp</module>
-    </modules>
+    <!-- PROPERTIES -->
+    <properties>
+        <wsdl>${project.basedir}/src/main/resources/wsdl/no/acntech/sandbox/webservice/simple/v1.0/SimpleService.wsdl
+        </wsdl>
+    </properties>
 
     <!-- DEPENDENCIES -->
-    <dependencyManagement>
-        <dependencies>
-            <!-- Project -->
-            <dependency>
-                <groupId>no.acntech.sandbox.spring.boot</groupId>
-                <artifactId>simple-webservice-wsdl</artifactId>
-                <version>${project.version}</version>
-            </dependency>
+    <dependencies>
+        <!-- Testing -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
+            <scope>test</scope>
+        </dependency>
 
-            <dependency>
-                <groupId>no.acntech.sandbox.spring.boot</groupId>
-                <artifactId>simple-webservice-api</artifactId>
-                <version>${project.version}</version>
-            </dependency>
-        </dependencies>
-    </dependencyManagement>
+        <!-- Spring Framework -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web-services</artifactId>
+        </dependency>
+
+        <!-- JSTL for JSP -->
+        <dependency>
+            <groupId>javax.servlet</groupId>
+            <artifactId>jstl</artifactId>
+        </dependency>
+
+        <!-- WebJars -->
+        <dependency>
+            <groupId>org.webjars</groupId>
+            <artifactId>jquery</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.webjars</groupId>
+            <artifactId>bootstrap</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.webjars</groupId>
+            <artifactId>webjars-locator</artifactId>
+        </dependency>
+
+        <!-- Need this to compile JSP -->
+        <dependency>
+            <groupId>org.apache.tomcat.embed</groupId>
+            <artifactId>tomcat-embed-jasper</artifactId>
+        </dependency>
+
+        <!-- Webservice -->
+        <dependency>
+            <groupId>org.apache.cxf</groupId>
+            <artifactId>cxf-spring-boot-starter-jaxws</artifactId>
+        </dependency>
+    </dependencies>
+
+    <!-- BUILD -->
+    <build>
+        <!-- PLUGINS -->
+        <plugins>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+            </plugin>
+
+            <plugin>
+                <groupId>org.apache.cxf</groupId>
+                <artifactId>cxf-codegen-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>generate-service</id>
+                        <phase>generate-sources</phase>
+                        <configuration>
+                            <encoding>UTF-8</encoding>
+                            <wsdlOptions>
+                                <wsdlOption>
+                                    <wsdl>${wsdl}</wsdl>
+                                    <extraargs>
+                                        <extraarg>-client</extraarg>
+                                        <extraarg>-verbose</extraarg>
+                                        <extraarg>-xjc-npa</extraarg>
+                                    </extraargs>
+                                </wsdlOption>
+                            </wsdlOptions>
+                        </configuration>
+                        <goals>
+                            <goal>wsdl2java</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
 </project>
