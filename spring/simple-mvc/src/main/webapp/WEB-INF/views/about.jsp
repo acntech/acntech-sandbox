@@ -13,7 +13,8 @@
         <main class="container" role="main">
             <div class="starter-template">
                 <div class="jumbotron">
-                    <h1><spring:message code="index.page.title"/></h1>
+                    <h1><spring:message code="about.page.title"/></h1>
+                    </p>
                 </div>
             </div>
         </main>

@@ -1,4 +1,4 @@
-package no.acntech.prototype.config;
+package no.acntech.sandbox.config;
 
 import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
 

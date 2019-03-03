@@ -8,6 +8,10 @@
         </encoder>
     </appender>
 
+    <logger name="org.springframework" level="DEBUG" additivity="false">
+        <appender-ref ref="STDOUT"/>
+    </logger>
+
     <logger name="no.acntech" level="DEBUG" additivity="false">
         <appender-ref ref="STDOUT"/>
     </logger>
