@@ -10,10 +10,10 @@ public class Foo {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+    private Long id;
     private String data;
 
-    public long getId() {
+    public Long getId() {
         return id;
     }
 

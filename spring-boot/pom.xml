@@ -81,6 +81,7 @@
         <module>simple-postgres</module>
         <module>simple-login-pre-auth</module>
         <module>simple-login-basic-auth</module>
+        <module>simple-transactions</module>
     </modules>
 
     <!-- DEPENDENCIES -->

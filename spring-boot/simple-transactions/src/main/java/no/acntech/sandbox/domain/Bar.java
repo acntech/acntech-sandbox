@@ -6,15 +6,24 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 @Entity
-public class Foo {
+public class Bar {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+    private Long id;
+    private Long fooId;
     private String data;
 
-    public long getId() {
+    public Long getId() {
         return id;
+    }
+
+    public Long getFooId() {
+        return fooId;
+    }
+
+    public void setFooId(Long fooId) {
+        this.fooId = fooId;
     }
 
     public String getData() {
