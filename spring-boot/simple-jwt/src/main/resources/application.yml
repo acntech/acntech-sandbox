@@ -1,6 +1,8 @@
 ### Server ###
 server:
   port: 8080
+  servlet:
+    context-path: /api
 
 ### Logging ###
 logging:
@@ -11,3 +13,7 @@ logging:
 
 ### Spring ###
 spring:
+  application:
+    name: spring-boot-simple-jwt
+  jackson:
+    default-property-inclusion: NON_NULL
