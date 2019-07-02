@@ -1,4 +1,4 @@
-package no.acntech;
+package no.acntech.sandbox;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

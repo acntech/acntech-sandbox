@@ -86,6 +86,7 @@
         <module>simple-testing</module>
         <module>simple-jwt</module>
         <module>simple-oauth2</module>
+        <module>simple-oauth2-keycloak</module>
     </modules>
 
     <!-- DEPENDENCIES -->
