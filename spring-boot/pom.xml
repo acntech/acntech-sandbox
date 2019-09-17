@@ -71,6 +71,7 @@
     <!-- MODULES -->
     <modules>
         <module>simple-mvc</module>
+        <module>simple-thymeleaf</module>
         <module>simple-login-form</module>
         <module>advanced-login-form</module>
         <module>simple-restful</module>
@@ -87,6 +88,7 @@
         <module>simple-jwt</module>
         <module>simple-oauth2</module>
         <module>simple-oauth2-keycloak</module>
+        <module>simple-stateless-session</module>
     </modules>
 
     <!-- DEPENDENCIES -->

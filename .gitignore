@@ -21,6 +21,3 @@ nbactions.xml
 # SonarLint
 *.sonarlint/
 .sonar_lock
-
-# Prosjektet
-static/
