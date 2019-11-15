@@ -1,8 +1,8 @@
 package no.acntech.sandbox.domain;
 
-import org.springframework.hateoas.ResourceSupport;
+import org.springframework.hateoas.RepresentationModel;
 
-public class Greeting extends ResourceSupport {
+public class Greeting extends RepresentationModel {
 
     private String message;
 
