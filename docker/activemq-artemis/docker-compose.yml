@@ -1,0 +1,20 @@
+version: '3.5'
+
+services:
+  server:
+    image: vromero/activemq-artemis
+    container_name: activemq-artemis
+    hostname: activemq-artemis
+    domainname: acntech.local
+    environment:
+      - ARTEMIS_USERNAME=admin
+      - ARTEMIS_PASSWORD=admin
+    ports:
+      - 8161:8161
+      - 61616:61616
+    networks:
+      - activemq-artemis
+
+networks:
+  activemq-artemis:
+    name: activemq-artemis

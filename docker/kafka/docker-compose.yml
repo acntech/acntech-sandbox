@@ -1,0 +1,28 @@
+version: '3.5'
+
+services:
+  sandbox_kafka:
+    image: acntechie/kafka
+    container_name: sandbox_kafka
+    ports:
+      - 9092:9092
+    environment:
+      - KAFKA_BROKER_ID=1
+      - ZOOKEEPER_HOSTS=sandbox_zookeeper:2181
+    depends_on:
+      - sandbox_zookeeper
+    networks:
+      - sandbox_kafka
+
+  sandbox_zookeeper:
+    image: acntechie/zookeeper
+    container_name: sandbox_zookeeper
+    environment:
+      - ZOOKEEPER_ID=1
+      - ZOOKEEPER_HOSTS=sandbox_zookeeper:2888:3888
+    networks:
+      - sandbox_kafka
+
+networks:
+  sandbox_kafka:
+    name: sandbox_kafka

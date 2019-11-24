@@ -20,7 +20,7 @@ oauth:
   clients:
     generic-client:
       name: Generic Client
-      secret: o463qXwa
+      secret: w1Mp8ziW
       authorized-grant-types: authorization_code
       scope: openid,profile,email
       authorities: uaa.resource
@@ -32,6 +32,14 @@ oauth:
       scope: openid,profile,email
       authorities: uaa.resource
       redirect-uri: http://localhost:8080/api/login/oauth2/code/generic-client-api
+    generic-resource-server:
+      name: Generic Resource Server
+      id: generic-resource-server
+      secret: 0kX3bvZe
+      authorized-grant-types: client_credentials
+      scope: read:orders
+      authorities: uaa.resource
+      resource-ids: clients
 
 scim:
   groups:

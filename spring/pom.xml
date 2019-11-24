@@ -7,34 +7,8 @@
     <!-- PROJECT -->
     <groupId>no.acntech.sandbox</groupId>
     <artifactId>acntech-sandbox-spring</artifactId>
-    <packaging>pom</packaging>
     <version>1.0.0-SNAPSHOT</version>
-
-    <!-- LICENSES -->
-    <licenses>
-        <license>
-            <name>The Apache Software License, Version 2.0</name>
-            <url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
-        </license>
-    </licenses>
-
-    <!-- DEVELOPERS -->
-    <developers>
-        <developer>
-            <id>thomas.johansen</id>
-            <name>Thomas Johansen</name>
-            <email>thomas@acntech.no</email>
-            <organization>AcnTech</organization>
-            <organizationUrl>https://acntech.no</organizationUrl>
-        </developer>
-    </developers>
-
-    <!-- SCM -->
-    <scm>
-        <connection>scm:git:https://github.com/acntech/acntech-sandbox.git</connection>
-        <developerConnection>scm:git:ssh://github.com:acntech/acntech-sandbox.git</developerConnection>
-        <url>https://github.com/acntech/acntech-sandbox</url>
-    </scm>
+    <packaging>pom</packaging>
 
     <!-- PROPERTIES -->
     <properties>
