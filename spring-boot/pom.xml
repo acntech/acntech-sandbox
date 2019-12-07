@@ -8,7 +8,7 @@
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
-        <version>2.2.1.RELEASE</version>
+        <version>2.2.2.RELEASE</version>
         <relativePath/>
     </parent>
 
@@ -54,9 +54,9 @@
         <module>advanced-login-form</module>
         <module>simple-restful</module>
         <module>simple-restful-hateoas</module>
+        <module>simple-restful-angular</module>
         <module>simple-webservice</module>
         <module>simple-ehcache</module>
-        <module>simple-restful-angular</module>
         <module>simple-cqrs</module>
         <module>simple-postgres</module>
         <module>simple-login-pre-auth</module>
@@ -68,6 +68,9 @@
         <module>simple-oauth2-resource-server</module>
         <module>simple-oauth2-authorization-server</module>
         <module>simple-stateless-session</module>
+        <module>simple-reactive</module>
+        <module>simple-reactive-tomcat</module>
+        <module>simple-reactive-war-deployment</module>
     </modules>
 
     <!-- DEPENDENCIES -->
