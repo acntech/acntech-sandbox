@@ -22,9 +22,7 @@
         <developer>
             <id>thomas.johansen</id>
             <name>Thomas Johansen</name>
-            <email>thomas@acntech.no</email>
-            <organization>AcnTech</organization>
-            <organizationUrl>https://acntech.no</organizationUrl>
+            <email>thomas.johansen@accenture.com</email>
         </developer>
     </developers>
 
@@ -39,6 +37,7 @@
     <modules>
         <module>spring</module>
         <module>spring-boot</module>
+        <module>spring-cloud</module>
         <module>microprofile</module>
     </modules>
 </project>

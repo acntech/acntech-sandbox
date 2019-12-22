@@ -12,7 +12,7 @@
     </parent>
 
     <groupId>no.acntech.sandbox</groupId>
-    <artifactId>acntech-sandbox-spring-boot</artifactId>
+    <artifactId>acntech-sandbox-spring-cloud</artifactId>
     <version>1.0.0-SNAPSHOT</version>
     <packaging>pom</packaging>
 
@@ -26,46 +26,16 @@
         <project.build.sourceEncoding>${project.encoding}</project.build.sourceEncoding>
         <project.reporting.outputEncoding>${project.encoding}</project.reporting.outputEncoding>
         <downloadSources>true</downloadSources>
-        <downloadJavadocs>true</downloadJavadocs>
-        <failOnMissingWebXml>false</failOnMissingWebXml>
 
         <!-- Dependencies -->
-        <spring-boot-oauth.version>2.1.6.RELEASE</spring-boot-oauth.version>
-        <!-- WebJars -->
-        <webjars-jquery.version>3.3.1-2</webjars-jquery.version>
-        <webjars-bootstrap.version>4.3.1</webjars-bootstrap.version>
-        <webjars-locator.version>0.36</webjars-locator.version>
-        <!-- Thymeleaf -->
-        <thymeleaf-layout-dialect.version>2.4.1</thymeleaf-layout-dialect.version>
-        <!-- Webservice -->
-        <cxf.version>3.3.0</cxf.version>
+        <spring-cloud.version>Hoxton.RELEASE</spring-cloud.version>
     </properties>
 
     <!-- MODULES -->
     <modules>
-        <module>simple-mvc</module>
-        <module>simple-thymeleaf</module>
-        <module>simple-login-form</module>
-        <module>advanced-login-form</module>
-        <module>simple-restful</module>
-        <module>simple-restful-hateoas</module>
-        <module>simple-restful-angular</module>
-        <module>simple-webservice</module>
-        <module>simple-ehcache</module>
-        <module>simple-cqrs</module>
-        <module>simple-postgres</module>
-        <module>simple-login-pre-auth</module>
-        <module>simple-login-basic-auth</module>
-        <module>simple-transactions</module>
-        <module>simple-testing</module>
-        <module>simple-jwt</module>
-        <module>simple-oauth2-client-login</module>
-        <module>simple-oauth2-resource-server</module>
-        <module>simple-oauth2-authorization-server</module>
-        <module>simple-stateless-session</module>
-        <module>simple-webflux</module>
-        <module>simple-webflux-tomcat</module>
-        <module>simple-webflux-war-deployment</module>
+        <module>gateway</module>
+        <module>gateway-tomcat</module>
+        <module>gateway-war-deployment</module>
     </modules>
 
     <!-- DEPENDENCIES -->
@@ -117,53 +87,13 @@
 
     <dependencyManagement>
         <dependencies>
-            <!-- Thymeleaf -->
+            <!-- Spring Cloud -->
             <dependency>
-                <groupId>nz.net.ultraq.thymeleaf</groupId>
-                <artifactId>thymeleaf-layout-dialect</artifactId>
-                <version>${thymeleaf-layout-dialect.version}</version>
-            </dependency>
-
-            <!-- WebJars -->
-            <dependency>
-                <groupId>org.webjars</groupId>
-                <artifactId>jquery</artifactId>
-                <version>${webjars-jquery.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>org.webjars</groupId>
-                <artifactId>bootstrap</artifactId>
-                <version>${webjars-bootstrap.version}</version>
-                <exclusions>
-                    <exclusion>
-                        <groupId>org.webjars</groupId>
-                        <artifactId>jquery</artifactId>
-                    </exclusion>
-                </exclusions>
-            </dependency>
-            <dependency>
-                <groupId>org.webjars</groupId>
-                <artifactId>webjars-locator</artifactId>
-                <version>${webjars-locator.version}</version>
-            </dependency>
-
-            <!-- Webservice -->
-            <dependency>
-                <groupId>org.apache.cxf</groupId>
-                <artifactId>cxf-spring-boot-starter-jaxws</artifactId>
-                <version>${cxf.version}</version>
-            </dependency>
-
-            <!-- Security -->
-            <dependency>
-                <groupId>org.springframework.security</groupId>
-                <artifactId>spring-security-oauth2-jose</artifactId>
-                <version>${spring-security.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>org.springframework.security.oauth.boot</groupId>
-                <artifactId>spring-security-oauth2-autoconfigure</artifactId>
-                <version>${spring-boot-oauth.version}</version>
+                <groupId>org.springframework.cloud</groupId>
+                <artifactId>spring-cloud-dependencies</artifactId>
+                <version>${spring-cloud.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
             </dependency>
         </dependencies>
     </dependencyManagement>
@@ -198,15 +128,5 @@
                 </executions>
             </plugin>
         </plugins>
-
-        <pluginManagement>
-            <plugins>
-                <plugin>
-                    <groupId>org.apache.cxf</groupId>
-                    <artifactId>cxf-codegen-plugin</artifactId>
-                    <version>${cxf.version}</version>
-                </plugin>
-            </plugins>
-        </pluginManagement>
     </build>
 </project>
