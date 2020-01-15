@@ -1,9 +1,9 @@
 version: '3.5'
 
 services:
-  server:
+  sandbox_activemq_artemis:
     image: vromero/activemq-artemis
-    container_name: activemq-artemis
+    container_name: sandbox_activemq_artemis
     hostname: activemq-artemis
     domainname: acntech.local
     environment:
@@ -13,8 +13,8 @@ services:
       - 8161:8161
       - 61616:61616
     networks:
-      - activemq-artemis
+      - sandbox_activemq_artemis
 
 networks:
-  activemq-artemis:
-    name: activemq-artemis
+  sandbox_activemq_artemis:
+    name: sandbox_activemq_artemis

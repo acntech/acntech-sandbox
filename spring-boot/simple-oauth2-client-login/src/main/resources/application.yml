@@ -3,7 +3,7 @@
 ########################
 spring:
   application:
-    name: resource-server
+    name: simple-oauth2-client-login
   # Jackson
   jackson:
     date-format: com.fasterxml.jackson.databind.util.StdDateFormat
