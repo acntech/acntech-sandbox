@@ -134,7 +134,7 @@ login:
 
 database:
   driverClassName: org.postgresql.Driver
-  url: jdbc:postgresql://database:5432/uaa
+  url: jdbc:postgresql://sandbox_uaa_database:5432/uaa
   username: uaa
   password: hS9y05zA
 

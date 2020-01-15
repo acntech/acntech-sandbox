@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0"
-         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
@@ -13,7 +12,7 @@
     </parent>
 
     <groupId>no.acntech.sandbox</groupId>
-    <artifactId>acntech-sandbox-spring-boot</artifactId>
+    <artifactId>spring-boot</artifactId>
     <version>1.0.0-SNAPSHOT</version>
     <packaging>pom</packaging>
 
@@ -32,8 +31,6 @@
 
         <!-- Dependencies -->
         <spring-boot-oauth.version>2.1.6.RELEASE</spring-boot-oauth.version>
-        <!-- Test -->
-        <junit-jupiter.version>5.4.1</junit-jupiter.version>
         <!-- WebJars -->
         <webjars-jquery.version>3.3.1-2</webjars-jquery.version>
         <webjars-bootstrap.version>4.3.1</webjars-bootstrap.version>
@@ -42,8 +39,6 @@
         <thymeleaf-layout-dialect.version>2.4.1</thymeleaf-layout-dialect.version>
         <!-- Webservice -->
         <cxf.version>3.3.0</cxf.version>
-        <!-- Database -->
-        <postgresql.version>42.2.5</postgresql.version>
     </properties>
 
     <!-- MODULES -->
@@ -68,9 +63,9 @@
         <module>simple-oauth2-resource-server</module>
         <module>simple-oauth2-authorization-server</module>
         <module>simple-stateless-session</module>
-        <module>simple-reactive</module>
-        <module>simple-reactive-tomcat</module>
-        <module>simple-reactive-war-deployment</module>
+        <module>simple-webflux</module>
+        <module>simple-webflux-tomcat</module>
+        <module>simple-webflux-war-deployment</module>
     </modules>
 
     <!-- DEPENDENCIES -->
@@ -83,29 +78,32 @@
             <scope>test</scope>
             <exclusions>
                 <exclusion>
-                    <groupId>junit</groupId>
-                    <artifactId>junit</artifactId>
+                    <groupId>org.junit.vintage</groupId>
+                    <artifactId>junit-vintage-engine</artifactId>
                 </exclusion>
                 <exclusion>
                     <groupId>org.hamcrest</groupId>
-                    <artifactId>hamcrest-core</artifactId>
+                    <artifactId>hamcrest</artifactId>
                 </exclusion>
                 <exclusion>
-                    <groupId>org.hamcrest</groupId>
-                    <artifactId>hamcrest-library</artifactId>
+                    <groupId>org.xmlunit</groupId>
+                    <artifactId>xmlunit-core</artifactId>
                 </exclusion>
             </exclusions>
         </dependency>
         <dependency>
             <groupId>org.junit.jupiter</groupId>
             <artifactId>junit-jupiter-engine</artifactId>
-            <version>${junit-jupiter.version}</version>
             <scope>test</scope>
         </dependency>
         <dependency>
             <groupId>org.junit.jupiter</groupId>
             <artifactId>junit-jupiter-params</artifactId>
-            <version>${junit-jupiter.version}</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.junit.platform</groupId>
+            <artifactId>junit-platform-launcher</artifactId>
             <scope>test</scope>
         </dependency>
 
@@ -149,13 +147,6 @@
                 <version>${webjars-locator.version}</version>
             </dependency>
 
-            <!-- Database -->
-            <dependency>
-                <groupId>org.postgresql</groupId>
-                <artifactId>postgresql</artifactId>
-                <version>${postgresql.version}</version>
-            </dependency>
-
             <!-- Webservice -->
             <dependency>
                 <groupId>org.apache.cxf</groupId>
@@ -193,7 +184,6 @@
                     </execution>
                 </executions>
             </plugin>
-
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-javadoc-plugin</artifactId>

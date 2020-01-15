@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class GreetingResource {
 
     @GetMapping
-    public ResponseEntity<Greeting> get(@RequestParam(name = "name", defaultValue = "Unknown") String name) {
+    public ResponseEntity<Greeting> get(@RequestParam(name = "name", defaultValue = "Nobody") String name) {
         return ResponseEntity.ok(new Greeting("Hello " + name + "!"));
     }
 }
