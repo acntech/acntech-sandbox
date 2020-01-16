@@ -28,9 +28,9 @@
 
     <!-- SCM -->
     <scm>
+        <url>https://github.com/acntech/acntech-sandbox</url>
         <connection>scm:git:https://github.com/acntech/acntech-sandbox.git</connection>
         <developerConnection>scm:git:ssh://github.com:acntech/acntech-sandbox.git</developerConnection>
-        <url>https://github.com/acntech/acntech-sandbox</url>
     </scm>
 
     <!-- MODULES -->
@@ -39,5 +39,8 @@
         <module>spring-boot</module>
         <module>spring-cloud</module>
         <module>microprofile</module>
+        <module>apache-spark</module>
+        <module>apache-storm</module>
+        <module>apache-flink</module>
     </modules>
 </project>

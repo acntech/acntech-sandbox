@@ -29,12 +29,10 @@ spring:
           generic-client:
             provider: uaa
             client-id: generic-client
-            client-secret: o463qXwa
-            redirect-uri: "{baseUrl}/login/oauth2/code/{registrationId}"
+            client-secret: w1Mp8ziW
             scope:
               - openid
               - profile
-              - email
         provider:
           uaa:
             issuer-uri: http://localhost:8888/uaa/oauth/token
