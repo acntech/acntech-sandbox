@@ -7,7 +7,7 @@
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
-        <version>2.2.2.RELEASE</version>
+        <version>2.3.3.RELEASE</version>
         <relativePath/>
     </parent>
 
@@ -32,13 +32,13 @@
         <!-- Dependencies -->
         <spring-boot-oauth.version>2.1.6.RELEASE</spring-boot-oauth.version>
         <!-- WebJars -->
-        <webjars-jquery.version>3.3.1-2</webjars-jquery.version>
-        <webjars-bootstrap.version>4.3.1</webjars-bootstrap.version>
-        <webjars-locator.version>0.36</webjars-locator.version>
+        <webjars-jquery.version>3.5.1</webjars-jquery.version>
+        <webjars-bootstrap.version>4.5.2</webjars-bootstrap.version>
+        <webjars-locator.version>0.40</webjars-locator.version>
         <!-- Thymeleaf -->
         <thymeleaf-layout-dialect.version>2.4.1</thymeleaf-layout-dialect.version>
         <!-- Webservice -->
-        <cxf.version>3.3.0</cxf.version>
+        <cxf.version>3.3.7</cxf.version>
     </properties>
 
     <!-- MODULES -->
@@ -50,7 +50,7 @@
         <module>simple-restful</module>
         <module>simple-restful-hateoas</module>
         <module>simple-restful-angular</module>
-        <module>simple-webservice</module>
+        <module>simple-cxf-webservice</module>
         <module>simple-ehcache</module>
         <module>simple-cqrs</module>
         <module>simple-postgres</module>
@@ -66,6 +66,7 @@
         <module>simple-webflux</module>
         <module>simple-webflux-tomcat</module>
         <module>simple-webflux-war-deployment</module>
+        <module>simple-webflux-oauth2-resource-server</module>
     </modules>
 
     <!-- DEPENDENCIES -->

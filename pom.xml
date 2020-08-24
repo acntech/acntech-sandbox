@@ -17,15 +17,6 @@
         </license>
     </licenses>
 
-    <!-- DEVELOPERS -->
-    <developers>
-        <developer>
-            <id>thomas.johansen</id>
-            <name>Thomas Johansen</name>
-            <email>thomas.johansen@accenture.com</email>
-        </developer>
-    </developers>
-
     <!-- SCM -->
     <scm>
         <url>https://github.com/acntech/acntech-sandbox</url>

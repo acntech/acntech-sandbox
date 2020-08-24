@@ -11,7 +11,7 @@
         <version>1.0.0-SNAPSHOT</version>
     </parent>
 
-    <artifactId>spring-boot-simple-webservice</artifactId>
+    <artifactId>spring-boot-simple-cxf-webservice</artifactId>
     <packaging>war</packaging>
 
     <!-- PROPERTIES -->
