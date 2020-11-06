@@ -33,5 +33,7 @@
         <module>apache-spark</module>
         <module>apache-storm</module>
         <module>apache-flink</module>
+        <module>quarkus</module>
+        <module>micronaut</module>
     </modules>
 </project>
