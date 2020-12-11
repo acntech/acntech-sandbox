@@ -45,7 +45,7 @@ public class OrderResource {
 
     @PreAuthorize("#oauth2.hasScope('write')")
     @PostMapping
-    public ResponseEntity post(@Valid @RequestBody final CreateOrder createOrder) {
+    public ResponseEntity<Void> post(@Valid @RequestBody final CreateOrder createOrder) {
         Order order = orderService.createOrder(createOrder);
         URI location = ServletUriComponentsBuilder
                 .fromCurrentRequest()
