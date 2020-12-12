@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <wsdl:definitions name="SimpleService"
-                  targetNamespace="urn:no:acntech:sandbox:webservice:simple:v1.0"
+                  targetNamespace="urn:no:acntech:sandbox:webservice:simple:v1"
                   xmlns="http://schemas.xmlsoap.org/wsdl/"
-                  xmlns:tns="urn:no:acntech:sandbox:webservice:simple:v1.0"
+                  xmlns:tns="urn:no:acntech:sandbox:webservice:simple:v1"
                   xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
                   xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
                   xmlns:xsd="http://www.w3.org/2001/XMLSchema">
@@ -25,7 +25,7 @@
     <wsdl:binding name="SimpleBinding" type="tns:SimplePortType">
         <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
         <wsdl:operation name="sayHello">
-            <soap:operation soapAction="urn:no:acntech:sandbox:webservice:simple:v1.0:SimpleService/sayHello"/>
+            <soap:operation soapAction="urn:no:acntech:sandbox:webservice:simple:v1:SimpleService/sayHello"/>
             <wsdl:input>
                 <soap:body use="literal"/>
             </wsdl:input>
@@ -38,7 +38,7 @@
 
     <wsdl:service name="SimpleService">
         <wsdl:port binding="tns:SimpleBinding" name="SimplePort">
-            <soap:address location="http://webservice.sandbox.acntech.no/v1.0/SimpleService"/>
+            <soap:address location="http://webservice.sandbox.acntech.no/v1/SimpleService"/>
         </wsdl:port>
     </wsdl:service>
 </wsdl:definitions>

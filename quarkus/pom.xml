@@ -31,7 +31,7 @@
 
     <!-- MODULES -->
     <modules>
-        <module>simple-rest</module>
+        <module>simple-jaxrs-rest</module>
         <module>simple-rest-cxf-soap-integration</module>
         <module>simple-camel-rest-cxf-soap-integration</module>
     </modules>

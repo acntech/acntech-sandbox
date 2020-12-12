@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xsd:schema elementFormDefault="qualified"
-            targetNamespace="urn:no:acntech:sandbox:webservice:simple:v1.0"
-            xmlns:tns="urn:no:acntech:sandbox:webservice:simple:v1.0"
+            targetNamespace="urn:no:acntech:sandbox:webservice:simple:v1"
+            xmlns:tns="urn:no:acntech:sandbox:webservice:simple:v1"
             xmlns:xsd="http://www.w3.org/2001/XMLSchema">
 
     <xsd:element name="SayHelloRequest" type="tns:SayHelloRequest"/>

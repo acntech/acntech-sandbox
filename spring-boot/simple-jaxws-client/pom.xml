@@ -98,7 +98,7 @@
                 </executions>
                 <configuration>
                     <wsdlFiles>
-                        <wsdlFile>${project.basedir}/src/main/resources/wsdl/v1.0/SimpleService.wsdl</wsdlFile>
+                        <wsdlFile>${project.basedir}/src/main/resources/wsdl/v1/SimpleService.wsdl</wsdlFile>
                     </wsdlFiles>
                 </configuration>
             </plugin>

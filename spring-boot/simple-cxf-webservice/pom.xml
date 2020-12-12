@@ -92,7 +92,7 @@
                             <encoding>UTF-8</encoding>
                             <wsdlOptions>
                                 <wsdlOption>
-                                    <wsdl>${project.basedir}/src/main/resources/wsdl/v1.0/SimpleService.wsdl</wsdl>
+                                    <wsdl>${project.basedir}/src/main/resources/wsdl/v1/SimpleService.wsdl</wsdl>
                                     <extraargs>
                                         <extraarg>-client</extraarg>
                                         <extraarg>-verbose</extraarg>
