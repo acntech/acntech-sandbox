@@ -46,7 +46,7 @@
 
     <!-- MODULES -->
     <modules>
-        <module>simple-mvc</module>
+        <module>mvc</module>
     </modules>
 
     <!-- DEPENDENCIES -->

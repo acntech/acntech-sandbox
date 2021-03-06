@@ -27,7 +27,7 @@
 
     <!-- MODULES -->
     <modules>
-        <module>simple-restful</module>
+        <module>restful</module>
     </modules>
 
     <!-- DEPENDENCIES -->
