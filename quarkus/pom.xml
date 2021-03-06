@@ -23,17 +23,17 @@
         <failOnMissingWebXml>false</failOnMissingWebXml>
 
         <!-- Dependencies -->
-        <quarkus.version>1.10.0.Final</quarkus.version>
+        <quarkus.version>1.12.0.Final</quarkus.version>
         <camel-quarkus.version>1.4.0</camel-quarkus.version>
-        <cxf.version>3.4.1</cxf.version>
-        <quarkus-cxf.version>0.1.1</quarkus-cxf.version>
+        <cxf.version>3.4.2</cxf.version>
+        <quarkus-cxf.version>0.4</quarkus-cxf.version>
     </properties>
 
     <!-- MODULES -->
     <modules>
-        <module>simple-jaxrs-rest</module>
-        <module>simple-rest-cxf-soap-integration</module>
-        <module>simple-camel-rest-cxf-soap-integration</module>
+        <module>jaxrs-rest</module>
+        <module>rest-cxf-soap-integration</module>
+        <module>camel-rest-cxf-soap-integration</module>
     </modules>
 
     <!-- DEPENDENCIES -->
@@ -77,10 +77,13 @@
             <plugin>
                 <groupId>io.quarkus</groupId>
                 <artifactId>quarkus-maven-plugin</artifactId>
+                <extensions>true</extensions>
                 <executions>
                     <execution>
                         <goals>
                             <goal>build</goal>
+                            <goal>generate-code</goal>
+                            <goal>generate-code-tests</goal>
                         </goals>
                     </execution>
                 </executions>
