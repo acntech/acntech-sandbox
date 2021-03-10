@@ -23,7 +23,7 @@
         <failOnMissingWebXml>false</failOnMissingWebXml>
 
         <!-- Dependencies -->
-        <quarkus.version>1.12.0.Final</quarkus.version>
+        <quarkus.version>1.12.1.Final</quarkus.version>
         <camel-quarkus.version>1.4.0</camel-quarkus.version>
         <cxf.version>3.4.2</cxf.version>
         <quarkus-cxf.version>0.4</quarkus-cxf.version>
@@ -32,8 +32,9 @@
     <!-- MODULES -->
     <modules>
         <module>jaxrs-rest</module>
-        <module>rest-cxf-soap-integration</module>
-        <module>camel-rest-cxf-soap-integration</module>
+        <module>jaxrs-rest-cxf-soap-client</module>
+        <module>camel-rest-cxf-soap-client</module>
+        <module>spring-rest</module>
     </modules>
 
     <!-- DEPENDENCIES -->
@@ -89,7 +90,6 @@
                 </executions>
             </plugin>
         </plugins>
-
         <pluginManagement>
             <plugins>
                 <plugin>
@@ -109,34 +109,31 @@
     <!-- PROFILES -->
     <profiles>
         <profile>
+            <id>uber-jar</id>
+
+            <!-- PROPERTIES -->
+            <properties>
+                <quarkus.package.type>uber-jar</quarkus.package.type>
+            </properties>
+        </profile>
+
+        <profile>
             <id>native</id>
 
             <!-- PROPERTIES -->
             <properties>
                 <quarkus.package.type>native</quarkus.package.type>
             </properties>
+        </profile>
 
-            <!-- BUILD -->
-            <build>
-                <!-- PLUGINS -->
-                <plugins>
-                    <plugin>
-                        <groupId>io.quarkus</groupId>
-                        <artifactId>quarkus-maven-plugin</artifactId>
-                        <version>${quarkus.version}</version>
-                        <executions>
-                            <execution>
-                                <goals>
-                                    <goal>native-image</goal>
-                                </goals>
-                                <configuration>
-                                    <enableHttpUrlHandler>true</enableHttpUrlHandler>
-                                </configuration>
-                            </execution>
-                        </executions>
-                    </plugin>
-                </plugins>
-            </build>
+        <profile>
+            <id>native-container</id>
+
+            <!-- PROPERTIES -->
+            <properties>
+                <quarkus.package.type>native</quarkus.package.type>
+                <quarkus.native.container-build>true</quarkus.native.container-build>
+            </properties>
         </profile>
     </profiles>
 </project>
