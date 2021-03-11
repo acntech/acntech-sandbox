@@ -1,18 +1,19 @@
 package no.acntech.sandbox.consumer;
 
 import javax.enterprise.context.ApplicationScoped;
+import javax.inject.Inject;
 
 import no.acntech.sandbox.model.Greeting;
-import no.acntech.sandbox.webservice.simple.v1.SimplePortType;
-import no.acntech.sandbox.webservice.simple.v1.SimpleService;
+import no.acntech.sandbox.webservice.greeting.v1.GreetingPortType;
 
 @ApplicationScoped
 public class GreetingSoapConsumer {
 
+    @Inject
+    GreetingPortType greetingPortType;
+
     public Greeting getGreeting(String name) {
-        SimpleService service = new SimpleService();
-        SimplePortType port = service.getSimplePort();
-        String greeting = port.sayHello(name);
+        String greeting = greetingPortType.sayHello(name);
         return new Greeting(greeting);
     }
 }

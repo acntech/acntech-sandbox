@@ -7,16 +7,16 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
-import no.acntech.sandbox.webservice.greeting.v1.GreetingPortType;
+import no.acntech.sandbox.client.GreetingClient;
 
 @RequestMapping(path = "/")
 @Controller
 public class DefaultController {
 
-    private final GreetingPortType greetingPortType;
+    private final GreetingClient greetingClient;
 
-    public DefaultController(final GreetingPortType greetingPortType) {
-        this.greetingPortType = greetingPortType;
+    public DefaultController(final GreetingClient greetingClient) {
+        this.greetingClient = greetingClient;
     }
 
     @GetMapping
@@ -27,7 +27,7 @@ public class DefaultController {
     @PostMapping
     public ModelAndView indexPagePost(@RequestParam("firstName") String firstName) {
         ModelAndView mav = new ModelAndView("index");
-        String message = greetingPortType.sayHello(firstName);
+        String message = greetingClient.sayHello(firstName);
         mav.addObject("message", "Reply from webservice: " + message);
         return mav;
     }

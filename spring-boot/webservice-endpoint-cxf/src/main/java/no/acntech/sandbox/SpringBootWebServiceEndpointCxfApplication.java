@@ -4,9 +4,9 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class SpringBootWebserviceClientJaxwsApplication {
+public class SpringBootWebServiceEndpointCxfApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(SpringBootWebserviceClientJaxwsApplication.class, args);
+        SpringApplication.run(SpringBootWebServiceEndpointCxfApplication.class, args);
     }
 }

@@ -71,6 +71,7 @@
         <module>webflux-war-deployment</module>
         <module>webflux-oidc-resource-server</module>
         <module>webservice-client-jaxws</module>
+        <module>webservice-client-cxf</module>
         <module>webservice-endpoint-cxf</module>
         <module>csrf-protection</module>
     </modules>

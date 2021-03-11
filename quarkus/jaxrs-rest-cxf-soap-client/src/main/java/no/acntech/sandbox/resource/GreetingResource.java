@@ -21,6 +21,6 @@ public class GreetingResource {
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     public Greeting get(@QueryParam("name") String name) {
-        return greetingSoapConsumer.getGreeting(name != null ? name : "Nobody");
+        return greetingSoapConsumer.getGreeting(name);
     }
 }

@@ -1,11 +1,3 @@
-### AcnTech ###
-acntech:
-  webservice:
-    endpoint:
-      path: /v1/simple
-    client:
-      url: http://localhost:${server.port}${cxf.path}${acntech.webservice.endpoint.path}
-
 ### Server ###
 server:
   port: 8080
@@ -15,18 +7,6 @@ logging:
   level:
     org.springframework: INFO
     no.acntech: DEBUG
-
-### Spring ###
-spring:
-  # Web
-  mvc:
-    view:
-      prefix: /WEB-INF/views/
-      suffix: .jsp
-
-  # Messages
-  messages:
-    basename: locale/messages
 
 ### Webservice ###
 cxf:
