@@ -35,6 +35,7 @@
         <module>jaxrs-rest-cxf-soap-client</module>
         <module>camel-rest-cxf-soap-client</module>
         <module>spring-rest</module>
+        <module>oidc-resource-server</module>
     </modules>
 
     <!-- DEPENDENCIES -->

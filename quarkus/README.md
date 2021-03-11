@@ -5,6 +5,14 @@ Examples using the Quarkus Framework
 Read more information about building with Maven at the Quarkus home page
 [https://quarkus.io/guides/maven-tooling](https://quarkus.io/guides/maven-tooling)
 
+### Development mode
+This build option enables live hot swap of source code and resource.
+
+Run with the following command:
+```shell
+mvn compile quarkus:dev
+```
+
 ### Build fast-jar
 This is the default build option. Execute build using the following command:
 ```shell
