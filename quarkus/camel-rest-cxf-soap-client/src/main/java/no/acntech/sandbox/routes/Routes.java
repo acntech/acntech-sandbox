@@ -15,7 +15,7 @@ public class Routes extends RouteBuilder {
     public void configure() throws Exception {
         SoapJaxbDataFormat soapDF = new SoapJaxbDataFormat(CONTEXT_PATH, new ServiceInterfaceStrategy(SimpleService.class, true));
 
-        from("platform-http:/api/greetings?httpMethodRestrict=GET")
+        from("rest:get:/api/greetings")
                 .choice()
                 .when(simple("${header.CamelHttpMethod} == 'GET'"))
                 .setBody(this::handleRequest)

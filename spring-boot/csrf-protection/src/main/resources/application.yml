@@ -1,0 +1,23 @@
+### Server ###
+server:
+  port: 8080
+
+### Logging ###
+logging:
+  level:
+    org.springframework: INFO
+    org.apache.kafka.clients.consumer.ConsumerConfig: WARN
+    org.apache.kafka.clients.producer.ProducerConfig: WARN
+    no.acntech: DEBUG
+
+### String ###
+spring:
+  # Web
+  mvc:
+    view:
+      prefix: /WEB-INF/views/
+      suffix: .jsp
+
+  # Messages
+  messages:
+    basename: locale/messages

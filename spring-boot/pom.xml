@@ -49,9 +49,9 @@
     <modules>
         <module>web-mvc</module>
         <module>thymeleaf</module>
-        <module>restful</module>
-        <module>restful-hateoas</module>
-        <module>restful-angular</module>
+        <module>rest-api</module>
+        <module>rest-api-hateoas</module>
+        <module>rest-api-angular</module>
         <module>junit-testing</module>
         <module>login-form</module>
         <module>login-form-database</module>
@@ -59,9 +59,9 @@
         <module>login-pre-auth</module>
         <module>stateless-session</module>
         <module>jwt-generator</module>
-        <module>oauth2-client-login</module>
-        <module>oauth2-resource-server</module>
-        <module>oauth2-authorization-server</module>
+        <module>oidc-client-login</module>
+        <module>oidc-resource-server</module>
+        <module>oidc-authorization-server</module>
         <module>ehcache</module>
         <module>cqrs</module>
         <module>jpa-postgres</module>
@@ -69,9 +69,10 @@
         <module>webflux</module>
         <module>webflux-tomcat</module>
         <module>webflux-war-deployment</module>
-        <module>webflux-oauth2-resource-server</module>
+        <module>webflux-oidc-resource-server</module>
         <module>webservice-client-jaxws</module>
         <module>webservice-endpoint-cxf</module>
+        <module>csrf-protection</module>
     </modules>
 
     <!-- DEPENDENCIES -->

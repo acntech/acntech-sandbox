@@ -38,7 +38,7 @@ oauth:
       secret: 0kX3bvZe
       authorized-grant-types: client_credentials
       scope: read:orders
-      authorities: uaa.resource
+      authorities: uaa.resource,read:greetings,write:greetings
       resource-ids: clients
 
 scim:
