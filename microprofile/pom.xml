@@ -27,7 +27,7 @@
 
     <!-- MODULES -->
     <modules>
-        <module>restful</module>
+        <module>rest-api</module>
     </modules>
 
     <!-- DEPENDENCIES -->

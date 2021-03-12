@@ -48,10 +48,12 @@
     <!-- MODULES -->
     <modules>
         <module>web-mvc</module>
+        <module>web-mvc-csrf</module>
         <module>thymeleaf</module>
         <module>rest-api</module>
         <module>rest-api-hateoas</module>
         <module>rest-api-angular</module>
+        <module>rest-api-csrf</module>
         <module>junit-testing</module>
         <module>login-form</module>
         <module>login-form-database</module>
@@ -73,7 +75,6 @@
         <module>webservice-client-jaxws</module>
         <module>webservice-client-cxf</module>
         <module>webservice-endpoint-cxf</module>
-        <module>csrf-protection</module>
     </modules>
 
     <!-- DEPENDENCIES -->

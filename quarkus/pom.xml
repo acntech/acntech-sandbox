@@ -31,10 +31,10 @@
 
     <!-- MODULES -->
     <modules>
-        <module>jaxrs-rest</module>
-        <module>jaxrs-rest-cxf-soap-client</module>
-        <module>camel-rest-cxf-soap-client</module>
-        <module>spring-rest</module>
+        <module>jaxrs-rest-api</module>
+        <module>jaxrs-rest-api-cxf-soap-client</module>
+        <module>camel-rest-api-cxf-soap-client</module>
+        <module>spring-rest-api</module>
         <module>oidc-resource-server</module>
     </modules>
 
