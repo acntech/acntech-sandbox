@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:camunda="http://camunda.org/schema/1.0/bpmn" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" id="Definitions_0di07h7" targetNamespace="http://bpmn.io/schema/bpmn" exporter="Camunda Modeler" exporterVersion="4.6.0">
+  <bpmn:process id="GreetingDelegateProcess" name="Greeting Delegate Process" isExecutable="true">
+    <bpmn:startEvent id="StartGreetingProcess" name="Start Greeting Process">
+      <bpmn:outgoing>Flow_1f23jcf</bpmn:outgoing>
+    </bpmn:startEvent>
+    <bpmn:sequenceFlow id="Flow_1f23jcf" sourceRef="StartGreetingProcess" targetRef="InputFirstNameTask" />
+    <bpmn:userTask id="InputFirstNameTask" name="Input First Name">
+      <bpmn:extensionElements>
+        <camunda:formData>
+          <camunda:formField id="FirstName" label="First Name" type="string" />
+        </camunda:formData>
+      </bpmn:extensionElements>
+      <bpmn:incoming>Flow_1f23jcf</bpmn:incoming>
+      <bpmn:outgoing>Flow_1b3pgkf</bpmn:outgoing>
+    </bpmn:userTask>
+    <bpmn:task id="GenerateGreetingTask" name="Generate Greeting">
+      <bpmn:extensionElements>
+        <camunda:inputOutput>
+          <camunda:outputParameter name="Greeting">Hello ${FirstName}!</camunda:outputParameter>
+        </camunda:inputOutput>
+      </bpmn:extensionElements>
+      <bpmn:incoming>Flow_1b3pgkf</bpmn:incoming>
+      <bpmn:outgoing>Flow_0hde0ms</bpmn:outgoing>
+    </bpmn:task>
+    <bpmn:sequenceFlow id="Flow_1b3pgkf" sourceRef="InputFirstNameTask" targetRef="GenerateGreetingTask" />
+    <bpmn:sequenceFlow id="Flow_0hde0ms" sourceRef="GenerateGreetingTask" targetRef="LogGreetingTask" />
+    <bpmn:serviceTask id="LogGreetingTask" name="Log Greeting" camunda:class="no.acntech.sandbox.delegate.LoggingDelegate">
+      <bpmn:incoming>Flow_0hde0ms</bpmn:incoming>
+      <bpmn:outgoing>Flow_1q3hoh5</bpmn:outgoing>
+    </bpmn:serviceTask>
+    <bpmn:endEvent id="EndGreetingProcess" name="End Greeting Process">
+      <bpmn:incoming>Flow_1q3hoh5</bpmn:incoming>
+    </bpmn:endEvent>
+    <bpmn:sequenceFlow id="Flow_1q3hoh5" sourceRef="LogGreetingTask" targetRef="EndGreetingProcess" />
+  </bpmn:process>
+  <bpmndi:BPMNDiagram id="BPMNDiagram_1">
+    <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="GreetingDelegateProcess">
+      <bpmndi:BPMNEdge id="Flow_1q3hoh5_di" bpmnElement="Flow_1q3hoh5">
+        <di:waypoint x="690" y="97" />
+        <di:waypoint x="752" y="97" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0hde0ms_di" bpmnElement="Flow_0hde0ms">
+        <di:waypoint x="530" y="97" />
+        <di:waypoint x="590" y="97" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1b3pgkf_di" bpmnElement="Flow_1b3pgkf">
+        <di:waypoint x="370" y="97" />
+        <di:waypoint x="430" y="97" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1f23jcf_di" bpmnElement="Flow_1f23jcf">
+        <di:waypoint x="215" y="97" />
+        <di:waypoint x="270" y="97" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNShape id="_BPMNShape_StartEvent_2" bpmnElement="StartGreetingProcess">
+        <dc:Bounds x="179" y="79" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="163" y="122" width="69" height="27" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_1vyq74p_di" bpmnElement="InputFirstNameTask">
+        <dc:Bounds x="270" y="57" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_09rrkmd_di" bpmnElement="GenerateGreetingTask">
+        <dc:Bounds x="430" y="57" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_01h8bdc_di" bpmnElement="LogGreetingTask">
+        <dc:Bounds x="590" y="57" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_17sq1ux_di" bpmnElement="EndGreetingProcess">
+        <dc:Bounds x="752" y="79" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="738" y="122" width="65" height="27" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</bpmn:definitions>

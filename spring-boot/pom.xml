@@ -77,7 +77,8 @@
         <module>webservice-client-jaxws</module>
         <module>webservice-client-cxf</module>
         <module>webservice-endpoint-cxf</module>
-        <module>camunda</module>
+        <module>camunda-delegate</module>
+        <module>camunda-external-task</module>
     </modules>
 
     <!-- DEPENDENCIES -->

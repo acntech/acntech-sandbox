@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <!-- PROJECT -->
+    <parent>
+        <groupId>no.acntech.sandbox</groupId>
+        <artifactId>spring-boot</artifactId>
+        <version>1.0.0-SNAPSHOT</version>
+    </parent>
+
+    <artifactId>spring-boot-camunda-external-task</artifactId>
+    <packaging>pom</packaging>
+
+    <!-- PROPERTIES -->
+    <properties>
+    </properties>
+
+    <!-- MODULES -->
+    <modules>
+        <module>workflow</module>
+        <module>greeting-service</module>
+    </modules>
+
+    <!-- DEPENDENCIES -->
+    <dependencies>
+    </dependencies>
+</project>

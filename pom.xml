@@ -35,5 +35,6 @@
         <module>apache-flink</module>
         <module>quarkus</module>
         <module>micronaut</module>
+        <module>spring-native</module>
     </modules>
 </project>
