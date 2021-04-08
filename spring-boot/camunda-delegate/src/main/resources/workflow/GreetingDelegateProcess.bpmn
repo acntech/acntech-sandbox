@@ -14,15 +14,6 @@
       <bpmn:incoming>Flow_1f23jcf</bpmn:incoming>
       <bpmn:outgoing>Flow_1b3pgkf</bpmn:outgoing>
     </bpmn:userTask>
-    <bpmn:task id="GenerateGreetingTask" name="Generate Greeting">
-      <bpmn:extensionElements>
-        <camunda:inputOutput>
-          <camunda:outputParameter name="Greeting">Hello ${FirstName}!</camunda:outputParameter>
-        </camunda:inputOutput>
-      </bpmn:extensionElements>
-      <bpmn:incoming>Flow_1b3pgkf</bpmn:incoming>
-      <bpmn:outgoing>Flow_0hde0ms</bpmn:outgoing>
-    </bpmn:task>
     <bpmn:sequenceFlow id="Flow_1b3pgkf" sourceRef="InputFirstNameTask" targetRef="GenerateGreetingTask" />
     <bpmn:sequenceFlow id="Flow_0hde0ms" sourceRef="GenerateGreetingTask" targetRef="LogGreetingTask" />
     <bpmn:serviceTask id="LogGreetingTask" name="Log Greeting" camunda:class="no.acntech.sandbox.delegate.LoggingDelegate">
@@ -33,6 +24,15 @@
       <bpmn:incoming>Flow_1q3hoh5</bpmn:incoming>
     </bpmn:endEvent>
     <bpmn:sequenceFlow id="Flow_1q3hoh5" sourceRef="LogGreetingTask" targetRef="EndGreetingProcess" />
+    <bpmn:serviceTask id="GenerateGreetingTask" name="Generate Greeting" camunda:delegateExpression="#{generateGreetingDelegate}">
+      <bpmn:extensionElements>
+        <camunda:inputOutput>
+          <camunda:outputParameter name="Greeting">Hello ${FirstName}!</camunda:outputParameter>
+        </camunda:inputOutput>
+      </bpmn:extensionElements>
+      <bpmn:incoming>Flow_1b3pgkf</bpmn:incoming>
+      <bpmn:outgoing>Flow_0hde0ms</bpmn:outgoing>
+    </bpmn:serviceTask>
   </bpmn:process>
   <bpmndi:BPMNDiagram id="BPMNDiagram_1">
     <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="GreetingDelegateProcess">
@@ -61,9 +61,6 @@
       <bpmndi:BPMNShape id="Activity_1vyq74p_di" bpmnElement="InputFirstNameTask">
         <dc:Bounds x="270" y="57" width="100" height="80" />
       </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="Activity_09rrkmd_di" bpmnElement="GenerateGreetingTask">
-        <dc:Bounds x="430" y="57" width="100" height="80" />
-      </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="Activity_01h8bdc_di" bpmnElement="LogGreetingTask">
         <dc:Bounds x="590" y="57" width="100" height="80" />
       </bpmndi:BPMNShape>
@@ -72,6 +69,9 @@
         <bpmndi:BPMNLabel>
           <dc:Bounds x="738" y="122" width="65" height="27" />
         </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_1xy9dd1_di" bpmnElement="GenerateGreetingTask">
+        <dc:Bounds x="430" y="57" width="100" height="80" />
       </bpmndi:BPMNShape>
     </bpmndi:BPMNPlane>
   </bpmndi:BPMNDiagram>

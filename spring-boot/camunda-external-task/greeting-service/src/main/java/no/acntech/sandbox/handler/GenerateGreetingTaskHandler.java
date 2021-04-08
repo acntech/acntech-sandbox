@@ -18,7 +18,7 @@ public class GenerateGreetingTaskHandler implements ExternalTaskHandler {
     public void execute(final ExternalTask externalTask,
                         final ExternalTaskService externalTaskService) {
         try {
-            LOGGER.info("Starting handling of external task '{}'...", externalTask.getActivityInstanceId());
+            LOGGER.info("Starting handling of task '{}'...", externalTask.getActivityInstanceId());
             // Get process variable
             String firstName = externalTask.getVariable("FirstName");
             // Set new process variable
@@ -27,9 +27,9 @@ public class GenerateGreetingTaskHandler implements ExternalTaskHandler {
             // Complete task
             externalTaskService.complete(externalTask, variables);
         } catch (Exception e) {
-            LOGGER.error("Handling of external task '" + externalTask.getActivityInstanceId() + "' failed with error", e);
+            LOGGER.error("Handling of task '" + externalTask.getActivityInstanceId() + "' failed with error", e);
         } finally {
-            LOGGER.info("Completed handling of external task '{}'", externalTask.getActivityInstanceId());
+            LOGGER.info("Completed handling of task '{}'", externalTask.getActivityInstanceId());
         }
     }
 }

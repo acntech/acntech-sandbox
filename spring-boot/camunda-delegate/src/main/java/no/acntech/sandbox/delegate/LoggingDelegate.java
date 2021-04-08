@@ -10,7 +10,7 @@ public class LoggingDelegate implements JavaDelegate {
     private static final Logger LOGGER = LoggerFactory.getLogger(LoggingDelegate.class);
 
     @Override
-    public void execute(final DelegateExecution delegateExecution) throws Exception {
+    public void execute(final DelegateExecution delegateExecution) {
         Object greeting = delegateExecution.getVariable("Greeting");
         LOGGER.info(greeting.toString());
     }
