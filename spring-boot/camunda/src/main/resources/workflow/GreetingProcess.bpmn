@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:camunda="http://camunda.org/schema/1.0/bpmn" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" id="Definitions_0di07h7" targetNamespace="http://bpmn.io/schema/bpmn" exporter="Camunda Modeler" exporterVersion="4.6.0">
+  <bpmn:process id="GreetingProcess" name="Greeting Process" isExecutable="true">
+    <bpmn:startEvent id="StartGreetingProcess">
+      <bpmn:outgoing>Flow_1f23jcf</bpmn:outgoing>
+    </bpmn:startEvent>
+    <bpmn:sequenceFlow id="Flow_1f23jcf" sourceRef="StartGreetingProcess" targetRef="InputFirstNameTask" />
+    <bpmn:userTask id="InputFirstNameTask" name="Input First Name">
+      <bpmn:extensionElements>
+        <camunda:formData>
+          <camunda:formField id="FirstName" label="First Name" type="string" />
+        </camunda:formData>
+      </bpmn:extensionElements>
+      <bpmn:incoming>Flow_1f23jcf</bpmn:incoming>
+      <bpmn:outgoing>Flow_1b3pgkf</bpmn:outgoing>
+    </bpmn:userTask>
+    <bpmn:task id="GenerateGreetingTask" name="Generate Greeting">
+      <bpmn:extensionElements>
+        <camunda:inputOutput>
+          <camunda:outputParameter name="Greeting">Hello ${FirstName}!</camunda:outputParameter>
+        </camunda:inputOutput>
+      </bpmn:extensionElements>
+      <bpmn:incoming>Flow_1b3pgkf</bpmn:incoming>
+      <bpmn:outgoing>Flow_00wuw5h</bpmn:outgoing>
+    </bpmn:task>
+    <bpmn:sequenceFlow id="Flow_1b3pgkf" sourceRef="InputFirstNameTask" targetRef="GenerateGreetingTask" />
+    <bpmn:endEvent id="EndGreetingProcess">
+      <bpmn:incoming>Flow_00wuw5h</bpmn:incoming>
+    </bpmn:endEvent>
+    <bpmn:sequenceFlow id="Flow_00wuw5h" sourceRef="GenerateGreetingTask" targetRef="EndGreetingProcess" />
+  </bpmn:process>
+  <bpmndi:BPMNDiagram id="BPMNDiagram_1">
+    <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="GreetingProcess">
+      <bpmndi:BPMNEdge id="Flow_1f23jcf_di" bpmnElement="Flow_1f23jcf">
+        <di:waypoint x="215" y="97" />
+        <di:waypoint x="270" y="97" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1b3pgkf_di" bpmnElement="Flow_1b3pgkf">
+        <di:waypoint x="370" y="97" />
+        <di:waypoint x="430" y="97" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_00wuw5h_di" bpmnElement="Flow_00wuw5h">
+        <di:waypoint x="530" y="97" />
+        <di:waypoint x="592" y="97" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNShape id="_BPMNShape_StartEvent_2" bpmnElement="StartGreetingProcess">
+        <dc:Bounds x="179" y="79" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="155" y="122" width="85" height="27" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_1vyq74p_di" bpmnElement="InputFirstNameTask">
+        <dc:Bounds x="270" y="57" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_09rrkmd_di" bpmnElement="GenerateGreetingTask">
+        <dc:Bounds x="430" y="57" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_1dzg4kf_di" bpmnElement="EndGreetingProcess">
+        <dc:Bounds x="592" y="79" width="36" height="36" />
+      </bpmndi:BPMNShape>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</bpmn:definitions>

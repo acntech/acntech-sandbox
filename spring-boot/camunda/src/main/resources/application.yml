@@ -1,0 +1,33 @@
+### Server ###
+server:
+  port: 8080
+
+### Logging ###
+logging:
+  level:
+    org.springframework: INFO
+    no.acntech: DEBUG
+
+### Spring ###
+spring:
+
+  # H2 Database
+  datasource:
+    driver-class-name: org.h2.Driver
+    url: jdbc:h2:mem:sandbox;DB_CLOSE_ON_EXIT=FALSE;DB_CLOSE_DELAY=-1
+    username: sa
+    password:
+
+  # Enable H2 database console
+  h2:
+    console:
+      enabled: true
+
+### Camunda ###
+camunda:
+  bpm:
+    admin-user:
+      id: admin
+      password: abcd1234
+    deployment-resource-pattern:
+      - classpath:workflow/*.bpmn
