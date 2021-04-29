@@ -7,7 +7,7 @@
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
-        <version>2.3.9.RELEASE</version>
+        <version>2.4.5</version>
         <relativePath/>
     </parent>
 
@@ -59,11 +59,12 @@
         <module>junit-testing</module>
         <module>login-form</module>
         <module>login-form-database</module>
+        <module>login-form-stateless</module>
         <module>login-basic-auth</module>
         <module>login-pre-auth</module>
-        <module>stateless-session</module>
         <module>jwt-generator</module>
         <module>oidc-client-login</module>
+        <module>oidc-client-login-stateless</module>
         <module>oidc-resource-server</module>
         <module>oidc-authorization-server</module>
         <module>ehcache</module>

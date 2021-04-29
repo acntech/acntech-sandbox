@@ -13,8 +13,6 @@ public class OAuth2ClientWebSecurityConfig extends WebSecurityConfigurerAdapter 
                 .authorizeRequests()
                 .anyRequest().authenticated()
                 .and()
-                .oauth2Client()
-                .and()
                 .oauth2Login();
     }
 }
