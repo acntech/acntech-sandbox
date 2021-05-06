@@ -1,0 +1,37 @@
+### Spring ###
+spring:
+  # Web
+  mvc:
+    view:
+      prefix: /WEB-INF/views/
+      suffix: .jsp
+  # Messages
+  messages:
+    basename: locale/messages
+  # Security
+  security:
+    oauth2:
+      client:
+        registration:
+          generic-resource-server:
+            provider: uua
+            authorization-grant-type: client_credentials
+            client-id: generic-resource-server
+            client-secret: 0kX3bvZe
+            scope:
+              - openid
+              - profile
+        provider:
+          uua:
+            issuer-uri: http://localhost:8888/uaa/oauth/token
+
+### Logging ###
+logging:
+  level:
+    org.springframework: INFO
+    no.acntech: DEBUG
+    web: DEBUG
+
+### Server ###
+server:
+  port: 8080

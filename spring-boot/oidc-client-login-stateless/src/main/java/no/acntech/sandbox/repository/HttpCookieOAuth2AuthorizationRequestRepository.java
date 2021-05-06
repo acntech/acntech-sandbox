@@ -16,17 +16,12 @@ import no.acntech.sandbox.resolver.CookieResolver;
 public class HttpCookieOAuth2AuthorizationRequestRepository implements AuthorizationRequestRepository<OAuth2AuthorizationRequest> {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(HttpCookieOAuth2AuthorizationRequestRepository.class);
-    private static final String OAUTH2_AUTHORIZATION_REQUEST_COOKIE_NAME = "oauth2_auth_request";
-    private static final String REDIRECT_URI_PARAM_COOKIE_NAME = "oauth2_redirect_uri";
-    private static final String REDIRECT_URI_PARAM_NAME = "redirect_uri";
-    private static final int COOKIE_EXPIRE_SECONDS = 180;
-    private static final CookieResolver OAUTH2_AUTHORIZATION_REQUEST_COOKIE_RESOLVER = new CookieResolver(OAUTH2_AUTHORIZATION_REQUEST_COOKIE_NAME, COOKIE_EXPIRE_SECONDS);
-    private static final CookieResolver REDIRECT_URI_PARAM_COOKIE_RESOLVER = new CookieResolver(REDIRECT_URI_PARAM_COOKIE_NAME, COOKIE_EXPIRE_SECONDS);
+    private static final CookieResolver AUTHORIZATION_REQUEST_COOKIE_RESOLVER = CookieResolver.authorizationRequestCookieResolver();
 
     @Override
     public OAuth2AuthorizationRequest loadAuthorizationRequest(final HttpServletRequest request) {
         Assert.notNull(request, "HttpServletRequest cannot be null");
-        String cookieValue = OAUTH2_AUTHORIZATION_REQUEST_COOKIE_RESOLVER.readCookie(request);
+        String cookieValue = AUTHORIZATION_REQUEST_COOKIE_RESOLVER.readCookie(request);
         OAuth2AuthorizationRequest authorizationRequest = Optional.ofNullable(cookieValue)
                 .filter(StringUtils::isNoneBlank)
                 .map(this::deserializeCookie)
@@ -46,18 +41,12 @@ public class HttpCookieOAuth2AuthorizationRequestRepository implements Authoriza
         Assert.notNull(request, "HttpServletRequest cannot be null");
         Assert.notNull(response, "HttpServletResponse cannot be null");
         if (authorizationRequest == null) {
-            LOGGER.debug("No OAuth2 authorization request found to store");
+            LOGGER.debug("No OAuth2AuthorizationRequest found to store");
             removeAuthorizationRequest(request, response);
         } else {
+            LOGGER.debug("Storing OAuth2AuthorizationRequest ( request to {} )", request.getServletPath());
             String cookieValue = CookieResolver.serialize(authorizationRequest);
-            OAUTH2_AUTHORIZATION_REQUEST_COOKIE_RESOLVER.addCookie(response, cookieValue);
-            String redirectUri = request.getParameter(REDIRECT_URI_PARAM_NAME);
-            if (StringUtils.isNotBlank(redirectUri)) {
-                LOGGER.debug("Storing OAuth2AuthorizationRequest and request uri param ( request to {} )", request.getServletPath());
-                REDIRECT_URI_PARAM_COOKIE_RESOLVER.addCookie(response, redirectUri);
-            } else {
-                LOGGER.debug("Storing OAuth2AuthorizationRequest ( request to {} )", request.getServletPath());
-            }
+            AUTHORIZATION_REQUEST_COOKIE_RESOLVER.addCookie(response, cookieValue);
         }
     }
 
@@ -72,8 +61,7 @@ public class HttpCookieOAuth2AuthorizationRequestRepository implements Authoriza
         Assert.notNull(request, "HttpServletRequest cannot be null");
         Assert.notNull(response, "HttpServletResponse cannot be null");
         LOGGER.debug("Removing stored OAuth2AuthorizationRequest ( request to {} )", request.getServletPath());
-        OAUTH2_AUTHORIZATION_REQUEST_COOKIE_RESOLVER.removeCookie(response);
-        REDIRECT_URI_PARAM_COOKIE_RESOLVER.removeCookie(response);
+        AUTHORIZATION_REQUEST_COOKIE_RESOLVER.removeCookie(response);
         return this.loadAuthorizationRequest(request);
     }
 

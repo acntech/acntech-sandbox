@@ -61,6 +61,7 @@
         <module>login-form-database</module>
         <module>login-form-stateless</module>
         <module>login-basic-auth</module>
+        <module>login-basic-auth-oidc-webclient</module>
         <module>login-pre-auth</module>
         <module>jwt-generator</module>
         <module>oidc-client-login</module>

@@ -3,7 +3,30 @@
         <a class="navbar-brand" th:href="@{/}">
             <span th:text="#{navbar.brand}"></span>
         </a>
-        <div id="navbar-toggle">
+        <div class="navbar-collapse">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" th:href="@{/}">
+                        <span th:text="#{navbar.link.home}"></span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" th:href="@{/about}">
+                        <span th:text="#{navbar.link.about}"></span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+        <div class="navbar-collapse">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <form action="/logout" method="post">
+                        <button class="btn btn-link" name="logout">
+                            <span th:text="#{navbar.link.logout}"></span>
+                        </button>
+                    </form>
+                </li>
+            </ul>
         </div>
     </nav>
 </header>

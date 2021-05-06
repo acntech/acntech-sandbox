@@ -10,12 +10,12 @@ services:
       - sandbox_keycloak_database
     environment:
       - KEYCLOAK_USER=admin
-      - KEYCLOAK_PASSWORD=admin
+      - KEYCLOAK_PASSWORD=abcd1234
       - DB_VENDOR=postgres
       - DB_ADDR=sandbox_keycloak_database
       - DB_DATABASE=keycloak
       - DB_USER=keycloak
-      - DB_PASSWORD=mV1IA6t2
+      - DB_PASSWORD=abcd1234
     ports:
       - 8888:8080
     networks:
@@ -24,14 +24,12 @@ services:
   sandbox_keycloak_database:
     image: postgres
     container_name: sandbox_keycloak_database
-    hostname: database
+    hostname: postgres
     domainname: acntech.local
     environment:
       - POSTGRES_DB=keycloak
       - POSTGRES_USER=keycloak
-      - POSTGRES_PASSWORD=mV1IA6t2
-    ports:
-      - 5432:5432
+      - POSTGRES_PASSWORD=abcd1234
     networks:
       - sandbox_keycloak
 

@@ -3,7 +3,7 @@
 ########################
 spring:
   application:
-    name: simple-oauth2-client-login
+    name: spring-boot-oidc-client-login-stateless
   # Jackson
   jackson:
     date-format: com.fasterxml.jackson.databind.util.StdDateFormat
@@ -26,15 +26,15 @@ spring:
     oauth2:
       client:
         registration:
-          generic-client-2:
-            provider: uaa
-            client-id: generic-client-2
+          generic-client-login:
+            provider: keycloak
+            client-id: generic-client-login
             client-secret: w1Mp8ziW
             scope:
               - openid
               - profile
         provider:
-          uaa:
+          keycloak:
             issuer-uri: http://localhost:8888/uaa/oauth/token
 
 ### Logging ###
@@ -49,4 +49,6 @@ logging:
 
 ### Server ###
 server:
-  port: 8081
+  port: 8080
+  error:
+    include-stacktrace: ALWAYS

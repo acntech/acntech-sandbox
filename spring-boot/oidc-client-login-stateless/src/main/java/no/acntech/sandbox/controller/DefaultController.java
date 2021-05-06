@@ -11,4 +11,9 @@ public class DefaultController {
     public ModelAndView indexPage() {
         return new ModelAndView("index");
     }
+
+    @GetMapping(path = "/about")
+    public ModelAndView aboutPage() {
+        return new ModelAndView("about");
+    }
 }

@@ -9,26 +9,29 @@ import org.springframework.security.web.context.SecurityContextRepository;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.util.HashMap;
-import java.util.Map;
 import java.util.UUID;
 
 import no.acntech.sandbox.resolver.CookieResolver;
+import no.acntech.sandbox.store.InMemorySecurityContextStore;
 
 public class InMemorySecurityContextRepository implements SecurityContextRepository {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(InMemorySecurityContextRepository.class);
-    private static final String SESSION_COOKIE_NAME = "oauth2_session";
+    public static final String SESSION_COOKIE_NAME = "oidc_session";
     private static final int SESSION_COOKIE_EXPIRE_SECONDS = -1;
-    private static final CookieResolver SESSION_COOKIE_RESOLVER = new CookieResolver(SESSION_COOKIE_NAME, SESSION_COOKIE_EXPIRE_SECONDS);
-    private static final Map<String, SecurityContext> SECURITY_CONTEXT_STORE = new HashMap<>();
+    public static final CookieResolver SESSION_COOKIE_RESOLVER = new CookieResolver(SESSION_COOKIE_NAME, SESSION_COOKIE_EXPIRE_SECONDS);
+    private final InMemorySecurityContextStore securityContextStore;
+
+    public InMemorySecurityContextRepository(final InMemorySecurityContextStore securityContextStore) {
+        this.securityContextStore = securityContextStore;
+    }
 
     @Override
     public SecurityContext loadContext(final HttpRequestResponseHolder requestResponseHolder) {
         HttpServletRequest request = requestResponseHolder.getRequest();
         String sessionId = SESSION_COOKIE_RESOLVER.readCookie(request);
         if (sessionId != null) {
-            SecurityContext securityContext = SECURITY_CONTEXT_STORE.get(sessionId);
+            SecurityContext securityContext = securityContextStore.loadSecurityContext(sessionId);
             if (securityContext != null) {
                 LOGGER.debug("Load SecurityContext from store. Found SecurityContext for session id {} ( request to {} )", sessionId, request.getServletPath());
                 return securityContext;
@@ -55,14 +58,14 @@ public class InMemorySecurityContextRepository implements SecurityContextReposit
             LOGGER.debug("Save SecurityContext to store. Generating new session id {} ( request to {} )", sessionId, request.getServletPath());
             SESSION_COOKIE_RESOLVER.addCookie(response, sessionId);
         }
-        SECURITY_CONTEXT_STORE.put(sessionId, context);
+        securityContextStore.saveSecurityContext(sessionId, context);
     }
 
     @Override
     public boolean containsContext(final HttpServletRequest request) {
         String sessionId = SESSION_COOKIE_RESOLVER.readCookie(request);
         if (sessionId != null) {
-            boolean containsContext = SECURITY_CONTEXT_STORE.containsKey(sessionId);
+            boolean containsContext = securityContextStore.containsSecurityContext(sessionId);
             LOGGER.debug("Check if store contains SecurityContext. Using exiting session id {} with result '{}' ( request to {} )", sessionId, containsContext, request.getServletPath());
             return containsContext;
         } else {

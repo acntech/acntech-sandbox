@@ -11,6 +11,16 @@ import java.util.Base64;
 
 public class CookieResolver extends CookieGenerator {
 
+    private static final String AUTHORIZATION_REQUEST_COOKIE_NAME = "oidc_authorization_request";
+    private static final int AUTHORIZATION_REQUEST_COOKIE_EXPIRE_SECONDS = 180;
+    private static final String REDIRECT_URI_COOKIE_NAME = "oidc_redirect_uri";
+    private static final int REDIRECT_URI_COOKIE_EXPIRE_SECONDS = 180;
+    private static final String SAVED_REQUEST_COOKIE_NAME = "oidc_saved_request";
+    private static final int SAVED_REQUEST_COOKIE_EXPIRE_SECONDS = 180;
+
+    public CookieResolver() {
+    }
+
     public CookieResolver(String cookieName, int cookieMaxAge) {
         this.setCookieName(cookieName);
         this.setCookieMaxAge(cookieMaxAge);
@@ -29,6 +39,18 @@ public class CookieResolver extends CookieGenerator {
                     .findFirst()
                     .orElse(null);
         }
+    }
+
+    public static CookieResolver authorizationRequestCookieResolver() {
+        return new CookieResolver(AUTHORIZATION_REQUEST_COOKIE_NAME, AUTHORIZATION_REQUEST_COOKIE_EXPIRE_SECONDS);
+    }
+
+    public static CookieResolver redirectUriCookieResolver() {
+        return new CookieResolver(REDIRECT_URI_COOKIE_NAME, REDIRECT_URI_COOKIE_EXPIRE_SECONDS);
+    }
+
+    public static CookieResolver savedRequestCookieResolver() {
+        return new CookieResolver(SAVED_REQUEST_COOKIE_NAME, SAVED_REQUEST_COOKIE_EXPIRE_SECONDS);
     }
 
     public static String serialize(Object object) {

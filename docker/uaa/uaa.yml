@@ -25,13 +25,13 @@ oauth:
       scope: openid,profile,email
       authorities: uaa.resource
       redirect-uri: http://localhost:8080/login/oauth2/code/generic-client
-    generic-client-2:
-      name: Generic Client 2
+    generic-client-login:
+      name: Generic Client Login
       secret: w1Mp8ziW
       authorized-grant-types: authorization_code
       scope: openid,profile,email
       authorities: uaa.resource
-      redirect-uri: http://localhost:8081/login/oauth2/code/generic-client-2
+      redirect-uri: http://localhost:8080/login/oauth2/code/generic-client-login
     generic-client-api:
       name: Generic Client API
       secret: o463qXwa

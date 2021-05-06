@@ -3,7 +3,7 @@
 ########################
 spring:
   application:
-    name: simple-oauth2-resource-server
+    name: spring-boot-oidc-resource-server
   # Jackson
   jackson:
     date-format: com.fasterxml.jackson.databind.util.StdDateFormat
