@@ -5,12 +5,14 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.oauth2.client.OAuth2AuthorizedClientService;
 import org.springframework.security.oauth2.client.registration.ClientRegistrationRepository;
+import org.springframework.security.web.savedrequest.NullRequestCache;
 
 import no.acntech.sandbox.cache.HttpCookieRequestCache;
 import no.acntech.sandbox.handler.OidcLogoutSuccessHandler;
 import no.acntech.sandbox.repository.HttpCookieOAuth2AuthorizationRequestRepository;
-import no.acntech.sandbox.repository.InMemorySecurityContextRepository;
+import no.acntech.sandbox.repository.HttpCookieSecurityContextRepository;
 import no.acntech.sandbox.store.InMemorySecurityContextStore;
 
 import static no.acntech.sandbox.repository.InMemorySecurityContextRepository.SESSION_COOKIE_NAME;
@@ -20,9 +22,12 @@ import static org.springframework.security.config.http.SessionCreationPolicy.STA
 public class OidcClientWebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     private final ClientRegistrationRepository clientRegistrationRepository;
+    private final OAuth2AuthorizedClientService authorizedClientService;
 
-    public OidcClientWebSecurityConfig(final ClientRegistrationRepository clientRegistrationRepository) {
+    public OidcClientWebSecurityConfig(final ClientRegistrationRepository clientRegistrationRepository,
+                                       final OAuth2AuthorizedClientService authorizedClientService) {
         this.clientRegistrationRepository = clientRegistrationRepository;
+        this.authorizedClientService = authorizedClientService;
     }
 
     @Override
@@ -31,9 +36,9 @@ public class OidcClientWebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .csrf().disable()
                 .sessionManagement().sessionCreationPolicy(STATELESS)
                 .and()
-                .requestCache().requestCache(httpCookieRequestCache())
+                .requestCache().requestCache(new NullRequestCache())
                 .and()
-                .securityContext().securityContextRepository(inMemorySecurityContextRepository())
+                .securityContext().securityContextRepository(httpCookieSecurityContextRepository())
                 .and()
                 .authorizeRequests().anyRequest().authenticated()
                 .and()
@@ -50,8 +55,8 @@ public class OidcClientWebSecurityConfig extends WebSecurityConfigurerAdapter {
     }
 
     @Bean
-    public InMemorySecurityContextRepository inMemorySecurityContextRepository() {
-        return new InMemorySecurityContextRepository(inMemorySecurityContextStore());
+    public HttpCookieSecurityContextRepository httpCookieSecurityContextRepository() {
+        return new HttpCookieSecurityContextRepository(authorizedClientService);
     }
 
     @Bean

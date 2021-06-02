@@ -68,6 +68,9 @@
         <module>oidc-client-login-stateless</module>
         <module>oidc-resource-server</module>
         <module>oidc-authorization-server</module>
+        <module>access-control</module>
+        <module>access-control-permission-evaluator</module>
+        <module>access-control-expression-handler</module>
         <module>ehcache</module>
         <module>cqrs</module>
         <module>jpa-postgres</module>
