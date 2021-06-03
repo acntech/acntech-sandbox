@@ -1,7 +1,6 @@
-########################
-# SPRING Configuration #
-########################
+### Spring ###
 spring:
+  # Application
   application:
     name: spring-boot-oidc-client-login-stateless
   # Jackson
@@ -52,3 +51,5 @@ server:
   port: 8080
   error:
     include-stacktrace: ALWAYS
+    whitelabel:
+      enabled: false

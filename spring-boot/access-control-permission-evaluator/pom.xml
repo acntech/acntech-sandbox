@@ -27,14 +27,14 @@
         </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-security</artifactId>
+            <artifactId>spring-boot-configuration-processor</artifactId>
+            <optional>true</optional>
         </dependency>
 
-        <!-- Tomcat embedded container-->
+        <!-- Security -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-tomcat</artifactId>
-            <scope>provided</scope>
+            <artifactId>spring-boot-starter-security</artifactId>
         </dependency>
     </dependencies>
 

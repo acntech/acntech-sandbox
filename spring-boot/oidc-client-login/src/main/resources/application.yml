@@ -1,7 +1,6 @@
-########################
-# SPRING Configuration #
-########################
+### Spring ###
 spring:
+  # Application
   application:
     name: spring-boot-oidc-client-login
   # Jackson
@@ -43,10 +42,12 @@ logging:
     root: INFO
     web: INFO
     no.acntech: DEBUG
-    org.springframework.web: DEBUG
-    org.springframework.security: DEBUG
-    org.springframework.security.oauth2: DEBUG
+    org.springframework.web: INFO
 
 ### Server ###
 server:
   port: 8080
+  error:
+    include-stacktrace: ALWAYS
+    whitelabel:
+      enabled: false

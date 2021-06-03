@@ -1,0 +1,34 @@
+<header class="header"
+        th:fragment="header"
+        xmlns:th="http://www.thymeleaf.org"
+        xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <a class="navbar-brand" th:href="@{/}">
+            <span th:text="#{navbar.brand}"></span>
+        </a>
+        <div id="navbar-toggle" sec:authorize="isAuthenticated()">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" th:href="@{/}">
+                        <span th:text="#{navbar.link.home}"></span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" th:href="@{/about}">
+                        <span th:text="#{navbar.link.about}"></span>
+                    </a>
+                </li>
+                <li class="nav-item" sec:authorize="hasRole('ADMIN')">
+                    <a class="nav-link" th:href="@{/admin}">
+                        <span th:text="#{navbar.link.admin}"></span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a id="logout-link" class="nav-link" th:href="@{/logout}">
+                        <span th:text="#{navbar.link.logout}"></span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+</header>

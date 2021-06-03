@@ -32,11 +32,11 @@
         <!-- Dependencies -->
         <spring-boot-oauth.version>2.1.6.RELEASE</spring-boot-oauth.version>
         <!-- WebJars -->
-        <webjars-jquery.version>3.5.1</webjars-jquery.version>
-        <webjars-bootstrap.version>4.5.3</webjars-bootstrap.version>
+        <webjars-jquery.version>3.6.0</webjars-jquery.version>
+        <webjars-bootstrap.version>4.6.0-1</webjars-bootstrap.version>
         <webjars-locator.version>0.40</webjars-locator.version>
         <!-- Thymeleaf -->
-        <thymeleaf-layout-dialect.version>2.5.1</thymeleaf-layout-dialect.version>
+        <thymeleaf-layout-dialect.version>2.5.3</thymeleaf-layout-dialect.version>
         <!-- Webservice -->
         <cxf.version>3.4.2</cxf.version>
         <jaxb-impl.version>3.0.0</jaxb-impl.version>
@@ -57,7 +57,8 @@
         <module>rest-api-angular</module>
         <module>rest-api-csrf</module>
         <module>junit-testing</module>
-        <module>login-form</module>
+        <module>login-form-web-mvc</module>
+        <module>login-form-thymeleaf</module>
         <module>login-form-database</module>
         <module>login-form-stateless</module>
         <module>login-basic-auth</module>
@@ -68,7 +69,8 @@
         <module>oidc-client-login-stateless</module>
         <module>oidc-resource-server</module>
         <module>oidc-authorization-server</module>
-        <module>access-control</module>
+        <module>access-control-rest-api</module>
+        <module>access-control-thymeleaf</module>
         <module>access-control-permission-evaluator</module>
         <module>access-control-expression-handler</module>
         <module>ehcache</module>
@@ -116,12 +118,6 @@
                 <groupId>org.webjars</groupId>
                 <artifactId>bootstrap</artifactId>
                 <version>${webjars-bootstrap.version}</version>
-                <exclusions>
-                    <exclusion>
-                        <groupId>org.webjars</groupId>
-                        <artifactId>jquery</artifactId>
-                    </exclusion>
-                </exclusions>
             </dependency>
             <dependency>
                 <groupId>org.webjars</groupId>
