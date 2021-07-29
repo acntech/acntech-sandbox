@@ -15,20 +15,20 @@ import java.util.HashSet;
 import java.util.Set;
 
 import no.acntech.sandbox.resolver.CookieResolver;
-import no.acntech.sandbox.store.InMemorySecurityContextStore;
+import no.acntech.sandbox.store.SecurityContextStore;
 
 import static no.acntech.sandbox.repository.InMemorySecurityContextRepository.SESSION_COOKIE_RESOLVER;
 
 public class OidcLogoutSuccessHandler implements LogoutSuccessHandler {
 
     private final OidcClientInitiatedLogoutSuccessHandler delegate;
-    private final InMemorySecurityContextStore inMemorySecurityContextStore;
+    private final SecurityContextStore securityContextStore;
     private final Set<String> deleteCookies = new HashSet<>();
 
     public OidcLogoutSuccessHandler(final ClientRegistrationRepository clientRegistrationRepository,
-                                    final InMemorySecurityContextStore inMemorySecurityContextStore) {
+                                    final SecurityContextStore securityContextStore) {
         delegate = new OidcClientInitiatedLogoutSuccessHandler(clientRegistrationRepository);
-        this.inMemorySecurityContextStore = inMemorySecurityContextStore;
+        this.securityContextStore = securityContextStore;
     }
 
     @Override
@@ -60,7 +60,7 @@ public class OidcLogoutSuccessHandler implements LogoutSuccessHandler {
     private void clearSecurityContextStore(final HttpServletRequest request) {
         String sessionId = SESSION_COOKIE_RESOLVER.readCookie(request);
         if (sessionId != null) {
-            inMemorySecurityContextStore.deleteSecurityContext(sessionId);
+            securityContextStore.deleteSecurityContext(sessionId);
         }
     }
 }

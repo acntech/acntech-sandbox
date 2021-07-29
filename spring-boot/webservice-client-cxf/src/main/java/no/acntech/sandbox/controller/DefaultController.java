@@ -8,6 +8,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import no.acntech.sandbox.client.GreetingClient;
+import no.acntech.sandbox.webservice.greeting.v1.types.SayHelloRequestType;
+import no.acntech.sandbox.webservice.greeting.v1.types.SayHelloResponseType;
 
 @RequestMapping(path = "/")
 @Controller
@@ -27,8 +29,10 @@ public class DefaultController {
     @PostMapping
     public ModelAndView indexPagePost(@RequestParam("firstName") String firstName) {
         ModelAndView mav = new ModelAndView("index");
-        String message = greetingClient.sayHello(firstName);
-        mav.addObject("message", "Reply from webservice: " + message);
+        SayHelloRequestType request = new SayHelloRequestType();
+        request.setFirstName(firstName);
+        SayHelloResponseType response = greetingClient.sayHello(request);
+        mav.addObject("message", "Reply from webservice: " + response.getGreeting());
         return mav;
     }
 }

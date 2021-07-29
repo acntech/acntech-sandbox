@@ -7,7 +7,7 @@
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
-        <version>2.4.5</version>
+        <version>2.5.3</version>
         <relativePath/>
     </parent>
 
@@ -19,7 +19,7 @@
     <!-- PROPERTIES -->
     <properties>
         <!-- Common -->
-        <java.version>1.8</java.version>
+        <java.version>11</java.version>
         <project.encoding>UTF-8</project.encoding>
         <maven.compiler.source>${java.version}</maven.compiler.source>
         <maven.compiler.target>${java.version}</maven.compiler.target>
@@ -30,7 +30,7 @@
         <failOnMissingWebXml>false</failOnMissingWebXml>
 
         <!-- Dependencies -->
-        <spring-boot-oauth.version>2.1.6.RELEASE</spring-boot-oauth.version>
+        <spring-security-oauth2-authorization-server.version>0.1.2</spring-security-oauth2-authorization-server.version>
         <!-- WebJars -->
         <webjars-jquery.version>3.6.0</webjars-jquery.version>
         <webjars-bootstrap.version>4.6.0-1</webjars-bootstrap.version>
@@ -39,10 +39,9 @@
         <thymeleaf-layout-dialect.version>2.5.3</thymeleaf-layout-dialect.version>
         <!-- Webservice -->
         <cxf.version>3.4.2</cxf.version>
-        <jaxb-impl.version>3.0.0</jaxb-impl.version>
-        <jaxws-rt.version>3.0.0</jaxws-rt.version>
-        <jaxws-tools.version>3.0.0</jaxws-tools.version>
-        <jaxws-maven-plugin.version>3.0.0</jaxws-maven-plugin.version>
+        <jaxws-rt.version>2.3.3</jaxws-rt.version>
+        <jaxws-tools.version>2.3.3</jaxws-tools.version>
+        <jaxws-maven-plugin.version>2.3.3</jaxws-maven-plugin.version>
         <!-- Camunda -->
         <camunda.version>7.14.0</camunda.version>
     </properties>
@@ -82,6 +81,7 @@
         <module>webflux-war-deployment</module>
         <module>webflux-oidc-resource-server</module>
         <module>webservice-client-jaxws</module>
+        <module>webservice-endpoint-jaxws</module>
         <module>webservice-client-cxf</module>
         <module>webservice-endpoint-cxf</module>
         <module>camunda-delegate</module>
@@ -132,11 +132,6 @@
                 <version>${cxf.version}</version>
             </dependency>
             <dependency>
-                <groupId>com.sun.xml.bind</groupId>
-                <artifactId>jaxb-impl</artifactId>
-                <version>${jaxb-impl.version}</version>
-            </dependency>
-            <dependency>
                 <groupId>com.sun.xml.ws</groupId>
                 <artifactId>jaxws-rt</artifactId>
                 <version>${jaxws-rt.version}</version>
@@ -154,9 +149,9 @@
                 <version>${spring-security.version}</version>
             </dependency>
             <dependency>
-                <groupId>org.springframework.security.oauth.boot</groupId>
-                <artifactId>spring-security-oauth2-autoconfigure</artifactId>
-                <version>${spring-boot-oauth.version}</version>
+                <groupId>org.springframework.security.experimental</groupId>
+                <artifactId>spring-security-oauth2-authorization-server</artifactId>
+                <version>${spring-security-oauth2-authorization-server.version}</version>
             </dependency>
 
             <!-- Camunda -->
@@ -195,6 +190,23 @@
                         <goals>
                             <goal>jar</goal>
                         </goals>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-enforcer-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>enforce-no-duplicate-dependencies</id>
+                        <goals>
+                            <goal>enforce</goal>
+                        </goals>
+                        <configuration>
+                            <rules>
+                                <banDuplicatePomDependencyVersions/>
+                            </rules>
+                        </configuration>
                     </execution>
                 </executions>
             </plugin>

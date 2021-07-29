@@ -36,5 +36,6 @@
         <module>quarkus</module>
         <module>micronaut</module>
         <module>spring-native</module>
+        <module>spring-boot-kotlin</module>
     </modules>
 </project>

@@ -11,7 +11,7 @@ import no.acntech.sandbox.client.GreetingClient;
 public class WebServiceConfig {
 
     @Bean
-    public GreetingClient greetingConsumer(@Value("${acntech.webservice.client.url}") String webServiceUrl) {
+    public GreetingClient greetingConsumer(@Value("${acntech.webservice.url}") String webServiceUrl) {
         JaxWsProxyFactoryBean jaxWsProxyFactoryBean = new JaxWsProxyFactoryBean();
         jaxWsProxyFactoryBean.setServiceClass(GreetingClient.class);
         jaxWsProxyFactoryBean.setAddress(webServiceUrl);

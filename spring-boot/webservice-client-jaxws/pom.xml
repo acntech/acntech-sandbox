@@ -5,21 +5,13 @@
 
     <!-- PROJECT -->
     <parent>
-        <artifactId>spring-boot</artifactId>
         <groupId>no.acntech.sandbox</groupId>
+        <artifactId>spring-boot</artifactId>
         <version>1.0.0-SNAPSHOT</version>
     </parent>
 
     <artifactId>spring-boot-webservice-client-jaxws</artifactId>
     <packaging>war</packaging>
-
-    <!-- PROPERTIES -->
-    <properties>
-        <jaxws-api.version>2.3.1</jaxws-api.version>
-        <jaxb-impl.version>2.3.2</jaxb-impl.version>
-        <geronimo-ws.version>1.1.3</geronimo-ws.version>
-        <sun-ws.version>2.3.2</sun-ws.version>
-    </properties>
 
     <!-- DEPENDENCIES -->
     <dependencies>
@@ -66,10 +58,6 @@
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web-services</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>com.sun.xml.bind</groupId>
-            <artifactId>jaxb-impl</artifactId>
         </dependency>
         <dependency>
             <groupId>com.sun.xml.ws</groupId>

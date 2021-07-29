@@ -1,8 +1,7 @@
 ### AcnTech ###
 acntech:
   webservice:
-    client:
-      url: http://localhost:8080/ws/v1/greeting
+    url: http://localhost:8080/ws/v1/greeting
 
 ### Server ###
 server:

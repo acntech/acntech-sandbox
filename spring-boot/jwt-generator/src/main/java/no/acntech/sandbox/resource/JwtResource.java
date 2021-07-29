@@ -1,5 +1,6 @@
 package no.acntech.sandbox.resource;
 
+import com.nimbusds.jose.JWSAlgorithm;
 import com.nimbusds.jose.JWSHeader;
 import com.nimbusds.jose.JWSVerifier;
 import com.nimbusds.jose.crypto.RSASSASigner;
@@ -7,50 +8,45 @@ import com.nimbusds.jose.crypto.RSASSAVerifier;
 import com.nimbusds.jose.jwk.RSAKey;
 import com.nimbusds.jwt.JWTClaimsSet;
 import com.nimbusds.jwt.SignedJWT;
-import no.acntech.sandbox.config.JwtConfig;
-import no.acntech.sandbox.domain.Jwt;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 import javax.validation.Valid;
-import java.security.interfaces.RSAPrivateKey;
-import java.security.interfaces.RSAPublicKey;
 import java.util.Date;
+
+import no.acntech.sandbox.domain.Jwt;
+import no.acntech.sandbox.service.KeyService;
 
 @RequestMapping(path = "token")
 @RestController
 public class JwtResource {
 
-    private final RSAPrivateKey privateKey;
-    private final RSAPublicKey publicKey;
+    private final KeyService keyService;
 
-    public JwtResource(final RSAPrivateKey privateKey,
-                       final RSAPublicKey publicKey) {
-        this.privateKey = privateKey;
-        this.publicKey = publicKey;
+    public JwtResource(final KeyService keyService) {
+        this.keyService = keyService;
     }
 
     @GetMapping
     public ResponseEntity<Jwt> getJwt() throws Exception {
-        RSAKey senderJWK = new RSAKey.Builder(publicKey)
-            .privateKey(privateKey)
-            .algorithm(JwtConfig.ALGORITHM)
-            .keyUse(JwtConfig.KEY_USE)
-            .keyID(JwtConfig.KEY_ID)
-            .build();
+        RSAKey senderJWK = keyService.privateRsaKey();
 
         RSASSASigner signer = new RSASSASigner(senderJWK);
 
-        JWSHeader jwsHeader = new JWSHeader.Builder(JwtConfig.ALGORITHM)
-            .contentType(JwtConfig.HEADER_CONTENT_TYPE)
-            .keyID(senderJWK.getKeyID())
-            .build();
+        JWSHeader jwsHeader = new JWSHeader.Builder(JWSAlgorithm.RS256)
+                .contentType("JWT")
+                .keyID(senderJWK.getKeyID())
+                .build();
 
         JWTClaimsSet jwtClaims = new JWTClaimsSet.Builder()
-            .subject("acntech")
-            .issueTime(new Date())
-            .issuer(JwtConfig.ISSUER)
-            .build();
+                .subject("acntech")
+                .issueTime(new Date())
+                .issuer("http:/localhost:8080")
+                .build();
 
         SignedJWT signedJWT = new SignedJWT(jwsHeader, jwtClaims);
         signedJWT.sign(signer);
@@ -62,10 +58,7 @@ public class JwtResource {
 
     @PostMapping
     public ResponseEntity<Jwt> postJwt(@RequestBody @Valid Jwt jwt) throws Exception {
-        RSAKey recipientJWK = new RSAKey.Builder(publicKey)
-            .keyUse(JwtConfig.KEY_USE)
-            .keyID(JwtConfig.KEY_ID)
-            .build();
+        RSAKey recipientJWK = keyService.publicRsaKey();
 
         JWSVerifier verifier = new RSASSAVerifier(recipientJWK);
 

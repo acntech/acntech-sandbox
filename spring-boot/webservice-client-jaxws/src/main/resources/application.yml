@@ -1,10 +1,7 @@
 ### AcnTech ###
 acntech:
   webservice:
-    endpoint:
-      path: /v1.0/simple
-    client:
-      url: http://localhost:${server.port}${cxf.path}${acntech.webservice.endpoint.path}
+    url: http://localhost:8080/ws/v1/greeting
 
 ### Server ###
 server:
@@ -27,5 +24,3 @@ spring:
   # Messages
   messages:
     basename: locale/messages
-
-### Webservice ###
