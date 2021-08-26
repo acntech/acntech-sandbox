@@ -1,0 +1,19 @@
+version: '3.5'
+
+services:
+  sandbox_elasticsearch:
+    image: elasticsearch:7.14.0
+    container_name: sandbox_elasticsearch
+    hostname: elasticsearch
+    domainname: acntech.local
+    environment:
+      - discovery.type=single-node
+    ports:
+      - 9200:9200
+      - 9300:9300
+    networks:
+      - sandbox_elasticsearch
+
+networks:
+  sandbox_elasticsearch:
+    name: sandbox_elasticsearch
