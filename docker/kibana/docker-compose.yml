@@ -1,0 +1,19 @@
+version: '3.5'
+
+services:
+  sandbox_kibana:
+    image: kibana:7.14.0
+    container_name: sandbox_kibana
+    hostname: kibana
+    domainname: acntech.local
+    environment:
+      - ELASTICSEARCH_HOSTS=http://sandbox_elasticsearch:9200
+    ports:
+      - 5601:5601
+    networks:
+      - sandbox_elasticsearch
+
+networks:
+  sandbox_elasticsearch:
+    name: sandbox_elasticsearch
+    external: true
