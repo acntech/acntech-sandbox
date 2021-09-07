@@ -1,13 +1,23 @@
 version: '3.5'
 
 services:
-  sandbox_elasticsearch:
-    image: elasticsearch:7.14.0
-    container_name: sandbox_elasticsearch
-    hostname: elasticsearch
-    domainname: acntech.local
+  sandbox.kibana:
+    image: kibana:7.14.0
+    container_name: sandbox.kibana
+    depends_on:
+      - sandbox.elasticsearch
     environment:
-      - node.name=sandbox_elasticsearch_01
+      - ELASTICSEARCH_HOSTS=http://sandbox.elasticsearch:9200
+    ports:
+      - 5601:5601
+    networks:
+      - sandbox.elasticsearch
+
+  sandbox.elasticsearch:
+    image: elasticsearch:7.14.0
+    container_name: sandbox.elasticsearch
+    environment:
+      - node.name=sandbox.elasticsearch.01
       - discovery.type=single-node
       - bootstrap.memory_lock=true
       - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
@@ -15,14 +25,14 @@ services:
       - 9200:9200
       - 9300:9300
     volumes:
-      - sandbox_elasticsearch:/usr/share/elasticsearch/data
+      - sandbox.elasticsearch:/usr/share/elasticsearch/data
     networks:
-      - sandbox_elasticsearch
+      - sandbox.elasticsearch
 
 volumes:
-  sandbox_elasticsearch:
-    name: sandbox_elasticsearch
+  sandbox.elasticsearch:
+    name: sandbox.elasticsearch
 
 networks:
-  sandbox_elasticsearch:
-    name: sandbox_elasticsearch
+  sandbox.elasticsearch:
+    name: sandbox.elasticsearch

@@ -87,6 +87,7 @@
         <module>camunda-delegate</module>
         <module>camunda-external-task</module>
         <module>kafka</module>
+        <module>elasticsearch</module>
     </modules>
 
     <!-- DEPENDENCIES -->

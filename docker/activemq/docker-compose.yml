@@ -1,15 +1,13 @@
 version: '3.5'
 
 services:
-  sandbox_activemq:
+  sandbox.activemq:
     image: webcenter/activemq
-    container_name: sandbox_activemq
-    hostname: activemq
-    domainname: acntech.local
+    container_name: sandbox.activemq
     environment:
       - ACTIVEMQ_CONFIG_NAME=acntech-sandbox-activemq
       - ACTIVEMQ_ADMIN_LOGIN=admin
-      - ACTIVEMQ_ADMIN_PASSWORD=admin
+      - ACTIVEMQ_ADMIN_PASSWORD=abcd1234
       - ACTIVEMQ_CONFIG_MINMEMORY=512
       - ACTIVEMQ_CONFIG_MAXMEMORY=2048
     ports:
@@ -17,8 +15,8 @@ services:
       - 61616:61616
       - 61613:61613
     networks:
-      - sandbox_activemq
+      - sandbox.activemq
 
 networks:
-  sandbox_activemq:
-    name: sandbox_activemq
+  sandbox.activemq:
+    name: sandbox.activemq

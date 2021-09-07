@@ -1,29 +1,29 @@
 version: '3.5'
 
 services:
-  sandbox_kafka_connect_elasticsearch_sink:
+  sandbox.kafka.connect:
     image: acntechie/kafka
-    container_name: sandbox_kafka_connect_elasticsearch_sink
+    container_name: sandbox.kafka.connect
     # ports:
     #   - 8083:8083
     volumes:
-      - sandbox_kafka_connect_elasticsearch_sink:/var/lib/kafka
+      - sandbox.kafka.connect:/var/lib/kafka
       - ./resources/connect-standalone.properties:/opt/kafka/default/config/connect-standalone.properties
       - ./resources/connect-elasticsearch-sink.properties:/opt/kafka/default/config/connect-elasticsearch-sink.properties
       - ./resources/plugins/kafka-connect-elasticsearch:/opt/kafka/default/plugins/kafka-connect-elasticsearch
     networks:
-      - sandbox_kafka
-      - sandbox_elasticsearch
+      - sandbox.kafka
+      - sandbox.elasticsearch
     entrypoint: /opt/kafka/default/bin/connect-standalone.sh /opt/kafka/default/config/connect-standalone.properties /opt/kafka/default/config/connect-elasticsearch-sink.properties
 
 volumes:
-  sandbox_kafka_connect_elasticsearch_sink:
-    name: sandbox_kafka_connect_elasticsearch_sink
+  sandbox.kafka.connect:
+    name: sandbox.kafka.connect
 
 networks:
-  sandbox_kafka:
-    name: sandbox_kafka
+  sandbox.kafka:
+    name: sandbox.kafka
     external: true
-  sandbox_elasticsearch:
-    name: sandbox_elasticsearch
+  sandbox.elasticsearch:
+    name: sandbox.elasticsearch
     external: true

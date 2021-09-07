@@ -1,6 +1,6 @@
 #!/bin/bash
 
-KAFKA_NODE=sandbox_kafka
+KAFKA_NODE=sandbox.kafka
 BOOTSTRAP_SERVER=${KAFKA_NODE}:9092
 
 TOPICS=(

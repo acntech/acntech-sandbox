@@ -1,34 +1,30 @@
 version: '3.5'
 
 services:
-  sandbox_uaa_server:
+  sandbox.uaa.server:
     image: acntechie/uaa
-    container_name: sandbox_uaa_server
-    hostname: uaa
-    domainname: acntech.local
+    container_name: sandbox.uaa.server
     depends_on:
-      - sandbox_uaa_database
+      - sandbox.uaa.database
     environment:
       - SPRING_PROFILES_ACTIVE=postgresql,default
     ports:
       - 8888:8080
     volumes:
-      - ./uaa.yml:/usr/local/uaa/uaa.yml
+      - ./resources/uaa.yml:/usr/local/uaa/uaa.yml
     networks:
-      - sandbox_uaa
+      - sandbox.uaa
 
-  sandbox_uaa_database:
+  sandbox.uaa.database:
     image: postgres
-    container_name: sandbox_uaa_database
-    hostname: database
-    domainname: acntech.local
+    container_name: sandbox.uaa.database
     environment:
       - POSTGRES_DB=uaa
       - POSTGRES_USER=uaa
       - POSTGRES_PASSWORD=hS9y05zA
     networks:
-      - sandbox_uaa
+      - sandbox.uaa
 
 networks:
-  sandbox_uaa:
-    name: sandbox_uaa
+  sandbox.uaa:
+    name: sandbox.uaa

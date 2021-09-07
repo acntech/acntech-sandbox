@@ -1,20 +1,18 @@
 version: '3.5'
 
 services:
-  sandbox_activemq_artemis:
+  sandbox.activemq.artemis:
     image: vromero/activemq-artemis
-    container_name: sandbox_activemq_artemis
-    hostname: activemq-artemis
-    domainname: acntech.local
+    container_name: sandbox.activemq.artemis
     environment:
       - ARTEMIS_USERNAME=admin
-      - ARTEMIS_PASSWORD=admin
+      - ARTEMIS_PASSWORD=abcd1234
     ports:
       - 8161:8161
       - 61616:61616
     networks:
-      - sandbox_activemq_artemis
+      - sandbox.activemq.artemis
 
 networks:
-  sandbox_activemq_artemis:
-    name: sandbox_activemq_artemis
+  sandbox.activemq.artemis:
+    name: sandbox.activemq.artemis

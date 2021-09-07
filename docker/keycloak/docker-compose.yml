@@ -1,38 +1,34 @@
 version: '3.5'
 
 services:
-  sandbox_keycloak_server:
+  sandbox.keycloak.server:
     image: jboss/keycloak
-    container_name: sandbox_keycloak_server
-    hostname: keycloak
-    domainname: acntech.local
+    container_name: sandbox.keycloak.server
     depends_on:
-      - sandbox_keycloak_database
+      - sandbox.keycloak.database
     environment:
       - KEYCLOAK_USER=admin
       - KEYCLOAK_PASSWORD=abcd1234
       - DB_VENDOR=postgres
-      - DB_ADDR=sandbox_keycloak_database
+      - DB_ADDR=sandbox.keycloak.database
       - DB_DATABASE=keycloak
       - DB_USER=keycloak
       - DB_PASSWORD=abcd1234
     ports:
       - 8888:8080
     networks:
-      - sandbox_keycloak
+      - sandbox.keycloak
 
-  sandbox_keycloak_database:
+  sandbox.keycloak.database:
     image: postgres
-    container_name: sandbox_keycloak_database
-    hostname: postgres
-    domainname: acntech.local
+    container_name: sandbox.keycloak.database
     environment:
       - POSTGRES_DB=keycloak
       - POSTGRES_USER=keycloak
       - POSTGRES_PASSWORD=abcd1234
     networks:
-      - sandbox_keycloak
+      - sandbox.keycloak
 
 networks:
-  sandbox_keycloak:
-    name: sandbox_keycloak
+  sandbox.keycloak:
+    name: sandbox.keycloak
