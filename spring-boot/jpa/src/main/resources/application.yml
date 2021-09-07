@@ -2,13 +2,13 @@
 spring:
   # Application
   application:
-    name: spring-boot-jpa-postgres
+    name: spring-boot-jpa
   # Messages
   messages:
     basename: locale/messages
   # JPA
   jpa:
-    database-platform: org.hibernate.dialect.PostgreSQLDialect
+    database-platform: org.hibernate.dialect.H2Dialect
     show-sql: false
     hibernate:
       ddl-auto: none
@@ -17,13 +17,12 @@ spring:
         jdbc:
           lob:
             non_contextual_creation: true
-
   # Datasource
   datasource:
-    driver-class-name: org.postgresql.Driver
-    url: jdbc:postgresql://localhost:5432/sandbox
-    username: sandbox
-    password: abcd1234
+    driver-class-name: org.h2.Driver
+    url: jdbc:h2:mem:sandbox;DB_CLOSE_ON_EXIT=FALSE;DB_CLOSE_DELAY=-1
+    username: sa
+    password:
 
 ### Server ###
 server:

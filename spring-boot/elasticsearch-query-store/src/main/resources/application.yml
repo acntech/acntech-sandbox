@@ -1,0 +1,13 @@
+### Spring ###
+spring:
+  elasticsearch:
+    hosts:
+      - localhost:9200
+
+### Server ###
+
+### Logging ###
+logging:
+  level:
+    org.springframework: INFO
+    no.acntech: DEBUG

@@ -5,12 +5,13 @@
 
     <!-- PROJECT -->
     <parent>
-        <artifactId>spring-boot</artifactId>
         <groupId>no.acntech.sandbox</groupId>
+        <artifactId>spring-boot</artifactId>
         <version>1.0.0-SNAPSHOT</version>
     </parent>
 
     <artifactId>spring-boot-elasticsearch</artifactId>
+    <packaging>war</packaging>
 
     <!-- PROPERTIES -->
     <properties>

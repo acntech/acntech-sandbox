@@ -1,0 +1,2 @@
+INSERT INTO GREETINGS (MESSAGE) VALUES ('Hey there buddy!');
+INSERT INTO GREETINGS (MESSAGE) VALUES ('Howdy there partner!');

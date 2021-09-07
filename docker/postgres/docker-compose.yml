@@ -1,0 +1,19 @@
+version: '3.5'
+
+services:
+  sandbox.postgres:
+    image: postgres
+    container_name: sandbox.postgres
+    ports:
+      - 5432:5432
+    environment:
+      - POSTGRES_DB=sandbox
+      - POSTGRES_USER=sandbox
+      - POSTGRES_PASSWORD=abcd1234
+      - POSTGRES_INITDB_ARGS="--encoding=UTF8"
+    networks:
+      - sandbox.postgres
+
+networks:
+  sandbox.postgres:
+    name: sandbox.postgres
