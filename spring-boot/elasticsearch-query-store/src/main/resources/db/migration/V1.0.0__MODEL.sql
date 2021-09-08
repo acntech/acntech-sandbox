@@ -1,0 +1,7 @@
+CREATE TABLE QUERIES
+( ID                            INTEGER        GENERATED ALWAYS AS IDENTITY
+, NAME                          VARCHAR (255)  NOT NULL
+, QUERY                         CLOB           NOT NULL
+, CONSTRAINT GREETINGS_PK       PRIMARY KEY (ID)
+, CONSTRAINT GREETINGS_NAME_UC  UNIQUE (NAME)
+);

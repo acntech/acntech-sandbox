@@ -9,7 +9,7 @@ import java.time.LocalDate;
 import java.time.ZonedDateTime;
 
 @Document(indexName = "sandbox.news.headlines")
-public class News {
+public class NewsDocument {
 
     @Id
     private String id;

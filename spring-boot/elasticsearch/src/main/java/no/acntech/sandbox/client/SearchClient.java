@@ -1,12 +1,11 @@
 package no.acntech.sandbox.client;
 
-import org.elasticsearch.index.query.SimpleQueryStringBuilder;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.elasticsearch.core.ElasticsearchOperations;
 import org.springframework.data.elasticsearch.core.SearchHit;
-import org.springframework.data.elasticsearch.core.query.NativeSearchQueryBuilder;
+import org.springframework.data.elasticsearch.core.query.Query;
 import org.springframework.stereotype.Component;
 
 import java.util.stream.Collectors;
@@ -20,14 +19,8 @@ public class SearchClient {
         this.elasticsearchOperations = elasticsearchOperations;
     }
 
-    public <T> Page<T> search(String query, final Pageable pageable, Class<T> responseClass) {
-        final var queryBuilder = new SimpleQueryStringBuilder(query);
-        final var nativeSearchQuery = new NativeSearchQueryBuilder()
-                .withTrackTotalHits(true)
-                .withPageable(pageable)
-                .withQuery(queryBuilder)
-                .build();
-        final var hits = elasticsearchOperations.search(nativeSearchQuery, responseClass);
+    public <T> Page<T> search(final Query query, final Pageable pageable, Class<T> responseClass) {
+        final var hits = elasticsearchOperations.search(query, responseClass);
         final var totalHits = hits.getTotalHits();
         final var data = hits.stream()
                 .map(SearchHit::getContent)

@@ -1,5 +1,9 @@
 ### Spring ###
 spring:
+  # Application
+  application:
+    name: spring-boot-elasticsearch
+  # Elasticsearch
   elasticsearch:
     hosts:
       - localhost:9200
