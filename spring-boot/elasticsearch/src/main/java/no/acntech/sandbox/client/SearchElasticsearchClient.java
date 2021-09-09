@@ -11,11 +11,11 @@ import org.springframework.stereotype.Component;
 import java.util.stream.Collectors;
 
 @Component
-public class SearchClient {
+public class SearchElasticsearchClient {
 
     private final ElasticsearchOperations elasticsearchOperations;
 
-    public SearchClient(final ElasticsearchOperations elasticsearchOperations) {
+    public SearchElasticsearchClient(final ElasticsearchOperations elasticsearchOperations) {
         this.elasticsearchOperations = elasticsearchOperations;
     }
 

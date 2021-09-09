@@ -6,7 +6,7 @@ spring:
   # Elasticsearch
   elasticsearch:
     hosts:
-      - localhost:9200
+      - http://localhost:9200
   # JPA
   jpa:
     database-platform: org.hibernate.dialect.H2Dialect

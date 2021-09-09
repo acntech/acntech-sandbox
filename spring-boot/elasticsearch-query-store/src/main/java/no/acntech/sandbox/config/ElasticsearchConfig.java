@@ -9,6 +9,8 @@ import org.springframework.data.elasticsearch.client.RestClients;
 import org.springframework.data.elasticsearch.config.AbstractElasticsearchConfiguration;
 import org.springframework.lang.NonNull;
 
+import java.net.URI;
+
 @EnableConfigurationProperties({ElasticsearchProperties.class})
 @Configuration
 public class ElasticsearchConfig extends AbstractElasticsearchConfiguration {
@@ -23,8 +25,11 @@ public class ElasticsearchConfig extends AbstractElasticsearchConfiguration {
     @NonNull
     @Override
     public RestHighLevelClient elasticsearchClient() {
+        final var hostnames = properties.getHosts().stream()
+                .map(URI::getHost)
+                .toArray(String[]::new);
         final var clientConfiguration = ClientConfiguration.builder()
-                .connectedTo(properties.getHosts())
+                .connectedTo(hostnames)
                 .build();
         return RestClients.create(clientConfiguration)
                 .rest();

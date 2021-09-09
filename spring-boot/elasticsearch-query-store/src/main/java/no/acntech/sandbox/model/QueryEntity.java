@@ -18,7 +18,7 @@ public class QueryEntity {
     @Lob
     private String query;
 
-    private QueryEntity() {
+    protected QueryEntity() {
     }
 
     public Long getId() {
@@ -27,6 +27,10 @@ public class QueryEntity {
 
     public String getName() {
         return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 
     public String getQuery() {

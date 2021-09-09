@@ -8,7 +8,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.elasticsearch.core.query.NativeSearchQueryBuilder;
 import org.springframework.stereotype.Service;
 
-import no.acntech.sandbox.client.SearchClient;
+import no.acntech.sandbox.client.SearchElasticsearchClient;
 import no.acntech.sandbox.model.NewsDocument;
 import no.acntech.sandbox.repository.NewsRepository;
 
@@ -16,12 +16,12 @@ import no.acntech.sandbox.repository.NewsRepository;
 public class NewsService {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(NewsService.class);
-    private final SearchClient searchClient;
+    private final SearchElasticsearchClient searchElasticsearchClient;
     private final NewsRepository newsRepository;
 
-    public NewsService(final SearchClient searchClient,
+    public NewsService(final SearchElasticsearchClient searchElasticsearchClient,
                        final NewsRepository newsRepository) {
-        this.searchClient = searchClient;
+        this.searchElasticsearchClient = searchElasticsearchClient;
         this.newsRepository = newsRepository;
     }
 
@@ -32,7 +32,7 @@ public class NewsService {
                 .withPageable(pageable)
                 .withQuery(new SimpleQueryStringBuilder(queryString))
                 .build();
-        return searchClient.search(query, pageable, NewsDocument.class);
+        return searchElasticsearchClient.search(query, pageable, NewsDocument.class);
     }
 
     public Page<NewsDocument> searchWithRepository(final Pageable pageable) {

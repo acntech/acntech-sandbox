@@ -3,9 +3,9 @@ package no.acntech.sandbox.resource;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -54,9 +54,9 @@ public class QueryResource {
                 .body(query);
     }
 
-    @PatchMapping(path = "{id}")
-    public ResponseEntity<QueryDto> patch(@PathVariable(name = "id") Long id,
-                                          @Valid @RequestBody final UpdateQueryDto updateQuery) {
+    @PutMapping(path = "{id}")
+    public ResponseEntity<QueryDto> put(@PathVariable(name = "id") Long id,
+                                        @Valid @RequestBody final UpdateQueryDto updateQuery) {
         final var query = queryService.update(id, updateQuery);
         return ResponseEntity.ok(query);
     }

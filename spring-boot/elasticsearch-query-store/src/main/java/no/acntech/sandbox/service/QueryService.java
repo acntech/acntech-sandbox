@@ -93,6 +93,7 @@ public class QueryService {
             final var queryString = objectMapper.writeValueAsString(updateQuery.getQuery());
             final var queryEntity = queryRepository.findById(id)
                     .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "No query found for ID " + id));
+            queryEntity.setName(updateQuery.getName());
             queryEntity.setQuery(queryString);
             final var savedQueryEntity = queryRepository.save(queryEntity);
             return conversionService.convert(savedQueryEntity, QueryDto.class);

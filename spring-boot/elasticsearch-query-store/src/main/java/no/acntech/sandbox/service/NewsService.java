@@ -14,7 +14,8 @@ import org.springframework.web.server.ResponseStatusException;
 import java.io.IOException;
 import java.util.Map;
 
-import no.acntech.sandbox.client.SearchClient;
+import no.acntech.sandbox.client.SearchElasticsearchClient;
+import no.acntech.sandbox.client.SearchWebClient;
 import no.acntech.sandbox.model.NewsDocument;
 
 @Service
@@ -22,21 +23,24 @@ public class NewsService {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(NewsService.class);
     private final ObjectMapper objectMapper;
-    private final SearchClient searchClient;
+    private final SearchElasticsearchClient searchElasticsearchClient;
+    private final SearchWebClient searchWebClient;
     private final QueryService queryService;
 
     public NewsService(final ObjectMapper objectMapper,
-                       final SearchClient searchClient,
-                       final QueryService queryService) {
+                       final SearchElasticsearchClient searchElasticsearchClient,
+                       SearchWebClient searchWebClient, final QueryService queryService) {
         this.objectMapper = objectMapper;
-        this.searchClient = searchClient;
+        this.searchElasticsearchClient = searchElasticsearchClient;
+        this.searchWebClient = searchWebClient;
         this.queryService = queryService;
     }
 
     public Page<NewsDocument> searchByQueryName(final String queryName, final Pageable pageable) {
         LOGGER.info("Search by query name {}", queryName);
         final var query = queryService.get(queryName);
-        return searchByQueryMap(query.getQuery(), pageable);
+        //return searchByQueryMap(query.getQuery(), pageable);
+        return searchWebClient.search(query.getQuery(), pageable, NewsDocument.class);
     }
 
     public Page<NewsDocument> searchByQueryMap(final Map<String, Object> queryMap, final Pageable pageable) {
@@ -56,6 +60,6 @@ public class NewsService {
                 .withPageable(pageable)
                 .withQuery(new SimpleQueryStringBuilder(queryString))
                 .build();
-        return searchClient.search(query, pageable, NewsDocument.class);
+        return searchElasticsearchClient.search(query, pageable, NewsDocument.class);
     }
 }
