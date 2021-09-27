@@ -77,6 +77,7 @@
         <module>jpa</module>
         <module>jpa-postgres</module>
         <module>transactions</module>
+        <module>kafka</module>
         <module>webflux</module>
         <module>webflux-tomcat</module>
         <module>webflux-war-deployment</module>
@@ -87,7 +88,7 @@
         <module>webservice-endpoint-cxf</module>
         <module>camunda-delegate</module>
         <module>camunda-external-task</module>
-        <module>kafka</module>
+        <module>camunda-multi-module</module>
         <module>elasticsearch</module>
         <module>elasticsearch-query-store</module>
     </modules>

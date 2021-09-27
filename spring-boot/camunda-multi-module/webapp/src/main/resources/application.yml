@@ -1,0 +1,44 @@
+### Camunda ###
+camunda:
+  bpm:
+    admin-user:
+      id: admin
+      password: abcd1234
+    deployment-resource-pattern:
+      - classpath:workflow/*.bpmn
+
+### Spring ###
+spring:
+  application:
+    name: spring-boot-camunda-multi-module
+  # Jackson
+  jackson:
+    date-format: com.fasterxml.jackson.databind.util.StdDateFormat
+    default-property-inclusion: NON_NULL
+    serialization:
+      WRITE_DATES_AS_TIMESTAMPS: false
+      WRITE_DURATIONS_AS_TIMESTAMPS: false
+    deserialization:
+      ADJUST_DATES_TO_CONTEXT_TIME_ZONE: false
+    generator:
+      WRITE_BIGDECIMAL_AS_PLAIN: true
+  # H2 Database
+  datasource:
+    driver-class-name: org.h2.Driver
+    url: jdbc:h2:mem:sandbox;DB_CLOSE_ON_EXIT=FALSE;DB_CLOSE_DELAY=-1
+    username: sa
+    password:
+  # Enable H2 database console
+  h2:
+    console:
+      enabled: true
+
+### Logging ###
+logging:
+  level:
+    org.springframework: INFO
+    no.acntech: DEBUG
+
+### Server ###
+server:
+  port: 8080
