@@ -9,8 +9,14 @@ Examples using the Spring Framework [-> here](./spring)
 ## Spring Boot
 Examples using the Spring Boot Framework [-> here](./spring-boot)
 
+## Spring Boot Kotlin
+Examples using the Spring Boot Framework and Kotlin [-> here](./spring-boot-kotlin)
+
 ## Spring Cloud
 Examples using the Spring Cloud Framework [-> here](./spring-cloud)
+
+## Spring Native
+Examples using the Spring Native Framework [-> here](./spring-native)
 
 ## Microprofile
 Examples using the Microprofile Framework [-> here](./microprofile)

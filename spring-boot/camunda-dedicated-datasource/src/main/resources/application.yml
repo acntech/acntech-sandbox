@@ -1,0 +1,44 @@
+### Camunda ###
+camunda:
+  bpm:
+    admin-user:
+      id: admin
+      password: abcd1234
+    deployment-resource-pattern:
+      - classpath:workflow/*.bpmn
+    database:
+      type: postgres
+      schema-update: true
+    datasource:
+      driver-class-name: org.postgresql.Driver
+      url: jdbc:postgresql://localhost:5433/sandbox_workflow
+      username: sandbox_workflow
+      password: abcd1234
+
+### Spring ###
+spring:
+  # Application
+  application:
+    name: spring-boot-camunda-dedicated-datasource
+  # JPA
+  jpa:
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+    show-sql: false
+    hibernate:
+      ddl-auto: none
+  # Datasource
+  datasource:
+    driver-class-name: org.postgresql.Driver
+    url: jdbc:postgresql://localhost:5433/sandbox
+    username: sandbox
+    password: abcd1234
+
+### Logging ###
+logging:
+  level:
+    org.springframework: INFO
+    no.acntech: DEBUG
+
+### Server ###
+server:
+  port: 8080
