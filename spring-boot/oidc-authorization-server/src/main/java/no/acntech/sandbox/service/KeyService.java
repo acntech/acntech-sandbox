@@ -3,9 +3,7 @@ package no.acntech.sandbox.service;
 import com.nimbusds.jose.JWSAlgorithm;
 import com.nimbusds.jose.jwk.KeyUse;
 import com.nimbusds.jose.jwk.RSAKey;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.io.Resource;
-import org.springframework.stereotype.Service;
 
 import javax.crypto.KeyGenerator;
 import javax.crypto.SecretKey;
@@ -18,19 +16,18 @@ import java.security.spec.X509EncodedKeySpec;
 import java.util.Base64;
 import java.util.UUID;
 
-@Service
 public class KeyService {
 
     private static final String KEY_ID = UUID.randomUUID().toString();
-    private final Resource privateKeyFile;
     private final Resource publicKeyFile;
+    private final Resource privateKeyFile;
     private final KeyFactory rsaKeyFactory;
     private final KeyGenerator hmacKeyGenerator;
 
-    public KeyService(@Value("classpath:private.pem") final Resource privateKeyFile,
-                      @Value("classpath:public.pem") final Resource publicKeyFile) throws Exception {
-        this.privateKeyFile = privateKeyFile;
+    public KeyService(final Resource publicKeyFile,
+                      final Resource privateKeyFile) throws Exception {
         this.publicKeyFile = publicKeyFile;
+        this.privateKeyFile = privateKeyFile;
         this.rsaKeyFactory = KeyFactory.getInstance("RSA");
         this.hmacKeyGenerator = KeyGenerator.getInstance("HmacSha256");
     }

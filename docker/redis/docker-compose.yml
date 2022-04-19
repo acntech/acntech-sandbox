@@ -1,0 +1,14 @@
+version: '3.5'
+
+services:
+  sandbox.redis:
+    image: redis
+    container_name: sandbox.redis
+    ports:
+      - "6379:6379"
+    networks:
+      - sandbox.redis
+
+networks:
+  sandbox.redis:
+    name: sandbox.redis

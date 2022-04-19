@@ -6,24 +6,24 @@ services:
     container_name: sandbox.kibana
     depends_on:
       - sandbox.elasticsearch
-    environment:
-      - ELASTICSEARCH_HOSTS=http://sandbox.elasticsearch:9200
     ports:
       - "5601:5601"
+    environment:
+      - ELASTICSEARCH_HOSTS=http://sandbox.elasticsearch:9200
     networks:
       - sandbox.elasticsearch
 
   sandbox.elasticsearch:
     image: elasticsearch:7.14.1
     container_name: sandbox.elasticsearch
+    ports:
+      - "9200:9200"
+      - "9300:9300"
     environment:
       - node.name=sandbox.elasticsearch.01
       - discovery.type=single-node
       - bootstrap.memory_lock=true
       - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
-    ports:
-      - "9200:9200"
-      - "9300:9300"
     volumes:
       - sandbox.elasticsearch:/usr/share/elasticsearch/data
     networks:

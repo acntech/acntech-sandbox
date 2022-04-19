@@ -4,12 +4,12 @@ services:
   sandbox.activemq.artemis:
     image: vromero/activemq-artemis
     container_name: sandbox.activemq.artemis
+    ports:
+      - "8161:8161"
+      - "61616:61616"
     environment:
       - ARTEMIS_USERNAME=admin
       - ARTEMIS_PASSWORD=abcd1234
-    ports:
-      - 8161:8161
-      - 61616:61616
     networks:
       - sandbox.activemq.artemis
 

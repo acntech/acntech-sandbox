@@ -20,21 +20,21 @@ oauth:
   clients:
     generic-client:
       name: Generic Client
-      secret: w1Mp8ziW
+      secret: abcd1234
       authorized-grant-types: authorization_code
       scope: openid,profile,email
       authorities: uaa.resource
       redirect-uri: http://localhost:8080/login/oauth2/code/generic-client
     generic-client-login:
       name: Generic Client Login
-      secret: w1Mp8ziW
+      secret: abcd1234
       authorized-grant-types: authorization_code
       scope: openid,profile,email
       authorities: uaa.resource
       redirect-uri: http://localhost:8080/login/oauth2/code/generic-client-login
     generic-client-api:
       name: Generic Client API
-      secret: o463qXwa
+      secret: abcd1234
       authorized-grant-types: authorization_code
       scope: openid,profile,email
       authorities: uaa.resource
@@ -42,7 +42,7 @@ oauth:
     generic-resource-server:
       name: Generic Resource Server
       id: generic-resource-server
-      secret: 0kX3bvZe
+      secret: abcd1234
       authorized-grant-types: client_credentials
       scope: read:orders
       authorities: openid,profile,read:greetings,write:greetings
@@ -52,7 +52,7 @@ scim:
   groups:
     email: Access your email address
   users:
-    - user|user|user@acntech.github.io|John|Doe|uaa.user,profile,email
+    - john.doe@accenture.com|abcd1234|john.doe@acntech.com|John|Doe|uaa.user,profile,email
 
 jwt:
   token:
@@ -141,8 +141,8 @@ login:
 
 database:
   driverClassName: org.postgresql.Driver
-  url: jdbc:postgresql://sandbox.uaa.database:5432/uaa
-  username: uaa
-  password: hS9y05zA
+  url: jdbc:postgresql://sandbox.postgres:5432/sandbox_uaa
+  username: sandbox_uaa
+  password: abcd1234
 
 spring_profiles: default,postgresql

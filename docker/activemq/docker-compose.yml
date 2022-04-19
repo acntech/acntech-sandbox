@@ -4,16 +4,16 @@ services:
   sandbox.activemq:
     image: webcenter/activemq
     container_name: sandbox.activemq
+    ports:
+      - "8161:8161"
+      - "61616:61616"
+      - "61613:61613"
     environment:
       - ACTIVEMQ_CONFIG_NAME=acntech-sandbox-activemq
       - ACTIVEMQ_ADMIN_LOGIN=admin
       - ACTIVEMQ_ADMIN_PASSWORD=abcd1234
       - ACTIVEMQ_CONFIG_MINMEMORY=512
       - ACTIVEMQ_CONFIG_MAXMEMORY=2048
-    ports:
-      - 8161:8161
-      - 61616:61616
-      - 61613:61613
     networks:
       - sandbox.activemq
 

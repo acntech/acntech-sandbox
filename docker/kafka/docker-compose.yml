@@ -5,7 +5,7 @@ services:
     image: acntechie/kafka
     container_name: sandbox.kafka
     ports:
-      - 9092:9092
+      - "9092:9092"
     environment:
       - KAFKA_BROKER_ID=1
       - KAFKA_ADVERTISED_LISTENERS=PLAINTEXT://sandbox.kafka:9092

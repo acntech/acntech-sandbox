@@ -4,27 +4,19 @@ services:
   sandbox.uaa.server:
     image: acntechie/uaa
     container_name: sandbox.uaa.server
-    depends_on:
-      - sandbox.uaa.database
+    ports:
+      - "8888:8080"
     environment:
       - SPRING_PROFILES_ACTIVE=postgresql,default
-    ports:
-      - 8888:8080
     volumes:
       - ./resources/uaa.yml:/usr/local/uaa/uaa.yml
     networks:
       - sandbox.uaa
-
-  sandbox.uaa.database:
-    image: postgres
-    container_name: sandbox.uaa.database
-    environment:
-      - POSTGRES_DB=uaa
-      - POSTGRES_USER=uaa
-      - POSTGRES_PASSWORD=hS9y05zA
-    networks:
-      - sandbox.uaa
+      - sandbox.postgres
 
 networks:
   sandbox.uaa:
     name: sandbox.uaa
+  sandbox.postgres:
+    name: sandbox.postgres
+    external: true

@@ -5,6 +5,13 @@ spring:
       enabled: true
       path: /h2
 
+### SECURITY ###
+security:
+  oauth2:
+    client:
+      client-id: generic-client
+      client-secret: abcd1234
+
 ### Server ###
 server:
   port: 8000

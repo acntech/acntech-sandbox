@@ -7,7 +7,7 @@
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
-        <version>2.6.4</version>
+        <version>2.6.6</version>
         <relativePath/>
     </parent>
 
@@ -19,7 +19,7 @@
     <!-- PROPERTIES -->
     <properties>
         <!-- Common -->
-        <java.version>11</java.version>
+        <java.version>17</java.version>
         <project.encoding>UTF-8</project.encoding>
         <maven.compiler.source>${java.version}</maven.compiler.source>
         <maven.compiler.target>${java.version}</maven.compiler.target>
@@ -30,7 +30,7 @@
         <failOnMissingWebXml>false</failOnMissingWebXml>
 
         <!-- Dependencies -->
-        <spring-security-oauth2-authorization-server.version>0.1.2</spring-security-oauth2-authorization-server.version>
+        <spring-security-oauth2-authorization-server.version>0.2.3</spring-security-oauth2-authorization-server.version>
         <!-- WebJars -->
         <webjars-jquery.version>3.6.0</webjars-jquery.version>
         <webjars-bootstrap.version>5.1.3</webjars-bootstrap.version>
@@ -40,7 +40,7 @@
         <!-- Webservice -->
         <cxf.version>3.5.1</cxf.version>
         <jaxws.version>3.0.2</jaxws.version>
-        <jaxws-maven-plugin.version>2.3.3</jaxws-maven-plugin.version>
+        <jaxws-maven-plugin.version>3.0.2</jaxws-maven-plugin.version>
         <!-- Camunda -->
         <camunda.version>7.16.0</camunda.version>
     </properties>
@@ -65,6 +65,7 @@
         <module>jwt-generator</module>
         <module>oidc-client-login</module>
         <module>oidc-client-login-stateless</module>
+        <module>oidc-client-login-token-cache</module>
         <module>oidc-resource-server</module>
         <module>oidc-authorization-server</module>
         <module>access-control-rest-api</module>
@@ -81,8 +82,8 @@
         <module>webflux-tomcat</module>
         <module>webflux-war-deployment</module>
         <module>webflux-oidc-resource-server</module>
-        <module>webservice-client-jaxws</module>
-        <module>webservice-endpoint-jaxws</module>
+        <!--<module>webservice-client-jaxws</module>
+        <module>webservice-endpoint-jaxws</module>-->
         <module>webservice-client-cxf</module>
         <module>webservice-endpoint-cxf</module>
         <module>camunda-delegate</module>
@@ -154,7 +155,7 @@
                 <version>${spring-security.version}</version>
             </dependency>
             <dependency>
-                <groupId>org.springframework.security.experimental</groupId>
+                <groupId>org.springframework.security</groupId>
                 <artifactId>spring-security-oauth2-authorization-server</artifactId>
                 <version>${spring-security-oauth2-authorization-server.version}</version>
             </dependency>

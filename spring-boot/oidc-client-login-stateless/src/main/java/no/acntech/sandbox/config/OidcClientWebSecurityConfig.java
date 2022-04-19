@@ -1,5 +1,10 @@
 package no.acntech.sandbox.config;
 
+import no.acntech.sandbox.cache.HttpCookieRequestCache;
+import no.acntech.sandbox.handler.OidcLogoutSuccessHandler;
+import no.acntech.sandbox.repository.HttpCookieOAuth2AuthorizationRequestRepository;
+import no.acntech.sandbox.repository.HttpCookieSecurityContextRepository;
+import no.acntech.sandbox.store.InMemorySecurityContextStore;
 import org.springframework.context.annotation.Bean;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.builders.WebSecurity;
@@ -7,13 +12,8 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.oauth2.client.OAuth2AuthorizedClientService;
 import org.springframework.security.oauth2.client.registration.ClientRegistrationRepository;
+import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.savedrequest.NullRequestCache;
-
-import no.acntech.sandbox.cache.HttpCookieRequestCache;
-import no.acntech.sandbox.handler.OidcLogoutSuccessHandler;
-import no.acntech.sandbox.repository.HttpCookieOAuth2AuthorizationRequestRepository;
-import no.acntech.sandbox.repository.HttpCookieSecurityContextRepository;
-import no.acntech.sandbox.store.InMemorySecurityContextStore;
 
 import static no.acntech.sandbox.repository.InMemorySecurityContextRepository.SESSION_COOKIE_NAME;
 import static org.springframework.security.config.http.SessionCreationPolicy.STATELESS;
@@ -30,9 +30,9 @@ public class OidcClientWebSecurityConfig extends WebSecurityConfigurerAdapter {
         this.authorizedClientService = authorizedClientService;
     }
 
-    @Override
-    protected void configure(final HttpSecurity http) throws Exception {
-        http
+    @Bean
+    public SecurityFilterChain securityFilterChain(final HttpSecurity http) throws Exception {
+        return http
                 .csrf().disable()
                 .sessionManagement().sessionCreationPolicy(STATELESS)
                 .and()
@@ -44,7 +44,10 @@ public class OidcClientWebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .and()
                 .logout().clearAuthentication(true).logoutSuccessHandler(oidcLogoutSuccessHandler())
                 .and()
-                .oauth2Login().authorizationEndpoint().authorizationRequestRepository(httpCookieOAuth2AuthorizationRequestRepository());
+                .oauth2Login().authorizationEndpoint().authorizationRequestRepository(httpCookieOAuth2AuthorizationRequestRepository())
+                .and()
+                .and()
+                .build();
     }
 
     @Override
