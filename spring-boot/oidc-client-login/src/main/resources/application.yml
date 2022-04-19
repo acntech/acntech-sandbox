@@ -28,7 +28,7 @@ spring:
           generic-client:
             provider: uaa
             client-id: generic-client
-            client-secret: w1Mp8ziW
+            client-secret: abcd1234
             scope:
               - openid
               - profile

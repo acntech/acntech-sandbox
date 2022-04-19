@@ -1,33 +1,26 @@
 package no.acntech.sandbox.config;
 
-import no.acntech.sandbox.cache.HttpCookieRequestCache;
 import no.acntech.sandbox.handler.OidcLogoutSuccessHandler;
 import no.acntech.sandbox.repository.HttpCookieOAuth2AuthorizationRequestRepository;
-import no.acntech.sandbox.repository.HttpCookieSecurityContextRepository;
+import no.acntech.sandbox.repository.InMemorySecurityContextRepository;
 import no.acntech.sandbox.store.InMemorySecurityContextStore;
+import no.acntech.sandbox.store.SecurityContextStore;
 import org.springframework.context.annotation.Bean;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
-import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
-import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
-import org.springframework.security.oauth2.client.OAuth2AuthorizedClientService;
 import org.springframework.security.oauth2.client.registration.ClientRegistrationRepository;
 import org.springframework.security.web.SecurityFilterChain;
-import org.springframework.security.web.savedrequest.NullRequestCache;
+import org.springframework.security.web.context.SecurityContextRepository;
 
-import static no.acntech.sandbox.repository.InMemorySecurityContextRepository.SESSION_COOKIE_NAME;
 import static org.springframework.security.config.http.SessionCreationPolicy.STATELESS;
 
 @EnableWebSecurity
-public class OidcClientWebSecurityConfig extends WebSecurityConfigurerAdapter {
+public class OidcClientWebSecurityConfig {
 
     private final ClientRegistrationRepository clientRegistrationRepository;
-    private final OAuth2AuthorizedClientService authorizedClientService;
 
-    public OidcClientWebSecurityConfig(final ClientRegistrationRepository clientRegistrationRepository,
-                                       final OAuth2AuthorizedClientService authorizedClientService) {
+    public OidcClientWebSecurityConfig(final ClientRegistrationRepository clientRegistrationRepository) {
         this.clientRegistrationRepository = clientRegistrationRepository;
-        this.authorizedClientService = authorizedClientService;
     }
 
     @Bean
@@ -36,11 +29,9 @@ public class OidcClientWebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .csrf().disable()
                 .sessionManagement().sessionCreationPolicy(STATELESS)
                 .and()
-                .requestCache().requestCache(new NullRequestCache())
-                .and()
-                .securityContext().securityContextRepository(httpCookieSecurityContextRepository())
-                .and()
                 .authorizeRequests().anyRequest().authenticated()
+                .and()
+                .securityContext().securityContextRepository(inMemorySecurityContextRepository())
                 .and()
                 .logout().clearAuthentication(true).logoutSuccessHandler(oidcLogoutSuccessHandler())
                 .and()
@@ -50,21 +41,14 @@ public class OidcClientWebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .build();
     }
 
-    @Override
-    public void configure(final WebSecurity web) {
-        web
-                .ignoring()
-                .antMatchers("/webjars/**", "/resources/**");
-    }
-
     @Bean
-    public HttpCookieSecurityContextRepository httpCookieSecurityContextRepository() {
-        return new HttpCookieSecurityContextRepository(authorizedClientService);
-    }
-
-    @Bean
-    public InMemorySecurityContextStore inMemorySecurityContextStore() {
+    public SecurityContextStore inMemorySecurityContextStore() {
         return new InMemorySecurityContextStore();
+    }
+
+    @Bean
+    public SecurityContextRepository inMemorySecurityContextRepository() {
+        return new InMemorySecurityContextRepository(inMemorySecurityContextStore());
     }
 
     @Bean
@@ -73,15 +57,9 @@ public class OidcClientWebSecurityConfig extends WebSecurityConfigurerAdapter {
     }
 
     @Bean
-    public HttpCookieRequestCache httpCookieRequestCache() {
-        return new HttpCookieRequestCache();
-    }
-
-    @Bean
     public OidcLogoutSuccessHandler oidcLogoutSuccessHandler() {
-        OidcLogoutSuccessHandler logoutSuccessHandler = new OidcLogoutSuccessHandler(clientRegistrationRepository, inMemorySecurityContextStore());
+        var logoutSuccessHandler = new OidcLogoutSuccessHandler(clientRegistrationRepository, inMemorySecurityContextStore());
         logoutSuccessHandler.setPostLogoutRedirectUri("http://localhost:8080/");
-        logoutSuccessHandler.setDeleteCookies(SESSION_COOKIE_NAME);
         return logoutSuccessHandler;
     }
 }

@@ -4,11 +4,11 @@ import org.springframework.security.core.context.SecurityContext;
 
 public interface SecurityContextStore {
 
-    SecurityContext loadSecurityContext(String key);
+    SecurityContext loadContext(String key);
 
-    void saveSecurityContext(String key, SecurityContext securityContext);
+    void saveContext(String key, SecurityContext securityContext);
 
-    void deleteSecurityContext(String key);
+    void removeContext(String key);
 
-    boolean containsSecurityContext(String key);
+    boolean containsContext(String key);
 }

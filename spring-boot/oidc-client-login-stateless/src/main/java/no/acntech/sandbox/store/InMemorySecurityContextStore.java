@@ -10,22 +10,22 @@ public class InMemorySecurityContextStore implements SecurityContextStore {
     private static final Map<String, SecurityContext> SECURITY_CONTEXT_STORE = new HashMap<>();
 
     @Override
-    public SecurityContext loadSecurityContext(String key) {
+    public SecurityContext loadContext(String key) {
         return SECURITY_CONTEXT_STORE.get(key);
     }
 
     @Override
-    public void saveSecurityContext(String key, SecurityContext securityContext) {
+    public void saveContext(String key, SecurityContext securityContext) {
         SECURITY_CONTEXT_STORE.put(key, securityContext);
     }
 
     @Override
-    public void deleteSecurityContext(String key) {
+    public void removeContext(String key) {
         SECURITY_CONTEXT_STORE.remove(key);
     }
 
     @Override
-    public boolean containsSecurityContext(String key) {
+    public boolean containsContext(String key) {
         return SECURITY_CONTEXT_STORE.containsKey(key);
     }
 }

@@ -26,14 +26,14 @@ spring:
       client:
         registration:
           generic-client-login:
-            provider: keycloak
-            client-id: generic-client-login
-            client-secret: w1Mp8ziW
+            provider: uaa
+            client-id: generic-client
+            client-secret: abcd1234
             scope:
               - openid
               - profile
         provider:
-          keycloak:
+          uaa:
             issuer-uri: http://localhost:8888/uaa/oauth/token
 
 ### Logging ###

@@ -17,11 +17,10 @@ public class CookieResolver extends CookieGenerator {
     private static final int REDIRECT_URI_COOKIE_EXPIRE_SECONDS = 180;
     private static final String SAVED_REQUEST_COOKIE_NAME = "oidc_saved_request";
     private static final int SAVED_REQUEST_COOKIE_EXPIRE_SECONDS = 180;
+    private static final String SESSION_COOKIE_NAME = "oidc_session";
+    private static final int SESSION_COOKIE_EXPIRE_SECONDS = -1;
 
-    public CookieResolver() {
-    }
-
-    public CookieResolver(String cookieName, int cookieMaxAge) {
+    private CookieResolver(String cookieName, int cookieMaxAge) {
         this.setCookieName(cookieName);
         this.setCookieMaxAge(cookieMaxAge);
         this.setCookieHttpOnly(true);
@@ -51,6 +50,10 @@ public class CookieResolver extends CookieGenerator {
 
     public static CookieResolver savedRequestCookieResolver() {
         return new CookieResolver(SAVED_REQUEST_COOKIE_NAME, SAVED_REQUEST_COOKIE_EXPIRE_SECONDS);
+    }
+
+    public static CookieResolver sessionCookieResolver() {
+        return new CookieResolver(SESSION_COOKIE_NAME, SESSION_COOKIE_EXPIRE_SECONDS);
     }
 
     public static String serialize(Object object) {

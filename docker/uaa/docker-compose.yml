@@ -1,9 +1,9 @@
 version: '3.5'
 
 services:
-  sandbox.uaa.server:
+  sandbox.uaa:
     image: acntechie/uaa
-    container_name: sandbox.uaa.server
+    container_name: sandbox.uaa
     ports:
       - "8888:8080"
     environment:
