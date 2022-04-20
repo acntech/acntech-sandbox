@@ -2,7 +2,7 @@
 spring:
   # Application
   application:
-    name: spring-boot-oidc-client-login-stateless
+    name: spring-boot-oidc-client-login-stateless-session-cache
   # Messages
   messages:
     basename: locale/messages

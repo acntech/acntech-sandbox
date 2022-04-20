@@ -4,9 +4,9 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class SpringBootOidcClientLoginApplication {
+public class SpringBootWebSocketStompApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(SpringBootOidcClientLoginApplication.class, args);
+        SpringApplication.run(SpringBootWebSocketStompApplication.class, args);
     }
 }

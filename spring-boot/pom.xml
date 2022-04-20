@@ -93,6 +93,7 @@
         <module>elasticsearch</module>
         <module>elasticsearch-query-store</module>
         <module>camunda-dedicated-datasource</module>
+        <module>websocket-stomp</module>
     </modules>
 
     <!-- DEPENDENCIES -->
