@@ -3,24 +3,32 @@ acntech:
   webservice:
     url: http://localhost:8080/ws/v1/greeting
 
-### Server ###
-server:
-  port: 8080
-
-### Logging ###
-logging:
-  level:
-    org.springframework: INFO
-    no.acntech: DEBUG
-
 ### Spring ###
 spring:
+  # Application
+  application:
+    name: spring-boot-client-jaxws
   # Web
   mvc:
     view:
       prefix: /WEB-INF/views/
       suffix: .jsp
-
   # Messages
   messages:
     basename: locale/messages
+
+### Logging ###
+logging:
+  level:
+    root: INFO
+    web: INFO
+    no.acntech: DEBUG
+    org.springframework: INFO
+
+### Server ###
+server:
+  port: 8080
+  error:
+    include-stacktrace: ALWAYS
+    whitelabel:
+      enabled: false

@@ -65,7 +65,8 @@
         <module>jwt-generator</module>
         <module>oidc-client-login</module>
         <module>oidc-client-login-stateless</module>
-        <module>oidc-client-login-token-cache</module>
+        <module>oidc-client-login-stateless-session-cache</module>
+        <module>oidc-client-login-stateless-token-cache</module>
         <module>oidc-resource-server</module>
         <module>oidc-authorization-server</module>
         <module>access-control-rest-api</module>

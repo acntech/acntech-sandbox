@@ -2,21 +2,7 @@
 spring:
   # Application
   application:
-    name: spring-boot-oidc-client-login
-  # Jackson
-  jackson:
-    date-format: com.fasterxml.jackson.databind.util.StdDateFormat
-    default-property-inclusion: NON_NULL
-    serialization:
-      WRITE_DATES_AS_TIMESTAMPS: false
-    deserialization:
-      ADJUST_DATES_TO_CONTEXT_TIME_ZONE: false
-  # JMX
-  jmx:
-    enabled: false
-  # AOP
-  aop:
-    proxy-target-class: true
+    name: spring-boot-oidc-client-login-stateless
   # Messages
   messages:
     basename: locale/messages
@@ -25,7 +11,7 @@ spring:
     oauth2:
       client:
         registration:
-          generic-client:
+          generic-client-login:
             provider: uaa
             client-id: generic-client
             client-secret: abcd1234
@@ -35,6 +21,10 @@ spring:
         provider:
           uaa:
             issuer-uri: http://localhost:8888/uaa/oauth/token
+  # Redis
+  redis:
+    host: localhost
+    port: 6379
 
 ### Logging ###
 logging:
@@ -42,9 +32,7 @@ logging:
     root: INFO
     web: INFO
     no.acntech: DEBUG
-    org.springframework.web: INFO
-    org.springframework.security: INFO
-    org.springframework.security.oauth2: INFO
+    org.springframework: INFO
 
 ### Server ###
 server:

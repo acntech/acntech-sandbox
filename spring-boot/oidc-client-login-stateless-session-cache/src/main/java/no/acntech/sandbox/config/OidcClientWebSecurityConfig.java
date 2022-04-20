@@ -2,7 +2,7 @@ package no.acntech.sandbox.config;
 
 import no.acntech.sandbox.handler.OidcLogoutSuccessHandler;
 import no.acntech.sandbox.repository.HttpCookieOAuth2AuthorizationRequestRepository;
-import no.acntech.sandbox.repository.InMemorySecurityContextRepository;
+import no.acntech.sandbox.repository.RedisSecurityContextRepository;
 import no.acntech.sandbox.store.SecurityContextStore;
 import org.springframework.context.annotation.Bean;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -45,7 +45,7 @@ public class OidcClientWebSecurityConfig {
 
     @Bean
     public SecurityContextRepository inMemorySecurityContextRepository() {
-        return new InMemorySecurityContextRepository(securityContextStore);
+        return new RedisSecurityContextRepository(securityContextStore);
     }
 
     @Bean

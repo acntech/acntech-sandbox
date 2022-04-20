@@ -1,10 +1,12 @@
 package no.acntech.sandbox.store;
 
 import org.springframework.security.core.context.SecurityContext;
+import org.springframework.stereotype.Component;
 
 import java.util.HashMap;
 import java.util.Map;
 
+@Component
 public class InMemorySecurityContextStore implements SecurityContextStore {
 
     private static final Map<String, SecurityContext> SECURITY_CONTEXT_STORE = new HashMap<>();
