@@ -2,7 +2,7 @@
 spring:
   # Application
   application:
-    name: spring-boot-oidc-client-login
+    name: spring-boot-websocket-stomp
   # Messages
   messages:
     basename: locale/messages

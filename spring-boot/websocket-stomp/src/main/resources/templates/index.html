@@ -7,14 +7,42 @@
     <title th:text="#{navbar.brand}"></title>
 </head>
 <body>
-    <div layout:fragment="content" class="container">
-        <main class="container" role="main">
-            <div class="starter-template">
-                <div class="jumbotron">
-                    <h1 th:text="#{index.page.title}"></h1>
-                </div>
+<div layout:fragment="content" class="container">
+    <main class="container" role="main">
+        <div class="starter-template">
+            <div class="jumbotron">
+                <h1 th:text="#{index.page.title}"></h1>
             </div>
-        </main>
-    </div>
+            <div class="row my-5">
+                <div class="col-sm"></div>
+                <div class="col-sm">
+                    <div class="row">
+                        <div class="col py-3">
+                            <h5 th:text="#{index.page.connect.heading}"></h5>
+                            <button id="connect" type="button" class="btn btn-success"
+                                    th:text="#{index.page.form.connect-button}"></button>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col py-3">
+                            <h5 th:text="#{index.page.publish.heading}"></h5>
+                            <label for="name" th:text="#{index.page.form.name}"></label>
+                            <input id="name" type="text">
+                            <button id="publish" type="button" class="btn btn-success"
+                                    th:text="#{index.page.form.publish-button}"></button>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col py-3">
+                            <h5 th:text="#{index.page.receive.heading}"></h5>
+                            <ul id="messages"></ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm"></div>
+            </div>
+        </div>
+    </main>
+</div>
 </body>
 </html>
