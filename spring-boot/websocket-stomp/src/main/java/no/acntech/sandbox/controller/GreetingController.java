@@ -18,7 +18,7 @@ public class GreetingController {
     private static final Logger LOGGER = LoggerFactory.getLogger(GreetingController.class);
 
     @MessageMapping("/hello")
-    @SendTo("/topic/greeting")
+    @SendTo("/topic/greetings")
     public Greeting greeting(@Valid Hello hello) {
         final var timestamp = LocalDateTime.now()
                 .format(DateTimeFormatter.ofPattern("HH:mm:ss"));

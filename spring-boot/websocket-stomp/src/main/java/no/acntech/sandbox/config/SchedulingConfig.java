@@ -13,16 +13,16 @@ import java.time.format.DateTimeFormatter;
 
 @EnableScheduling
 @Configuration
-public class SchedulesConfig {
+public class SchedulingConfig {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger(SchedulesConfig.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(SchedulingConfig.class);
     private final GreetingService greetingService;
 
-    public SchedulesConfig(final GreetingService greetingService) {
+    public SchedulingConfig(final GreetingService greetingService) {
         this.greetingService = greetingService;
     }
 
-    @Scheduled(fixedRate = 10000)
+    @Scheduled(fixedRateString = "PT10S")
     public void scheduleFixedRateTask() {
         final var timestamp = LocalDateTime.now()
                 .format(DateTimeFormatter.ofPattern("HH:mm:ss"));

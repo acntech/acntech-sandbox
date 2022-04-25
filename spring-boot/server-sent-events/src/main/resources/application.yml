@@ -1,0 +1,24 @@
+### Spring ###
+spring:
+  # Application
+  application:
+    name: spring-boot-server-sent-events
+  # Messages
+  messages:
+    basename: locale/messages
+
+### Logging ###
+logging:
+  level:
+    root: INFO
+    web: INFO
+    no.acntech: DEBUG
+    org.springframework: INFO
+
+### Server ###
+server:
+  port: 8080
+  error:
+    include-stacktrace: ALWAYS
+    whitelabel:
+      enabled: false

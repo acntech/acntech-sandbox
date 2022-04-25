@@ -16,6 +16,6 @@ public class GreetingService {
     }
 
     public void sendGreeting(@Valid Greeting greeting) {
-        messagingTemplate.convertAndSend("/topic/greeting", greeting);
+        messagingTemplate.convertAndSend("/topic/greetings", greeting);
     }
 }
