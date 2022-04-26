@@ -4,11 +4,11 @@ const receiveMessage = (message) => {
     count++;
 
     if (message.body) {
-        console.log('Received STOMP message with body ' + message.body);
+        console.log('Received message with body ' + message.body);
         const body = JSON.parse(message.body);
         $('#messages-list').prepend(`<li>${count}: ${body.message}</li>`);
     } else {
-        console.log('Received STOMP message without body');
+        console.log('Received message without body');
         $('#messages-list').prepend('<li></li>');
     }
 }

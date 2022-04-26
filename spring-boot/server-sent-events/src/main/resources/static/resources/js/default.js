@@ -89,11 +89,11 @@ $(() => {
         count++;
 
         if (event.data) {
-            console.log('Received SSE message with data ' + event.data);
+            console.log('Received message with data ' + event.data);
             const data = JSON.parse(event.data);
             $('#messages-list').prepend(`<li>${count}: ${data.message}</li>`);
         } else {
-            console.log('Received SSE message without data');
+            console.log('Received message without data');
             $('#messages-list').prepend('<li></li>');
         }
     };

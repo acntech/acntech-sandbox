@@ -96,6 +96,7 @@
         <module>camunda-dedicated-datasource</module>
         <module>websocket-stomp</module>
         <module>server-sent-events</module>
+        <module>long-polling</module>
     </modules>
 
     <!-- DEPENDENCIES -->

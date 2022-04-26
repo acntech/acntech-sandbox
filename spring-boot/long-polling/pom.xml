@@ -10,7 +10,7 @@
         <version>1.0.0-SNAPSHOT</version>
     </parent>
 
-    <artifactId>spring-boot-server-sent-events</artifactId>
+    <artifactId>spring-boot-long-polling</artifactId>
 
     <!-- DEPENDENCIES -->
     <dependencies>
