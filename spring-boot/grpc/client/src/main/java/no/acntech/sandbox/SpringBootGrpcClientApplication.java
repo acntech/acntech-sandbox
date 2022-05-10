@@ -4,9 +4,9 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class SpringBootOidcClientLoginTokenCacheApplication {
+public class SpringBootGrpcClientApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(SpringBootOidcClientLoginTokenCacheApplication.class, args);
+        SpringApplication.run(SpringBootGrpcClientApplication.class, args);
     }
 }

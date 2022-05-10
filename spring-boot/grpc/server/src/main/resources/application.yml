@@ -1,0 +1,15 @@
+### Spring ###
+spring:
+  # Application
+  application:
+    name: spring-boot-grps-server
+
+### Logging ###
+logging:
+  level:
+    org.springframework: INFO
+    no.acntech: DEBUG
+
+### Server ###
+server:
+  port: 8090

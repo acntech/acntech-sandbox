@@ -20,8 +20,8 @@ public class HttpCookieOAuth2AuthorizationRequestRepository implements Authoriza
     @Override
     public OAuth2AuthorizationRequest loadAuthorizationRequest(final HttpServletRequest request) {
         Assert.notNull(request, "HttpServletRequest cannot be null");
-        String cookieValue = AUTHORIZATION_REQUEST_COOKIE_RESOLVER.readCookie(request);
-        OAuth2AuthorizationRequest authorizationRequest = Optional.ofNullable(cookieValue)
+        var cookieValue = AUTHORIZATION_REQUEST_COOKIE_RESOLVER.readCookie(request);
+        var authorizationRequest = Optional.ofNullable(cookieValue)
                 .filter(StringUtils::isNoneBlank)
                 .map(this::deserializeCookie)
                 .orElse(null);
@@ -44,7 +44,7 @@ public class HttpCookieOAuth2AuthorizationRequestRepository implements Authoriza
             removeAuthorizationRequest(request, response);
         } else {
             LOGGER.debug("Storing OAuth2AuthorizationRequest ( request to {} )", request.getServletPath());
-            String cookieValue = CookieResolver.serialize(authorizationRequest);
+            var cookieValue = CookieResolver.serialize(authorizationRequest);
             AUTHORIZATION_REQUEST_COOKIE_RESOLVER.addCookie(response, cookieValue);
         }
     }

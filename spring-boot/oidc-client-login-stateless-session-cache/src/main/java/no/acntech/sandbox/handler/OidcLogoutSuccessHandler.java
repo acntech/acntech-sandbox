@@ -28,7 +28,7 @@ public class OidcLogoutSuccessHandler implements LogoutSuccessHandler {
     public void onLogoutSuccess(final HttpServletRequest request,
                                 final HttpServletResponse response,
                                 final Authentication authentication) throws IOException, ServletException {
-        String sessionId = SESSION_COOKIE_RESOLVER.readCookie(request);
+        var sessionId = SESSION_COOKIE_RESOLVER.readCookie(request);
         if (sessionId != null) {
             securityContextStore.removeContext(sessionId);
         }

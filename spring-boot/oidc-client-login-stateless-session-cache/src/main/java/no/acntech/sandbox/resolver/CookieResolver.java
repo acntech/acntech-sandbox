@@ -24,7 +24,7 @@ public class CookieResolver extends CookieGenerator {
 
     public String readCookie(final HttpServletRequest request) {
         Assert.notNull(request, "HttpServletRequest cannot be null");
-        Cookie[] cookies = request.getCookies();
+        var cookies = request.getCookies();
         if (cookies == null) {
             return null;
         } else {
