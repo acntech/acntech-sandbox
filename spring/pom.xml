@@ -31,7 +31,7 @@
         <jsp-api.version>2.2</jsp-api.version>
         <jstl.version>1.2</jstl.version>
         <!-- Spring Framework -->
-        <spring.version>5.3.9</spring.version>
+        <spring.version>5.3.20</spring.version>
         <spring-security.version>5.5.2</spring-security.version>
         <!-- WebJars -->
         <webjars-jquery.version>3.5.1</webjars-jquery.version>
