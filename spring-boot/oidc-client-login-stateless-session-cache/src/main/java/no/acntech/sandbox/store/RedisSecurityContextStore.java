@@ -5,7 +5,7 @@ import org.springframework.security.core.context.SecurityContext;
 import org.springframework.stereotype.Component;
 
 @Component
-public class RedisSecurityContextStore implements SecurityContextStore {
+public class RedisSecurityContextStore implements Store<String, SecurityContext> {
 
     private final RedisTemplate<String, SecurityContext> redisTemplate;
 
@@ -14,22 +14,22 @@ public class RedisSecurityContextStore implements SecurityContextStore {
     }
 
     @Override
-    public SecurityContext loadContext(String key) {
+    public SecurityContext load(String key) {
         return redisTemplate.opsForValue().get(key);
     }
 
     @Override
-    public void saveContext(String key, SecurityContext securityContext) {
-        redisTemplate.opsForValue().set(key, securityContext);
+    public void save(String key, SecurityContext value) {
+        redisTemplate.opsForValue().set(key, value);
     }
 
     @Override
-    public void removeContext(String key) {
+    public void remove(String key) {
         redisTemplate.delete(key);
     }
 
     @Override
-    public boolean containsContext(String key) {
+    public boolean contains(String key) {
         var hasKey = redisTemplate.hasKey(key);
         return hasKey != null && hasKey;
     }

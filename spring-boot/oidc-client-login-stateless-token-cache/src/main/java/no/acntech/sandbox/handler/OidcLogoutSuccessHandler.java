@@ -3,7 +3,8 @@ package no.acntech.sandbox.handler;
 import no.acntech.sandbox.resolver.CookieResolver;
 import no.acntech.sandbox.store.Store;
 import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContext;
+import org.springframework.security.oauth2.client.OAuth2AuthorizedClient;
+import org.springframework.security.oauth2.client.OAuth2AuthorizedClientId;
 import org.springframework.security.oauth2.client.oidc.web.logout.OidcClientInitiatedLogoutSuccessHandler;
 import org.springframework.security.oauth2.client.registration.ClientRegistrationRepository;
 import org.springframework.security.web.authentication.logout.LogoutSuccessHandler;
@@ -15,27 +16,25 @@ import java.io.IOException;
 
 public class OidcLogoutSuccessHandler implements LogoutSuccessHandler {
 
+    private static final CookieResolver SESSION_COOKIE_RESOLVER = CookieResolver.sessionCookieResolver();
     private final OidcClientInitiatedLogoutSuccessHandler delegate;
-    private final CookieResolver sessionCookieResolver;
-    private final Store<String, SecurityContext> securityContextStore;
+    private final Store<OAuth2AuthorizedClientId, OAuth2AuthorizedClient> oAuth2AuthorizedClientStore;
 
     public OidcLogoutSuccessHandler(final ClientRegistrationRepository clientRegistrationRepository,
-                                    final CookieResolver sessionCookieResolver,
-                                    final Store<String, SecurityContext> securityContextStore) {
+                                    final Store<OAuth2AuthorizedClientId, OAuth2AuthorizedClient> oAuth2AuthorizedClientStore) {
         delegate = new OidcClientInitiatedLogoutSuccessHandler(clientRegistrationRepository);
-        this.sessionCookieResolver = sessionCookieResolver;
-        this.securityContextStore = securityContextStore;
+        this.oAuth2AuthorizedClientStore = oAuth2AuthorizedClientStore;
     }
 
     @Override
     public void onLogoutSuccess(final HttpServletRequest request,
                                 final HttpServletResponse response,
                                 final Authentication authentication) throws IOException, ServletException {
-        String sessionId = sessionCookieResolver.readCookie(request);
+        var sessionId = SESSION_COOKIE_RESOLVER.readCookie(request);
         if (sessionId != null) {
-            securityContextStore.remove(sessionId);
+            oAuth2AuthorizedClientStore.remove(sessionId);
         }
-        sessionCookieResolver.removeCookie(response);
+        SESSION_COOKIE_RESOLVER.removeCookie(response);
         delegate.onLogoutSuccess(request, response, authentication);
     }
 

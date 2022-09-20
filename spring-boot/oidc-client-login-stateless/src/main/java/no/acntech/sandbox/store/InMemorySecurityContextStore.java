@@ -3,31 +3,35 @@ package no.acntech.sandbox.store;
 import org.springframework.security.core.context.SecurityContext;
 import org.springframework.stereotype.Component;
 
-import java.util.HashMap;
 import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
 
 @Component
-public class InMemorySecurityContextStore implements SecurityContextStore {
+public class InMemorySecurityContextStore implements Store<String, SecurityContext> {
 
-    private static final Map<String, SecurityContext> SECURITY_CONTEXT_STORE = new HashMap<>();
+    private final Map<String, SecurityContext> securityContextStore;
 
-    @Override
-    public SecurityContext loadContext(String key) {
-        return SECURITY_CONTEXT_STORE.get(key);
+    public InMemorySecurityContextStore() {
+        this.securityContextStore = new ConcurrentHashMap<>();
     }
 
     @Override
-    public void saveContext(String key, SecurityContext securityContext) {
-        SECURITY_CONTEXT_STORE.put(key, securityContext);
+    public SecurityContext load(String key) {
+        return securityContextStore.get(key);
     }
 
     @Override
-    public void removeContext(String key) {
-        SECURITY_CONTEXT_STORE.remove(key);
+    public void save(String key, SecurityContext securityContext) {
+        securityContextStore.put(key, securityContext);
     }
 
     @Override
-    public boolean containsContext(String key) {
-        return SECURITY_CONTEXT_STORE.containsKey(key);
+    public void remove(String key) {
+        securityContextStore.remove(key);
+    }
+
+    @Override
+    public boolean contains(String key) {
+        return securityContextStore.containsKey(key);
     }
 }

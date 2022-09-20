@@ -1,9 +1,9 @@
 version: '3.5'
 
 services:
-  sandbox.uaa:
+  acntech.uaa:
     image: acntechie/uaa
-    container_name: sandbox.uaa
+    container_name: acntech.uaa
     ports:
       - "8888:8080"
     environment:
@@ -11,12 +11,12 @@ services:
     volumes:
       - ./resources/uaa.yml:/usr/local/uaa/uaa.yml
     networks:
-      - sandbox.uaa
-      - sandbox.postgres
+      - acntech.uaa
+      - acntech.postgres
 
 networks:
-  sandbox.uaa:
-    name: sandbox.uaa
-  sandbox.postgres:
-    name: sandbox.postgres
+  acntech.uaa:
+    name: acntech.uaa
+  acntech.postgres:
+    name: acntech.postgres
     external: true

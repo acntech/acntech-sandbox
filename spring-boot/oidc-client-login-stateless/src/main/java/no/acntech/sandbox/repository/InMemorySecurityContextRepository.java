@@ -1,7 +1,7 @@
 package no.acntech.sandbox.repository;
 
 import no.acntech.sandbox.resolver.CookieResolver;
-import no.acntech.sandbox.store.SecurityContextStore;
+import no.acntech.sandbox.store.Store;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.security.core.context.SecurityContext;
@@ -12,57 +12,60 @@ import org.springframework.security.web.context.SecurityContextRepository;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.util.UUID;
+import java.util.function.Supplier;
 
 public class InMemorySecurityContextRepository implements SecurityContextRepository {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(InMemorySecurityContextRepository.class);
-    private static final CookieResolver SESSION_COOKIE_RESOLVER = CookieResolver.sessionCookieResolver();
-    private final SecurityContextStore securityContextStore;
+    private final CookieResolver sessionCookieResolver;
+    private final Store<String, SecurityContext> securityContextStore;
 
-    public InMemorySecurityContextRepository(final SecurityContextStore securityContextStore) {
+    public InMemorySecurityContextRepository(final CookieResolver sessionCookieResolver,
+                                             final Store<String, SecurityContext> securityContextStore) {
+        this.sessionCookieResolver = sessionCookieResolver;
         this.securityContextStore = securityContextStore;
     }
 
     @Override
     public SecurityContext loadContext(final HttpRequestResponseHolder requestResponseHolder) {
-        HttpServletRequest request = requestResponseHolder.getRequest();
-        String sessionId = SESSION_COOKIE_RESOLVER.readCookie(request);
+        return this.loadContext(requestResponseHolder.getRequest()).get();
+    }
+
+    @Override
+    public Supplier<SecurityContext> loadContext(final HttpServletRequest request) {
+        final var sessionId = sessionCookieResolver.readCookie(request);
         if (sessionId != null) {
-            SecurityContext securityContext = securityContextStore.loadContext(sessionId);
+            SecurityContext securityContext = securityContextStore.load(sessionId);
             if (securityContext != null) {
                 LOGGER.debug("Load SecurityContext from store. Found SecurityContext for session id {} ( request to {} )", sessionId, request.getServletPath());
-                return securityContext;
+                return () -> securityContext;
             } else {
                 LOGGER.debug("Load SecurityContext from store. No SecurityContext found for session id {}. Creating empty SecurityContext ( request to {} )", sessionId, request.getServletPath());
             }
-        } else {
-            sessionId = UUID.randomUUID().toString();
-            SESSION_COOKIE_RESOLVER.addCookie(requestResponseHolder.getResponse(), sessionId);
-            LOGGER.debug("Load SecurityContext from store. No session id found. Generating new session id {}, Creating empty SecurityContext ( request to {} )", sessionId, request.getServletPath());
         }
-        return SecurityContextHolder.createEmptyContext();
+        return SecurityContextHolder::createEmptyContext;
     }
 
     @Override
     public void saveContext(final SecurityContext context,
                             final HttpServletRequest request,
                             final HttpServletResponse response) {
-        String sessionId = SESSION_COOKIE_RESOLVER.readCookie(request);
+        var sessionId = sessionCookieResolver.readCookie(request);
         if (sessionId != null) {
             LOGGER.debug("Save SecurityContext to store. Using exiting session id {} ( request to {} )", sessionId, request.getServletPath());
         } else {
             sessionId = UUID.randomUUID().toString();
             LOGGER.debug("Save SecurityContext to store. Generating new session id {} ( request to {} )", sessionId, request.getServletPath());
-            SESSION_COOKIE_RESOLVER.addCookie(response, sessionId);
+            sessionCookieResolver.addCookie(response, sessionId);
         }
-        securityContextStore.saveContext(sessionId, context);
+        securityContextStore.save(sessionId, context);
     }
 
     @Override
     public boolean containsContext(final HttpServletRequest request) {
-        String sessionId = SESSION_COOKIE_RESOLVER.readCookie(request);
+        final var sessionId = sessionCookieResolver.readCookie(request);
         if (sessionId != null) {
-            boolean containsContext = securityContextStore.containsContext(sessionId);
+            boolean containsContext = securityContextStore.contains(sessionId);
             LOGGER.debug("Check if store contains SecurityContext. Using exiting session id {} with result '{}' ( request to {} )", sessionId, containsContext, request.getServletPath());
             return containsContext;
         } else {
