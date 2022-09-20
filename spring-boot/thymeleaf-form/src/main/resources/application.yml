@@ -1,0 +1,22 @@
+### Spring ###
+spring:
+  # Application
+  application:
+    name: spring-boot-thymeleaf
+  # Messages
+  messages:
+    basename: locale/messages
+
+### Logging ###
+logging:
+  level:
+    org.springframework: INFO
+    no.acntech: DEBUG
+
+### Server ###
+server:
+  port: 8080
+  error:
+    include-stacktrace: ALWAYS
+    whitelabel:
+      enabled: false

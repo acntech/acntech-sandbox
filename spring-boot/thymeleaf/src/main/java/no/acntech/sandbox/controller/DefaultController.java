@@ -2,18 +2,17 @@ package no.acntech.sandbox.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.servlet.ModelAndView;
 
 @Controller
 public class DefaultController {
 
     @GetMapping("/")
-    public ModelAndView indexPage() {
-        return new ModelAndView("index");
+    public String getIndexPage() {
+        return "index";
     }
 
     @GetMapping("/about")
-    public ModelAndView aboutPage() {
-        return new ModelAndView("about");
+    public String getAboutPage() {
+        return "about";
     }
 }
