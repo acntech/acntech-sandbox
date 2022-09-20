@@ -58,6 +58,7 @@
         <module>web-mvc-csrf</module>
         <module>thymeleaf</module>
         <module>thymeleaf-form</module>
+        <module>thymeleaf-form-validation</module>
         <module>rest-api</module>
         <module>rest-api-hateoas</module>
         <module>rest-api-angular</module>

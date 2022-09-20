@@ -1,12 +1,14 @@
 package no.acntech.sandbox.controller;
 
 import no.acntech.sandbox.model.FormData;
-import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+
+import javax.validation.Valid;
 
 @Controller
 public class DefaultController {
@@ -18,12 +20,14 @@ public class DefaultController {
     }
 
     @PostMapping("/")
-    public String postIndexPage(@ModelAttribute("formData") final FormData formData,
+    public String postIndexPage(@ModelAttribute("formData") @Valid final FormData formData,
+                                final BindingResult bindingResult,
                                 final Model model) {
-        final var name = StringUtils.isNoneBlank(formData.getName()) ? formData.getName() : "Unknown";
-        final var greeting = "Hello " + name + "!";
         model.addAttribute("formData", formData);
-        model.addAttribute("greeting", greeting);
+        if (!bindingResult.hasErrors()) {
+            final var greeting = "Hello " + formData.getName() + "!";
+            model.addAttribute("greeting", greeting);
+        }
         return "index";
     }
 
