@@ -15,7 +15,6 @@
 
     <!-- PROPERTIES -->
     <properties>
-        <camunda-external-task-client.version>1.4.1</camunda-external-task-client.version>
     </properties>
 
     <!-- MODULES -->
@@ -39,17 +38,9 @@
             <optional>true</optional>
         </dependency>
 
-        <!-- Tomcat embedded container-->
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-tomcat</artifactId>
-            <scope>provided</scope>
-        </dependency>
-
         <dependency>
             <groupId>org.camunda.bpm</groupId>
             <artifactId>camunda-external-task-client</artifactId>
-            <version>${camunda-external-task-client.version}</version>
         </dependency>
     </dependencies>
 

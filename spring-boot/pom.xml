@@ -186,6 +186,11 @@
                 <scope>import</scope>
                 <type>pom</type>
             </dependency>
+            <dependency>
+                <groupId>org.camunda.bpm</groupId>
+                <artifactId>camunda-external-task-client</artifactId>
+                <version>${camunda.version}</version>
+            </dependency>
 
             <!-- Protobuf -->
             <dependency>
