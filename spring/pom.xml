@@ -32,7 +32,7 @@
         <servlet-jstl-api.version>1.2.1</servlet-jstl-api.version>
         <servlet-jstl.version>1.2</servlet-jstl.version>
         <!-- Spring Framework -->
-        <spring.version>5.3.23</spring.version>
+        <spring.version>6.0.0</spring.version>
         <spring-security.version>5.7.3</spring-security.version>
         <!-- WebJars -->
         <webjars-jquery.version>3.6.0</webjars-jquery.version>
