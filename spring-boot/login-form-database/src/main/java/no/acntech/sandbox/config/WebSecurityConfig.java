@@ -1,35 +1,29 @@
 package no.acntech.sandbox.config;
 
-import no.acntech.sandbox.service.DefaultUserDetailsService;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
-import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
-import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.config.annotation.web.configuration.WebSecurityCustomizer;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 @EnableWebSecurity
-@Configuration
-public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
-
-    private final DefaultUserDetailsService userDetailsService;
-
-    public WebSecurityConfig(final DefaultUserDetailsService userDetailsService) {
-        this.userDetailsService = userDetailsService;
-    }
+@Configuration(proxyBeanMethods = false)
+public class WebSecurityConfig {
 
     @SuppressWarnings("Duplicates")
-    @Override
-    protected void configure(HttpSecurity http) throws Exception {
-        http
-                .authorizeRequests()
-                .antMatchers("/**").access("hasRole('USER')")
+    @Bean
+    public SecurityFilterChain securityFilterChain(final HttpSecurity http) throws Exception {
+        return http
+                .authorizeHttpRequests()
+                .requestMatchers("/**").hasRole("USER")
                 .anyRequest().authenticated()
                 .and()
                 .formLogin().loginPage("/login")
@@ -39,36 +33,30 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .logoutSuccessUrl("/login?logout")
                 .deleteCookies("JSESSIONID").invalidateHttpSession(true).permitAll()
                 .and()
-                .csrf().requireCsrfProtectionMatcher(new AntPathRequestMatcher("**/login"));
-    }
-
-    @Override
-    public void configure(WebSecurity web) {
-        web
-                .ignoring()
-                .antMatchers("/webjars/**", "/resources/**", "/h2-console/**");
-    }
-
-    @Override
-    protected void configure(AuthenticationManagerBuilder auth) {
-        auth.authenticationProvider(authenticationProvider());
-    }
-
-    @Override
-    protected UserDetailsService userDetailsService() {
-        return userDetailsService;
+                .csrf().requireCsrfProtectionMatcher(new AntPathRequestMatcher("**/login"))
+                .disable()
+                .build();
     }
 
     @Bean
-    public DaoAuthenticationProvider authenticationProvider() {
-        DaoAuthenticationProvider authenticationProvider = new DaoAuthenticationProvider();
-        authenticationProvider.setUserDetailsService(userDetailsService());
-        authenticationProvider.setPasswordEncoder(passwordEncoder());
+    public WebSecurityCustomizer webSecurityCustomizer() {
+        return (web) -> web
+                .ignoring().requestMatchers("/webjars/**", "/resources/**", "/h2-console/**");
+    }
+
+    @Bean
+    protected AuthenticationManager authenticationManager(final AuthenticationManagerBuilder auth,
+                                                          final AuthenticationProvider authenticationProvider) throws Exception {
+        return auth
+                .authenticationProvider(authenticationProvider)
+                .build();
+    }
+
+    @Bean
+    public AuthenticationProvider authenticationProvider(final UserDetailsService userDetailsService) {
+        final var authenticationProvider = new DaoAuthenticationProvider();
+        authenticationProvider.setUserDetailsService(userDetailsService);
+        authenticationProvider.setPasswordEncoder(new BCryptPasswordEncoder());
         return authenticationProvider;
-    }
-
-    @Bean
-    public PasswordEncoder passwordEncoder() {
-        return new BCryptPasswordEncoder();
     }
 }

@@ -11,7 +11,7 @@ public class OidcClientWebSecurityConfig {
     @Bean
     public SecurityFilterChain securityFilterChain(final HttpSecurity http) throws Exception {
         return http
-                .authorizeRequests()
+                .authorizeHttpRequests()
                 .anyRequest().authenticated()
                 .and()
                 .oauth2Login()

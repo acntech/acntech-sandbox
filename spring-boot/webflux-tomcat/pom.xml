@@ -13,10 +13,6 @@
     <artifactId>spring-boot-webflux-tomcat</artifactId>
     <packaging>war</packaging>
 
-    <!-- PROPERTIES -->
-    <properties>
-    </properties>
-
     <!-- DEPENDENCIES -->
     <dependencies>
         <!-- Spring WebFlux -->

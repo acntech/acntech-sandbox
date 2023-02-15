@@ -1,0 +1,40 @@
+### Spring ###
+spring:
+  # Application
+  application:
+    name: spring-boot-oidc-client-login
+  # Security
+  security:
+    oauth2:
+      client:
+        registration:
+          acntech-generic-client:
+            provider: keycloak
+            client-id: acntech-generic-client
+            client-secret: abcdefgh12345678
+            authorization-grant-type: authorization_code
+            scope:
+              - openid
+              - profile
+              - roles
+            redirect-uri: http://localhost:3000
+        provider:
+          keycloak:
+            issuer-uri: http://localhost:8888/realms/acntech
+
+### Logging ###
+logging:
+  level:
+    root: INFO
+    web: INFO
+    no.acntech: DEBUG
+    org.springframework: INFO
+    org.springframework.security: DEBUG
+
+### Server ###
+server:
+  port: 8080
+  error:
+    include-stacktrace: ALWAYS
+    whitelabel:
+      enabled: false

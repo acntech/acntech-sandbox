@@ -11,20 +11,23 @@ spring:
     oauth2:
       client:
         registration:
-          generic-client-login:
-            provider: uaa
-            client-id: generic-client
-            client-secret: abcd1234
+          generic-client:
+            provider: keycloak
+            client-id: acntech-generic-client
+            client-secret: abcdefgh12345678
+            authorization-grant-type: authorization_code
             scope:
               - openid
               - profile
+              - roles
         provider:
-          uaa:
-            issuer-uri: http://localhost:8888/uaa/oauth/token
+          keycloak:
+            issuer-uri: http://localhost:8888/realms/acntech
   # Redis
-  redis:
-    host: localhost
-    port: 6379
+  data:
+    redis:
+      host: localhost
+      port: 6379
 
 ### Logging ###
 logging:

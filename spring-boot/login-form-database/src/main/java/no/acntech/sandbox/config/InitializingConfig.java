@@ -1,5 +1,6 @@
 package no.acntech.sandbox.config;
 
+import jakarta.annotation.PostConstruct;
 import no.acntech.sandbox.domain.Role;
 import no.acntech.sandbox.domain.User;
 import no.acntech.sandbox.repository.RoleRepository;
@@ -7,11 +8,10 @@ import no.acntech.sandbox.repository.UserRepository;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
-import javax.annotation.PostConstruct;
 import java.util.Arrays;
 import java.util.Collections;
 
-@Configuration
+@Configuration(proxyBeanMethods = false)
 public class InitializingConfig {
 
     private final PasswordEncoder passwordEncoder;

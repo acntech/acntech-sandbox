@@ -1,5 +1,8 @@
 package no.acntech.sandbox.repository;
 
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
+import no.acntech.sandbox.resolver.CookieResolver;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.security.core.context.SecurityContext;
@@ -7,20 +10,14 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.web.context.HttpRequestResponseHolder;
 import org.springframework.security.web.context.SecurityContextRepository;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
 
-import no.acntech.sandbox.resolver.CookieResolver;
-
 public class InMemorySecurityContextRepository implements SecurityContextRepository {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(InMemorySecurityContextRepository.class);
-    public static final String SESSION_COOKIE_NAME = "session_cookie";
-    private static final int SESSION_COOKIE_EXPIRE_SECONDS = -1;
-    private static final CookieResolver SESSION_COOKIE_RESOLVER = new CookieResolver(SESSION_COOKIE_NAME, SESSION_COOKIE_EXPIRE_SECONDS);
+    private static final CookieResolver SESSION_COOKIE_RESOLVER = CookieResolver.sessionCookieResolver();
     private static final Map<String, SecurityContext> SECURITY_CONTEXT_STORE = new HashMap<>();
 
     @Override

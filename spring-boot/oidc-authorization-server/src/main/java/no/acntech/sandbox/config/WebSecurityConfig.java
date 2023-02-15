@@ -15,7 +15,7 @@ public class WebSecurityConfig {
     @Bean
     public SecurityFilterChain defaultSecurityFilterChain(final HttpSecurity http) throws Exception {
         return http
-                .authorizeRequests()
+                .authorizeHttpRequests()
                 .anyRequest().authenticated()
                 .and()
                 .formLogin(Customizer.withDefaults())
@@ -24,8 +24,8 @@ public class WebSecurityConfig {
 
     @Bean
     public UserDetailsService users() {
-        var user = User.withDefaultPasswordEncoder()
-                .username("john.doe@accenture.com")
+        var user = User.builder()
+                .username("john.doe")
                 .password("abcd1234")
                 .roles("USER")
                 .build();

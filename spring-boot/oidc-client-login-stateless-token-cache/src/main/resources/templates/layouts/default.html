@@ -9,11 +9,11 @@
     <link rel="stylesheet" type="text/css" th:href="@{/resources/css/default.css}" />
 </head>
 <body>
-    <div th:replace="fragments/header :: header"></div>
+    <div th:replace="~{fragments/header :: header}"></div>
 
     <div layout:fragment="content"></div>
 
-    <div th:replace="fragments/footer :: footer"></div>
+    <div th:replace="~{fragments/footer :: footer}"></div>
     <script type="text/javascript" th:src="@{//webjars/jquery/jquery.min.js}"></script>
     <script type="text/javascript" th:src="@{//webjars/bootstrap/js/bootstrap.min.js}"></script>
     <script type="text/javascript" th:src="@{//resources/js/default.js}"></script>

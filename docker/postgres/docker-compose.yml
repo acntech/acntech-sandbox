@@ -1,24 +1,24 @@
 version: '3.5'
 
 services:
-  acntech.postgres:
+  sandbox.postgres:
     image: postgres
-    container_name: acntech.postgres
+    container_name: sandbox.postgres
     ports:
       - "5432:5432"
     environment:
       - POSTGRES_PASSWORD=abcd1234
       - POSTGRES_INITDB_ARGS="--encoding=UTF8"
     volumes:
-      - acntech.postgres:/var/lib/postgresql/data
+      - sandbox.postgres:/var/lib/postgresql/data
       - ./resources/postgres-init.sql:/docker-entrypoint-initdb.d/postgres-init.sql
     networks:
-      - acntech.postgres
+      - sandbox.postgres
 
 volumes:
-  acntech.postgres:
-    name: acntech.postgres
+  sandbox.postgres:
+    name: sandbox.postgres
 
 networks:
-  acntech.postgres:
-    name: acntech.postgres
+  sandbox.postgres:
+    name: sandbox.postgres

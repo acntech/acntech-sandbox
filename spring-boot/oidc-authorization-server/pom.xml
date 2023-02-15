@@ -12,10 +12,6 @@
 
     <artifactId>spring-boot-oidc-authorization-server</artifactId>
 
-    <!-- PROPERTIES -->
-    <properties>
-    </properties>
-
     <!-- DEPENDENCIES -->
     <dependencies>
         <dependency>

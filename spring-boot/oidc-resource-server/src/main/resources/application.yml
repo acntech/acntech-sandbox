@@ -9,9 +9,9 @@ spring:
     date-format: com.fasterxml.jackson.databind.util.StdDateFormat
     default-property-inclusion: NON_NULL
     serialization:
-      write-dates-as-timestamps: false
+      WRITE-DATES-AS-TIMESTAMPS: false
     deserialization:
-      adjust-dates-to-context-time-zone: false
+      ADJUST-DATES-TO-CONTEXT-TIME-ZONE: false
   # JMX
   jmx:
     enabled: false
@@ -23,7 +23,7 @@ spring:
     oauth2:
       resourceserver:
         jwt:
-          issuer-uri: http://localhost:8888/uaa/oauth/token
+          issuer-uri: http://localhost:8888/realms/acntech
 
 ### Logging ###
 logging:

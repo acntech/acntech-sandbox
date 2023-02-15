@@ -12,12 +12,6 @@
     </parent>
 
     <artifactId>spring-boot-login-form-stateless</artifactId>
-    <packaging>war</packaging>
-
-    <!-- PROPERTIES -->
-    <properties>
-        <thymeleaf-layout-dialect.version>2.4.1</thymeleaf-layout-dialect.version>
-    </properties>
 
     <!-- DEPENDENCIES -->
     <dependencies>
@@ -42,7 +36,6 @@
         <dependency>
             <groupId>nz.net.ultraq.thymeleaf</groupId>
             <artifactId>thymeleaf-layout-dialect</artifactId>
-            <version>${thymeleaf-layout-dialect.version}</version>
         </dependency>
 
         <!-- WebJars -->

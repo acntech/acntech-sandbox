@@ -12,11 +12,6 @@
     </parent>
 
     <artifactId>spring-boot-transactions</artifactId>
-    <packaging>war</packaging>
-
-    <!-- PROPERTIES -->
-    <properties>
-    </properties>
 
     <!-- DEPENDENCIES -->
     <dependencies>
@@ -36,8 +31,8 @@
 
         <!-- JSTL for JSP -->
         <dependency>
-            <groupId>javax.servlet</groupId>
-            <artifactId>jstl</artifactId>
+            <groupId>jakarta.servlet.jsp.jstl</groupId>
+            <artifactId>jakarta.servlet.jsp.jstl-api</artifactId>
         </dependency>
 
         <!-- WebJars -->
@@ -45,12 +40,10 @@
             <groupId>org.webjars</groupId>
             <artifactId>jquery</artifactId>
         </dependency>
-
         <dependency>
             <groupId>org.webjars</groupId>
             <artifactId>bootstrap</artifactId>
         </dependency>
-
         <dependency>
             <groupId>org.webjars</groupId>
             <artifactId>webjars-locator</artifactId>

@@ -12,11 +12,6 @@
     </parent>
 
     <artifactId>spring-boot-access-control-permission-evaluator</artifactId>
-    <packaging>war</packaging>
-
-    <!-- PROPERTIES -->
-    <properties>
-    </properties>
 
     <!-- DEPENDENCIES -->
     <dependencies>

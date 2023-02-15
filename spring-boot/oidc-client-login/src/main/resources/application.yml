@@ -12,15 +12,17 @@ spring:
       client:
         registration:
           generic-client:
-            provider: uaa
-            client-id: generic-client
-            client-secret: abcd1234
+            provider: keycloak
+            client-id: acntech-generic-client
+            client-secret: abcdefgh12345678
+            authorization-grant-type: authorization_code
             scope:
               - openid
               - profile
+              - roles
         provider:
-          uaa:
-            issuer-uri: http://localhost:8888/uaa/oauth/token
+          keycloak:
+            issuer-uri: http://localhost:8888/realms/acntech
 
 ### Logging ###
 logging:

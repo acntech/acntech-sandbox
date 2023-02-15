@@ -13,10 +13,6 @@
 
     <artifactId>spring-boot-junit-testing</artifactId>
 
-    <!-- PROPERTIES -->
-    <properties>
-    </properties>
-
     <!-- DEPENDENCIES -->
     <dependencies>
         <!-- Spring Framework -->

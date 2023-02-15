@@ -1,10 +1,9 @@
 package no.acntech.sandbox.service;
 
+import jakarta.validation.Valid;
 import no.acntech.sandbox.model.Greeting;
 import org.springframework.messaging.simp.SimpMessagingTemplate;
 import org.springframework.stereotype.Service;
-
-import javax.validation.Valid;
 
 @Service
 public class GreetingService {

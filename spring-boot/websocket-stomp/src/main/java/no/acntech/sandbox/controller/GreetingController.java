@@ -1,5 +1,6 @@
 package no.acntech.sandbox.controller;
 
+import jakarta.validation.Valid;
 import no.acntech.sandbox.model.Greeting;
 import no.acntech.sandbox.model.Hello;
 import org.slf4j.Logger;
@@ -8,7 +9,6 @@ import org.springframework.messaging.handler.annotation.MessageMapping;
 import org.springframework.messaging.handler.annotation.SendTo;
 import org.springframework.stereotype.Controller;
 
-import javax.validation.Valid;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 

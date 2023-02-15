@@ -12,12 +12,6 @@
 
     <artifactId>spring-boot-grpc-model</artifactId>
 
-    <!-- PROPERTIES -->
-    <properties>
-        <protoc.version>3.20.1</protoc.version>
-        <grpc.version>1.46.0</grpc.version>
-    </properties>
-
     <dependencies>
         <dependency>
             <groupId>io.grpc</groupId>

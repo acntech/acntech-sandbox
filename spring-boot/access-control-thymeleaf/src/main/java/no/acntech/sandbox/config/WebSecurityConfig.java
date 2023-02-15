@@ -1,20 +1,25 @@
 package no.acntech.sandbox.config;
 
-import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
-import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
-import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.config.annotation.web.configuration.WebSecurityCustomizer;
+import org.springframework.security.core.userdetails.User;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.provisioning.InMemoryUserDetailsManager;
+import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 @SuppressWarnings("Duplicates")
 @EnableWebSecurity
-public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
+@Configuration(proxyBeanMethods = false)
+public class WebSecurityConfig {
 
-    @Override
-    protected void configure(final HttpSecurity http) throws Exception {
-        http
-                .authorizeRequests()
+    @Bean
+    public SecurityFilterChain securityFilterChain(final HttpSecurity http) throws Exception {
+        return http
+                .authorizeHttpRequests()
                 .anyRequest().authenticated()
                 .and()
                 .formLogin().loginPage("/login").defaultSuccessUrl("/").failureUrl("/login?error").permitAll()
@@ -25,24 +30,34 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .deleteCookies("JSESSIONID")
                 .invalidateHttpSession(true).permitAll()
                 .and()
-                .csrf().requireCsrfProtectionMatcher(new AntPathRequestMatcher("**/login"));
+                .csrf().requireCsrfProtectionMatcher(new AntPathRequestMatcher("**/login"))
+                .and()
+                .build();
     }
 
-    @Override
-    public void configure(final WebSecurity web) {
-        web
-                .ignoring()
-                .antMatchers("/favicon.ico", "/webjars/**", "/resources/**");
+    @Bean
+    public WebSecurityCustomizer webSecurityCustomizer() {
+        return (web) -> web
+                .ignoring().requestMatchers("/favicon.ico", "/webjars/**", "/resources/**");
     }
 
-    @Override
-    protected void configure(final AuthenticationManagerBuilder auth) throws Exception {
-        auth
-                .inMemoryAuthentication()
-                .withUser("user").password("{noop}user").roles("USER")
-                .and()
-                .withUser("admin").password("{noop}admin").roles("USER", "ADMIN")
-                .and()
-                .withUser("anonymous").password("{noop}anonymous").roles("ANONYMOUS");
+    @Bean
+    public UserDetailsService userDetailsService() {
+        final var user = User.builder()
+                .username("user")
+                .password("user")
+                .roles("USER")
+                .build();
+        final var admin = User.builder()
+                .username("admin")
+                .password("admin")
+                .roles("USER", "ADMIN")
+                .build();
+        final var anonymous = User.builder()
+                .username("anonymous")
+                .password("anonymous")
+                .roles("ANONYMOUS")
+                .build();
+        return new InMemoryUserDetailsManager(user, admin, anonymous);
     }
 }

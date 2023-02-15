@@ -12,11 +12,6 @@
     </parent>
 
     <artifactId>spring-boot-rest-api-angular-webapp-api</artifactId>
-    <packaging>war</packaging>
-
-    <!-- PROPERTIES -->
-    <properties>
-    </properties>
 
     <!-- DEPENDENCIES -->
     <dependencies>

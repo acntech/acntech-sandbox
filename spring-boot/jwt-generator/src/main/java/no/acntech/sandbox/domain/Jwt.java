@@ -1,7 +1,7 @@
 package no.acntech.sandbox.domain;
 
-import javax.validation.Valid;
-import javax.validation.constraints.NotBlank;
+import jakarta.validation.Valid;
+import jakarta.validation.constraints.NotBlank;
 
 @Valid
 public class Jwt {

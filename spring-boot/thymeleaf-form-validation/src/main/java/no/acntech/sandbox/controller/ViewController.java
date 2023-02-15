@@ -1,5 +1,6 @@
 package no.acntech.sandbox.controller;
 
+import jakarta.validation.Valid;
 import no.acntech.sandbox.model.FormData;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -8,10 +9,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
-import javax.validation.Valid;
-
 @Controller
-public class DefaultController {
+public class ViewController {
 
     @GetMapping("/")
     public String getIndexPage(final Model model) {

@@ -12,11 +12,6 @@
     </parent>
 
     <artifactId>spring-boot-login-basic-auth</artifactId>
-    <packaging>war</packaging>
-
-    <!-- PROPERTIES -->
-    <properties>
-    </properties>
 
     <!-- DEPENDENCIES -->
     <dependencies>
@@ -41,8 +36,8 @@
 
         <!-- JSTL for JSP -->
         <dependency>
-            <groupId>javax.servlet</groupId>
-            <artifactId>jstl</artifactId>
+            <groupId>jakarta.servlet.jsp.jstl</groupId>
+            <artifactId>jakarta.servlet.jsp.jstl-api</artifactId>
         </dependency>
 
         <!-- WebJars -->

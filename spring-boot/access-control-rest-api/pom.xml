@@ -12,11 +12,6 @@
     </parent>
 
     <artifactId>spring-boot-access-control-rest-api</artifactId>
-    <packaging>war</packaging>
-
-    <!-- PROPERTIES -->
-    <properties>
-    </properties>
 
     <!-- DEPENDENCIES -->
     <dependencies>

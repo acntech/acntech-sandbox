@@ -13,13 +13,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Controller
-public class DefaultController {
+public class ViewController {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger(DefaultController.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(ViewController.class);
 
     private final UserRepository userRepository;
 
-    public DefaultController(final UserRepository userRepository) {
+    public ViewController(final UserRepository userRepository) {
         this.userRepository = userRepository;
     }
 

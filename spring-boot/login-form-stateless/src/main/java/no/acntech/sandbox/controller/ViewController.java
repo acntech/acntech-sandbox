@@ -5,15 +5,20 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 @Controller
-public class DefaultController {
+public class ViewController {
 
-    @GetMapping(path = "/")
+    @GetMapping("/")
     public ModelAndView indexPage() {
         return new ModelAndView("index");
     }
 
-    @GetMapping(path = "/about")
+    @GetMapping("/about")
     public ModelAndView aboutPage() {
         return new ModelAndView("about");
+    }
+
+    @GetMapping("/login")
+    public ModelAndView loginPage() {
+        return new ModelAndView("login");
     }
 }

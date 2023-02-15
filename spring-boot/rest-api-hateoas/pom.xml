@@ -12,11 +12,6 @@
     </parent>
 
     <artifactId>spring-boot-rest-api-hateoas</artifactId>
-    <packaging>war</packaging>
-
-    <!-- PROPERTIES -->
-    <properties>
-    </properties>
 
     <!-- DEPENDENCIES -->
     <dependencies>

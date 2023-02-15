@@ -13,10 +13,6 @@
     <artifactId>spring-boot-camunda-multi-module</artifactId>
     <packaging>pom</packaging>
 
-    <!-- PROPERTIES -->
-    <properties>
-    </properties>
-
     <!-- MODULES -->
     <modules>
         <module>greeting-workflow</module>

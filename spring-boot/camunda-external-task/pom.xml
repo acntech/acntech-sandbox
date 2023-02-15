@@ -13,10 +13,6 @@
     <artifactId>spring-boot-camunda-external-task</artifactId>
     <packaging>pom</packaging>
 
-    <!-- PROPERTIES -->
-    <properties>
-    </properties>
-
     <!-- MODULES -->
     <modules>
         <module>workflow</module>

@@ -19,10 +19,12 @@ public class CustomMethodSecurityExpressionRoot extends SecurityExpressionRoot i
     public boolean hasAccess(String action, String role) {
         if (action != null && role != null) {
             switch (action) {
-                case "READ":
+                case "READ" -> {
                     return Arrays.asList("USER").contains(role);
-                case "WRITE":
+                }
+                case "WRITE" -> {
                     return Arrays.asList("USER", "ADMIN").contains(role);
+                }
             }
         }
         return false;

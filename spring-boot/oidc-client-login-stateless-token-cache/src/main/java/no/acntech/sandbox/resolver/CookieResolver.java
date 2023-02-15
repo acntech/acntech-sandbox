@@ -1,11 +1,11 @@
 package no.acntech.sandbox.resolver;
 
+import jakarta.servlet.http.Cookie;
+import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.util.Assert;
 import org.springframework.util.SerializationUtils;
 import org.springframework.web.util.CookieGenerator;
 
-import javax.servlet.http.Cookie;
-import javax.servlet.http.HttpServletRequest;
 import java.util.Arrays;
 import java.util.Base64;
 

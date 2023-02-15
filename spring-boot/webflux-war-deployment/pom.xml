@@ -13,10 +13,6 @@
     <artifactId>spring-boot-webflux-war-deployment</artifactId>
     <packaging>war</packaging>
 
-    <!-- PROPERTIES -->
-    <properties>
-    </properties>
-
     <!-- DEPENDENCIES -->
     <dependencies>
         <!-- Spring WebFlux -->

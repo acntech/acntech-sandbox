@@ -14,24 +14,9 @@
     <artifactId>spring-boot-rest-api-angular</artifactId>
     <packaging>pom</packaging>
 
-    <!-- PROPERTIES -->
-    <properties>
-    </properties>
-
     <!-- MODULES -->
     <modules>
         <module>webapp</module>
         <module>webapp-api</module>
     </modules>
-
-    <!-- DEPENDENCIES -->
-    <dependencies>
-    </dependencies>
-
-    <!-- BUILD -->
-    <build>
-        <!-- PLUGINS -->
-        <plugins>
-        </plugins>
-    </build>
 </project>

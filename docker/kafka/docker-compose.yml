@@ -2,30 +2,32 @@ version: '3.5'
 
 services:
   sandbox.kafka:
-    image: acntechie/kafka
+    image: bitnami/kafka
     container_name: sandbox.kafka
     ports:
       - "9092:9092"
     environment:
       - KAFKA_BROKER_ID=1
-      - KAFKA_ADVERTISED_LISTENERS=PLAINTEXT://sandbox.kafka:9092
-      - KAFKA_AUTO_CREATE_TOPICS_ENABLE=false
-      - ZOOKEEPER_HOSTS=sandbox.zookeeper:2181
+      - ALLOW_PLAINTEXT_LISTENER=yes
+      - KAFKA_CFG_LISTENERS=PLAINTEXT://:9092
+      - KAFKA_CFG_ADVERTISED_LISTENERS=PLAINTEXT://localhost:9092
+      - KAFKA_CFG_ZOOKEEPER_CONNECT=sandbox.zookeeper:2181
     depends_on:
       - sandbox.zookeeper
     volumes:
-      - sandbox.kafka:/var/lib/kafka
+      - sandbox.kafka:/bitnami/kafka
     networks:
       - sandbox.kafka
 
   sandbox.zookeeper:
-    image: acntechie/zookeeper
+    image: bitnami/zookeeper
     container_name: sandbox.zookeeper
     environment:
-      - ZOOKEEPER_ID=1
-      - ZOOKEEPER_HOSTS=sandbox.zookeeper:2888:3888
+      - ZOO_SERVER_ID=1
+      - ZOO_SERVERS=0.0.0.0:2888:3888
+      - ALLOW_ANONYMOUS_LOGIN=yes
     volumes:
-      - sandbox.zookeeper:/var/lib/zookeeper
+      - sandbox.zookeeper:/bitnami/zookeeper
     networks:
       - sandbox.kafka
 

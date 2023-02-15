@@ -1,5 +1,7 @@
 package no.acntech.sandbox.repository;
 
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 import no.acntech.sandbox.resolver.CookieResolver;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
@@ -8,23 +10,17 @@ import org.springframework.security.oauth2.client.web.AuthorizationRequestReposi
 import org.springframework.security.oauth2.core.endpoint.OAuth2AuthorizationRequest;
 import org.springframework.util.Assert;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import java.util.Optional;
 
 public class HttpCookieOAuth2AuthorizationRequestRepository implements AuthorizationRequestRepository<OAuth2AuthorizationRequest> {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(HttpCookieOAuth2AuthorizationRequestRepository.class);
-    private final CookieResolver authorizationRequestCookieResolver;
-
-    public HttpCookieOAuth2AuthorizationRequestRepository(final CookieResolver authorizationRequestCookieResolver) {
-        this.authorizationRequestCookieResolver = authorizationRequestCookieResolver;
-    }
+    private static final CookieResolver AUTHORIZATION_REQUEST_COOKIE_RESOLVER = CookieResolver.authorizationRequestCookieResolver();
 
     @Override
     public OAuth2AuthorizationRequest loadAuthorizationRequest(final HttpServletRequest request) {
         Assert.notNull(request, "HttpServletRequest cannot be null");
-        var cookieValue = authorizationRequestCookieResolver.readCookie(request);
+        var cookieValue = AUTHORIZATION_REQUEST_COOKIE_RESOLVER.readCookie(request);
         var authorizationRequest = Optional.ofNullable(cookieValue)
                 .filter(StringUtils::isNoneBlank)
                 .map(this::deserializeCookie)
@@ -49,13 +45,8 @@ public class HttpCookieOAuth2AuthorizationRequestRepository implements Authoriza
         } else {
             LOGGER.debug("Storing OAuth2AuthorizationRequest ( request to {} )", request.getServletPath());
             var cookieValue = CookieResolver.serialize(authorizationRequest);
-            authorizationRequestCookieResolver.addCookie(response, cookieValue);
+            AUTHORIZATION_REQUEST_COOKIE_RESOLVER.addCookie(response, cookieValue);
         }
-    }
-
-    @Override
-    public OAuth2AuthorizationRequest removeAuthorizationRequest(final HttpServletRequest request) {
-        return this.loadAuthorizationRequest(request);
     }
 
     @Override
@@ -64,7 +55,7 @@ public class HttpCookieOAuth2AuthorizationRequestRepository implements Authoriza
         Assert.notNull(request, "HttpServletRequest cannot be null");
         Assert.notNull(response, "HttpServletResponse cannot be null");
         LOGGER.debug("Removing stored OAuth2AuthorizationRequest ( request to {} )", request.getServletPath());
-        authorizationRequestCookieResolver.removeCookie(response);
+        AUTHORIZATION_REQUEST_COOKIE_RESOLVER.removeCookie(response);
         return this.loadAuthorizationRequest(request);
     }
 

@@ -12,10 +12,6 @@
 
     <artifactId>spring-boot-webflux-oidc-resource-server</artifactId>
 
-    <!-- PROPERTIES -->
-    <properties>
-    </properties>
-
     <!-- DEPENDENCIES -->
     <dependencies>
         <!-- Spring WebFlux -->

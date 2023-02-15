@@ -1,19 +1,21 @@
-version: '3.5'
+version: "3.7"
 
 services:
   sandbox.keycloak:
-    image: jboss/keycloak
+    image: bitnami/keycloak
     container_name: sandbox.keycloak
+    environment:
+      - KEYCLOAK_ADMIN_USER=admin
+      - KEYCLOAK_ADMIN_PASSWORD=abcd1234
+      - KEYCLOAK_MANAGEMENT_USER=manager
+      - KEYCLOAK_MANAGEMENT_PASSWORD=abcd1234
+      - KEYCLOAK_DATABASE_HOST=sandbox.postgres
+      - KEYCLOAK_DATABASE_PORT=5432
+      - KEYCLOAK_DATABASE_NAME=sandbox_keycloak
+      - KEYCLOAK_DATABASE_USER=sandbox_keycloak
+      - KEYCLOAK_DATABASE_PASSWORD=abcd1234
     ports:
       - "8888:8080"
-    environment:
-      - KEYCLOAK_USER=admin
-      - KEYCLOAK_PASSWORD=abcd1234
-      - DB_VENDOR=postgres
-      - DB_ADDR=sandbox.postgres
-      - DB_DATABASE=keycloak
-      - DB_USER=keycloak
-      - DB_PASSWORD=abcd1234
     networks:
       - sandbox.keycloak
       - sandbox.postgres

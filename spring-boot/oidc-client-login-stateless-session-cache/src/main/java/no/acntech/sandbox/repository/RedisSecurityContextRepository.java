@@ -1,5 +1,7 @@
 package no.acntech.sandbox.repository;
 
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 import no.acntech.sandbox.resolver.CookieResolver;
 import no.acntech.sandbox.store.Store;
 import org.slf4j.Logger;
@@ -9,61 +11,52 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.web.context.HttpRequestResponseHolder;
 import org.springframework.security.web.context.SecurityContextRepository;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import java.util.UUID;
-import java.util.function.Supplier;
 
 public class RedisSecurityContextRepository implements SecurityContextRepository {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(RedisSecurityContextRepository.class);
-    private final CookieResolver sessionCookieResolver;
+    private static final CookieResolver SESSION_COOKIE_RESOLVER = CookieResolver.sessionCookieResolver();
     private final Store<String, SecurityContext> securityContextStore;
 
-    public RedisSecurityContextRepository(final CookieResolver sessionCookieResolver,
-                                          final Store<String, SecurityContext> securityContextStore) {
-        this.sessionCookieResolver = sessionCookieResolver;
+    public RedisSecurityContextRepository(final Store<String, SecurityContext> securityContextStore) {
         this.securityContextStore = securityContextStore;
     }
 
     @Override
     public SecurityContext loadContext(final HttpRequestResponseHolder requestResponseHolder) {
-        return this.loadContext(requestResponseHolder.getRequest()).get();
-    }
-
-    @Override
-    public Supplier<SecurityContext> loadContext(final HttpServletRequest request) {
-        var sessionId = sessionCookieResolver.readCookie(request);
+        final var request = requestResponseHolder.getRequest();
+        var sessionId = SESSION_COOKIE_RESOLVER.readCookie(request);
         if (sessionId != null) {
             final var securityContext = securityContextStore.load(sessionId);
             if (securityContext != null) {
                 LOGGER.debug("Load SecurityContext from store. Found SecurityContext for session id {} ( request to {} )", sessionId, request.getServletPath());
-                return () -> securityContext;
+                return securityContext;
             } else {
                 LOGGER.debug("Load SecurityContext from store. No SecurityContext found for session id {}. Creating empty SecurityContext ( request to {} )", sessionId, request.getServletPath());
             }
         }
-        return SecurityContextHolder::createEmptyContext;
+        return SecurityContextHolder.createEmptyContext();
     }
 
     @Override
     public void saveContext(final SecurityContext context,
                             final HttpServletRequest request,
                             final HttpServletResponse response) {
-        var sessionId = sessionCookieResolver.readCookie(request);
+        var sessionId = SESSION_COOKIE_RESOLVER.readCookie(request);
         if (sessionId != null) {
             LOGGER.debug("Save SecurityContext to store. Using exiting session id {} ( request to {} )", sessionId, request.getServletPath());
         } else {
             sessionId = UUID.randomUUID().toString();
             LOGGER.debug("Save SecurityContext to store. Generating new session id {} ( request to {} )", sessionId, request.getServletPath());
-            sessionCookieResolver.addCookie(response, sessionId);
+            SESSION_COOKIE_RESOLVER.addCookie(response, sessionId);
         }
         securityContextStore.save(sessionId, context);
     }
 
     @Override
     public boolean containsContext(final HttpServletRequest request) {
-        var sessionId = sessionCookieResolver.readCookie(request);
+        var sessionId = SESSION_COOKIE_RESOLVER.readCookie(request);
         if (sessionId != null) {
             var containsContext = securityContextStore.contains(sessionId);
             LOGGER.debug("Check if store contains SecurityContext. Using exiting session id {} with result '{}' ( request to {} )", sessionId, containsContext, request.getServletPath());

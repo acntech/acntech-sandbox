@@ -1,36 +1,53 @@
 package no.acntech.sandbox.config;
 
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
-import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
-import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.config.annotation.web.configuration.WebSecurityCustomizer;
+import org.springframework.security.core.userdetails.User;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.provisioning.InMemoryUserDetailsManager;
+import org.springframework.security.web.SecurityFilterChain;
 
 @EnableWebSecurity
-@Configuration
-public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
+@Configuration(proxyBeanMethods = false)
+public class WebSecurityConfig {
 
-    @Override
-    protected void configure(final HttpSecurity http) throws Exception {
-        http
-                .authorizeRequests()
+    @Bean
+    public SecurityFilterChain securityFilterChain(final HttpSecurity http) throws Exception {
+        return http
+                .authorizeHttpRequests()
                 .anyRequest().authenticated()
                 .and()
-                .httpBasic();
-    }
-
-    @Override
-    public void configure(final WebSecurity web) {
-        web.ignoring().antMatchers("/webjars/*", "/resources/*");
-    }
-
-    @Override
-    protected void configure(final AuthenticationManagerBuilder auth) throws Exception {
-        auth
-                .inMemoryAuthentication()
-                .withUser("user").password("{noop}user").roles("USER")
+                .httpBasic()
                 .and()
-                .withUser("admin").password("{noop}admin").roles("USER", "ADMIN");
+                .build();
+    }
+
+    @Bean
+    public WebSecurityCustomizer webSecurityCustomizer() {
+        return (web) -> web
+                .ignoring().requestMatchers("/webjars/**", "/resources/**");
+    }
+
+    @Bean
+    public UserDetailsService userDetailsService() {
+        final var user = User.builder()
+                .username("user")
+                .password("user")
+                .roles("USER")
+                .build();
+        final var admin = User.builder()
+                .username("admin")
+                .password("admin")
+                .roles("USER", "ADMIN")
+                .build();
+        final var anonymous = User.builder()
+                .username("anonymous")
+                .password("anonymous")
+                .roles("ANONYMOUS")
+                .build();
+        return new InMemoryUserDetailsManager(user, admin, anonymous);
     }
 }

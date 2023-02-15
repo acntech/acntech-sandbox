@@ -14,10 +14,10 @@ public class CustomMethodSecurityExpressionHandler extends DefaultMethodSecurity
     @Override
     protected MethodSecurityExpressionOperations createSecurityExpressionRoot(final Authentication authentication,
                                                                               final MethodInvocation invocation) {
-        CustomMethodSecurityExpressionRoot expressionRoot = new CustomMethodSecurityExpressionRoot(authentication);
-        expressionRoot.setPermissionEvaluator(getPermissionEvaluator());
-        expressionRoot.setTrustResolver(trustResolver);
-        expressionRoot.setRoleHierarchy(getRoleHierarchy());
-        return expressionRoot;
+        final var securityExpressionRoot = new CustomMethodSecurityExpressionRoot(authentication);
+        securityExpressionRoot.setPermissionEvaluator(getPermissionEvaluator());
+        securityExpressionRoot.setTrustResolver(trustResolver);
+        securityExpressionRoot.setRoleHierarchy(getRoleHierarchy());
+        return securityExpressionRoot;
     }
 }

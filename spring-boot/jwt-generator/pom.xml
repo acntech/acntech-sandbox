@@ -12,11 +12,6 @@
     </parent>
 
     <artifactId>spring-boot-jwt-generator</artifactId>
-    <packaging>war</packaging>
-
-    <!-- PROPERTIES -->
-    <properties>
-    </properties>
 
     <!-- DEPENDENCIES -->
     <dependencies>
