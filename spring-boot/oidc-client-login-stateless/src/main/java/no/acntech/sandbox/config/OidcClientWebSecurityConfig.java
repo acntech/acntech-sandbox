@@ -5,8 +5,8 @@ import no.acntech.sandbox.repository.HttpCookieOAuth2AuthorizationRequestReposit
 import no.acntech.sandbox.repository.InMemorySecurityContextRepository;
 import no.acntech.sandbox.store.Store;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
-import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.core.context.SecurityContext;
 import org.springframework.security.oauth2.client.registration.ClientRegistrationRepository;
 import org.springframework.security.web.SecurityFilterChain;
@@ -14,7 +14,7 @@ import org.springframework.security.web.context.SecurityContextRepository;
 
 import static org.springframework.security.config.http.SessionCreationPolicy.STATELESS;
 
-@EnableWebSecurity
+@Configuration(proxyBeanMethods = false)
 public class OidcClientWebSecurityConfig {
 
     @Bean

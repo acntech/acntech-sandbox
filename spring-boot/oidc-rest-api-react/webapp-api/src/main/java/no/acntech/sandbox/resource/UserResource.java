@@ -7,12 +7,12 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-@RequestMapping(path = "/api/userinfo")
+@RequestMapping(path = "/api/user")
 @RestController
-public class UserInfoResource {
+public class UserResource {
 
     @GetMapping
-    public ResponseEntity<Object> getUserInfo(final Authentication authentication) {
+    public ResponseEntity<Object> getUser(final Authentication authentication) {
         final var principal = authentication.getPrincipal();
         if (principal instanceof OAuth2User oAuth2User) {
             return ResponseEntity.ok(oAuth2User.getAttributes());

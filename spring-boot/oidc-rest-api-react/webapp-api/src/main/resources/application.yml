@@ -17,7 +17,7 @@ spring:
               - openid
               - profile
               - roles
-            redirect-uri: http://localhost:3000
+            redirect-uri: http://localhost:3000/login/oauth2/code/acntech-generic-client
         provider:
           keycloak:
             issuer-uri: http://localhost:8888/realms/acntech

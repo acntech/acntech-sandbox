@@ -2,22 +2,23 @@ package no.acntech.sandbox.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.lang.NonNull;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
-import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.savedrequest.RequestCache;
 
-//@EnableWebSecurity
 @Configuration(proxyBeanMethods = false)
 public class OidcClientWebSecurityConfig {
 
     @Bean
-    public SecurityFilterChain securityFilterChain(@NonNull HttpSecurity http) throws Exception {
+    public SecurityFilterChain securityFilterChain(final HttpSecurity http,
+                                                   final RequestCache requestCache) throws Exception {
         return http
                 .authorizeHttpRequests()
                 .anyRequest().authenticated()
                 .and()
                 .oauth2Login()
+                .and()
+                .requestCache().requestCache(requestCache)
                 .and()
                 .build();
     }

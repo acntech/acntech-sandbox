@@ -6,7 +6,7 @@
 <html lang="en">
 <head>
     <title><spring:message code="navbar.brand"/></title>
-    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/webjars/bootstrap/4.3.1/css/bootstrap.min.css"/>
+    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/webjars/bootstrap/5.2.3/css/bootstrap.min.css"/>
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/default.css"/>
 </head>
 <body>
@@ -15,8 +15,9 @@
 <jsp:doBody/>
 
 <jsp:invoke fragment="footer"/>
-<script type="text/javascript" src="${pageContext.request.contextPath}/webjars/jquery/3.3.1-2/jquery.js"></script>
-<script type="text/javascript" src="${pageContext.request.contextPath}/webjars/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/webjars/jquery/3.6.3/jquery.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/webjars/popper.js/2.9.3/umd/popper.min.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/webjars/bootstrap/5.2.3/js/bootstrap.min.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/default.js"></script>
 </body>
 </html>

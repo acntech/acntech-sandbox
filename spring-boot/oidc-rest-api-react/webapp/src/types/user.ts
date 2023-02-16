@@ -1,4 +1,4 @@
-export interface UserInfo {
+export interface User {
     sub: string,
     name: string
 }

@@ -1,7 +1,7 @@
 import React, {FC, ReactElement, useEffect, useReducer} from "react";
 import {createBrowserRouter, Outlet, RouterProvider} from "react-router-dom";
-import {userInfoInitialState, userInfoReducer} from "./state/reducers";
-import {UserInfo} from "./types/user-info";
+import {userInitialState, userReducer} from "./state/reducers";
+import {User} from "./types";
 import Header from "./fragments/Header";
 import Footer from "./fragments/Footer";
 import Home from "./pages/Home";
@@ -10,7 +10,7 @@ import NotFound from "./pages/NotFound";
 import {GET} from "./state/client";
 
 interface LayoutProps {
-    userInfo: UserInfo
+    userInfo: User
 }
 
 const Layout: FC<LayoutProps> = (props: LayoutProps): ReactElement => (
@@ -22,20 +22,20 @@ const Layout: FC<LayoutProps> = (props: LayoutProps): ReactElement => (
 );
 
 const App: FC = (): ReactElement => {
-    const [userInfoState, userInfoDispatch] = useReducer(userInfoReducer, userInfoInitialState);
+    const [userState, userDispatch] = useReducer(userReducer, userInitialState);
 
     useEffect(() => {
-        GET<UserInfo>("/api/userinfo")
-            .then(response => userInfoDispatch({type: 'SUCCESS', data: response.data}))
+        GET<User>("/api/user")
+            .then(response => userDispatch({type: 'SUCCESS', data: response.data}))
             .catch(error => {
                 console.log("ERROR", error)
-                userInfoDispatch({type: 'FAILED'})
+                userDispatch({type: 'FAILED'})
             });
     }, []);
 
     const router = createBrowserRouter([
         {
-            element: <Layout userInfo={userInfoState.data}/>,
+            element: <Layout userInfo={userState.data}/>,
             children: [
                 {
                     path: "/",

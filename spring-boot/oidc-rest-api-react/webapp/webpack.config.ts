@@ -8,7 +8,7 @@ import {TsconfigPathsPlugin} from "tsconfig-paths-webpack-plugin";
 
 const webpackConfig = (env): Configuration => ({
     entry: "./src/index.tsx",
-    ...(env.production || !env.development ? {} : {devtool: "eval-source-map"}),
+    devtool: 'inline-source-map',
     resolve: {
         extensions: [".ts", ".tsx", ".js"],
         plugins: [new TsconfigPathsPlugin()]
@@ -25,15 +25,21 @@ const webpackConfig = (env): Configuration => ({
             },
             {
                 test: /\.tsx?$/,
-                loader: "ts-loader",
                 options: {
                     transpileOnly: true
                 },
-                exclude: /dist/
+                exclude: /dist/,
+                loader: "ts-loader"
             },
             {
                 test: /\.css$/i,
                 use: ["style-loader", "css-loader"],
+            },
+            {
+                test: /\.js$/,
+                // exclude: /node_modules/, // This is the line that caused the problem. Remove or comment it out.
+                enforce: "pre",
+                use: ["source-map-loader"],
             }
         ]
     },

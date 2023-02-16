@@ -1,21 +1,10 @@
-import {UserInfo} from "../types/user-info";
+import {Action, State, User} from "../types";
 
-export interface State<T> {
-    loading: boolean,
-    data?: T,
-    error?: string
-}
-
-export interface Action<T> {
-    type: 'LOADING' | 'SUCCESS' | 'FAILED',
-    data?: T
-}
-
-export const userInfoInitialState: State<UserInfo> = {
+export const userInitialState: State<User> = {
     loading: true
 }
 
-export const userInfoReducer = (state: State<UserInfo>, action: Action<UserInfo>): State<UserInfo> => {
+export const userReducer = (state: State<User>, action: Action<User>): State<User> => {
     const {type, data} = action;
     switch (type) {
         case 'SUCCESS':
