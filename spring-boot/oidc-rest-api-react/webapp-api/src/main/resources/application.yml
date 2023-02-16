@@ -29,7 +29,6 @@ logging:
     web: INFO
     no.acntech: DEBUG
     org.springframework: INFO
-    org.springframework.security: DEBUG
 
 ### Server ###
 server:

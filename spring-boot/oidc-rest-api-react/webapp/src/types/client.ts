@@ -1,6 +1,7 @@
 export interface ClientError {
-    cause: string,
-    redirectUrl: string
+    status: number,
+    error: string,
+    message: string,
 }
 
 export interface ClientResponse<T> {
