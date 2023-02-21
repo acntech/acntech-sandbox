@@ -1,0 +1,17 @@
+<!DOCTYPE HTML>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layouts/default}">
+<head>
+    <title th:text="#{navbar.brand}"></title>
+</head>
+<body>
+<main class="container" role="main">
+    <div class="px-3 py-5 rounded-3 bg-light">
+        <h2 th:text="#{about.page.title}"></h2>
+        <p th:text="#{about.page.description}"></p>
+    </div>
+</main>
+</body>
+</html>

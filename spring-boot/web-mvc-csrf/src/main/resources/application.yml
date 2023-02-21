@@ -1,23 +1,23 @@
-### Server ###
-server:
-  port: 8080
+### Spring ###
+spring:
+  # Application
+  application:
+    name: spring-boot-web-mvc-csrf
+  # Messages
+  messages:
+    basename: locale/messages
 
 ### Logging ###
 logging:
   level:
+    root: INFO
     org.springframework: INFO
-    org.apache.kafka.clients.consumer.ConsumerConfig: WARN
-    org.apache.kafka.clients.producer.ProducerConfig: WARN
     no.acntech: DEBUG
 
-### String ###
-spring:
-  # Web
-  mvc:
-    view:
-      prefix: /WEB-INF/views/
-      suffix: .jsp
-
-  # Messages
-  messages:
-    basename: locale/messages
+### Server ###
+server:
+  port: 8080
+  error:
+    include-stacktrace: ALWAYS
+    whitelabel:
+      enabled: false

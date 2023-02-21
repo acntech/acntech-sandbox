@@ -15,7 +15,7 @@
 <jsp:doBody/>
 
 <jsp:invoke fragment="footer"/>
-<script type="text/javascript" src="${pageContext.request.contextPath}/webjars/jquery/3.6.3/jquery.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/webjars/jquery/3.6.3/jquery.min.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/webjars/popper.js/2.9.3/umd/popper.min.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/webjars/bootstrap/5.2.3/js/bootstrap.min.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/default.js"></script>

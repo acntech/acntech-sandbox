@@ -53,11 +53,10 @@
 
     <!-- MODULES -->
     <modules>
-        <module>web-mvc</module>
+        <module>web-mvc-jstl</module>
         <module>web-mvc-csrf</module>
         <module>thymeleaf</module>
         <module>thymeleaf-form</module>
-        <module>thymeleaf-form-validation</module>
         <module>rest-api</module>
         <module>rest-api-hateoas</module>
         <module>rest-api-angular</module>
@@ -88,7 +87,7 @@
         <module>jpa-postgres</module>
         <module>transactions</module>
         <module>kafka</module>
-        <module>webflux</module>
+        <module>webflux-rest-api</module>
         <module>webflux-tomcat</module>
         <module>webflux-war-deployment</module>
         <module>webflux-oidc-resource-server</module>

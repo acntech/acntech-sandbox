@@ -1,0 +1,33 @@
+<!DOCTYPE HTML>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layouts/default}">
+<head>
+    <title th:text="#{navbar.brand}"></title>
+</head>
+<body>
+<div layout:fragment="content">
+    <main class="container" role="main">
+        <div class="px-3 py-5 rounded-3 bg-light">
+            <h2 th:text="#{home.page.title}"></h2>
+            <p th:text="#{home.page.description}"></p>
+            <form action="#" th:action="@{/}" th:object="${formData}" method="post" role="form">
+                <div class="row mt-5">
+                    <div class="col-lg-2 text-end">
+                        <input type="text" th:field="*{name}" id="name" class="form-control mb-2 mr-sm-2"
+                               th:placeholder="#{form.name.placeholder}">
+                    </div>
+                    <div class="col-lg-2 text-start">
+                        <button type="submit" class="btn btn-primary" th:text="#{form.button.text}"></button>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <div th:if="${greeting != null}" class="alert alert-success mt-3" role="alert">
+            <span th:text="${greeting}"></span>
+        </div>
+    </main>
+</div>
+</body>
+</html>
