@@ -1,11 +1,10 @@
 package no.acntech.sandbox.consumer;
 
+import jakarta.annotation.PostConstruct;
 import org.camunda.bpm.client.ExternalTaskClient;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
-
-import javax.annotation.PostConstruct;
 
 import no.acntech.sandbox.config.WorkflowProperties;
 import no.acntech.sandbox.handler.GenerateGreetingTaskHandler;

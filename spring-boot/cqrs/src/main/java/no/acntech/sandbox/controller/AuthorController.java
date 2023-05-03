@@ -1,19 +1,16 @@
 package no.acntech.sandbox.controller;
 
-import javax.validation.Valid;
+import jakarta.validation.Valid;
+
+import no.acntech.sandbox.command.service.AuthorCommandService;
+import no.acntech.sandbox.model.AuthorEntity;
+import no.acntech.sandbox.query.service.AuthorQueryService;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
-
-import no.acntech.sandbox.command.service.AuthorCommandService;
-import no.acntech.sandbox.entity.Author;
-import no.acntech.sandbox.query.service.AuthorQueryService;
-
-import static org.springframework.web.bind.annotation.RequestMethod.GET;
-import static org.springframework.web.bind.annotation.RequestMethod.POST;
 
 @RequestMapping(path = "/authors")
 @Controller
@@ -38,7 +35,7 @@ public class AuthorController {
     @GetMapping
     public ModelAndView get(@RequestParam(value = REQUEST_PARAM_KEY, required = false) String list) {
         ModelAndView modelAndView = new ModelAndView(VIEW_NAME);
-        modelAndView.addObject(AUTHOR_MODEL_ATTR, new Author());
+        modelAndView.addObject(AUTHOR_MODEL_ATTR, new AuthorEntity());
         if (REQUEST_PARAM_VALUE.equals(list)) {
             modelAndView.addObject(AUTHORS_MODEL_ATTR, queryService.findAuthors());
         }
@@ -46,7 +43,7 @@ public class AuthorController {
     }
 
     @PostMapping
-    public ModelAndView post(@Valid @ModelAttribute(AUTHOR_MODEL_ATTR) Author author, BindingResult result) {
+    public ModelAndView post(@Valid @ModelAttribute(AUTHOR_MODEL_ATTR) AuthorEntity author, BindingResult result) {
         if (result.hasErrors()) {
             return new ModelAndView(ERROR_VIEW_NAME);
         }

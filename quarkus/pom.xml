@@ -6,13 +6,13 @@
     <!-- PROJECT -->
     <groupId>no.acntech.sandbox</groupId>
     <artifactId>quarkus</artifactId>
+    <version>${revision}</version>
     <packaging>pom</packaging>
-    <version>1.0.0-SNAPSHOT</version>
 
     <!-- PROPERTIES -->
     <properties>
         <!-- Common -->
-        <java.version>11</java.version>
+        <java.version>17</java.version>
         <project.encoding>UTF-8</project.encoding>
         <maven.compiler.source>${java.version}</maven.compiler.source>
         <maven.compiler.target>${java.version}</maven.compiler.target>
@@ -22,8 +22,10 @@
         <downloadJavadocs>true</downloadJavadocs>
         <failOnMissingWebXml>false</failOnMissingWebXml>
 
+        <revision>2.0.0-SNAPSHOT</revision>
+
         <!-- Dependencies -->
-        <quarkus.version>1.12.1.Final</quarkus.version>
+        <quarkus.version>3.0.1.Final</quarkus.version>
         <camel-quarkus.version>1.4.0</camel-quarkus.version>
         <cxf.version>3.4.2</cxf.version>
         <quarkus-cxf.version>0.4</quarkus-cxf.version>

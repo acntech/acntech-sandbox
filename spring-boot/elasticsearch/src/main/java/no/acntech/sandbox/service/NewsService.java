@@ -1,11 +1,10 @@
 package no.acntech.sandbox.service;
 
-import org.elasticsearch.index.query.SimpleQueryStringBuilder;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
-import org.springframework.data.elasticsearch.core.query.NativeSearchQueryBuilder;
+import org.springframework.data.elasticsearch.core.query.StringQuery;
 import org.springframework.stereotype.Service;
 
 import no.acntech.sandbox.client.SearchElasticsearchClient;
@@ -27,11 +26,7 @@ public class NewsService {
 
     public Page<NewsDocument> searchWithRestClient(final String queryString, final Pageable pageable) {
         LOGGER.debug("Search for news using Elasticsearch REST client");
-        final var query = new NativeSearchQueryBuilder()
-                .withTrackTotalHits(true)
-                .withPageable(pageable)
-                .withQuery(new SimpleQueryStringBuilder(queryString))
-                .build();
+        final var query = new StringQuery(queryString, pageable);
         return searchElasticsearchClient.search(query, pageable, NewsDocument.class);
     }
 

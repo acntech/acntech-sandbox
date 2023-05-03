@@ -1,16 +1,14 @@
 package no.acntech.sandbox.resource;
 
-import javax.enterprise.context.RequestScoped;
-import javax.ws.rs.GET;
-import javax.ws.rs.Path;
-import javax.ws.rs.Produces;
-import javax.ws.rs.QueryParam;
-import javax.ws.rs.core.MediaType;
+import jakarta.ws.rs.GET;
+import jakarta.ws.rs.Path;
+import jakarta.ws.rs.Produces;
+import jakarta.ws.rs.QueryParam;
+import jakarta.ws.rs.core.MediaType;
 
-import no.acntech.sandbox.domain.Greeting;
+import no.acntech.sandbox.model.Greeting;
 
 @Path("greetings")
-@RequestScoped
 public class GreetingResource {
 
     @GET

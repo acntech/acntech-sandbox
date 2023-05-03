@@ -60,7 +60,7 @@ public class SearchWebClient {
     }
 
     private <T> URI searchUri(final Class<T> hitClass) {
-        final var uriBuilder = UriComponentsBuilder.fromUri(elasticsearchProperties.getHosts().get(0));
+        final var uriBuilder = UriComponentsBuilder.fromUriString(elasticsearchProperties.getHosts()[0]);
         final var annotation = hitClass.getAnnotation(Document.class);
         if (annotation != null && StringUtils.hasText(annotation.indexName())) {
             uriBuilder.pathSegment(annotation.indexName());

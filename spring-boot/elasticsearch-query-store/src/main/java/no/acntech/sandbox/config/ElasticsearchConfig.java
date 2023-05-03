@@ -1,19 +1,14 @@
 package no.acntech.sandbox.config;
 
-import org.elasticsearch.client.RestHighLevelClient;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
-import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.elasticsearch.client.ClientConfiguration;
-import org.springframework.data.elasticsearch.client.RestClients;
-import org.springframework.data.elasticsearch.config.AbstractElasticsearchConfiguration;
+import org.springframework.data.elasticsearch.client.elc.ElasticsearchConfiguration;
 import org.springframework.lang.NonNull;
-
-import java.net.URI;
 
 @EnableConfigurationProperties({ElasticsearchProperties.class})
 @Configuration
-public class ElasticsearchConfig extends AbstractElasticsearchConfiguration {
+public class ElasticsearchConfig extends ElasticsearchConfiguration {
 
     private final ElasticsearchProperties properties;
 
@@ -21,17 +16,11 @@ public class ElasticsearchConfig extends AbstractElasticsearchConfiguration {
         this.properties = properties;
     }
 
-    @Bean
     @NonNull
     @Override
-    public RestHighLevelClient elasticsearchClient() {
-        final var hostnames = properties.getHosts().stream()
-                .map(URI::getHost)
-                .toArray(String[]::new);
-        final var clientConfiguration = ClientConfiguration.builder()
-                .connectedTo(hostnames)
+    public ClientConfiguration clientConfiguration() {
+        return ClientConfiguration.builder()
+                .connectedTo(properties.getHosts())
                 .build();
-        return RestClients.create(clientConfiguration)
-                .rest();
     }
 }

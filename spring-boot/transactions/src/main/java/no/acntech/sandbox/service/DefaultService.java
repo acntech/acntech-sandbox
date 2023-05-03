@@ -1,14 +1,16 @@
 package no.acntech.sandbox.service;
 
-import no.acntech.sandbox.dto.CreateBar;
-import no.acntech.sandbox.dto.CreateFoo;
-import no.acntech.sandbox.dto.ReadBar;
-import no.acntech.sandbox.dto.ReadFoo;
+import jakarta.validation.Valid;
 import org.springframework.core.convert.ConversionService;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+
+import no.acntech.sandbox.model.CreateBarDto;
+import no.acntech.sandbox.model.CreateFooDto;
+import no.acntech.sandbox.model.ReadBarDto;
+import no.acntech.sandbox.model.ReadFooDto;
 
 @Service
 public class DefaultService {
@@ -25,18 +27,18 @@ public class DefaultService {
         this.barService = barService;
     }
 
-    public List<ReadFoo> readAllFoo() {
+    public List<ReadFooDto> readAllFoo() {
         return fooService.readAll();
     }
 
     @Transactional
-    public void createFoo(final CreateFoo createFoo) {
-        ReadFoo readFoo = fooService.create(createFoo);
-        CreateBar createBar = conversionService.convert(readFoo, CreateBar.class);
+    public void createFoo(@Valid final CreateFooDto createFoo) {
+        ReadFooDto readFoo = fooService.create(createFoo);
+        CreateBarDto createBar = conversionService.convert(readFoo, CreateBarDto.class);
         barService.create(createBar);
     }
 
-    public List<ReadBar> readAllBar() {
+    public List<ReadBarDto> readAllBar() {
         return barService.readAll();
     }
 }

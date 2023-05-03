@@ -1,6 +1,6 @@
 package no.acntech.sandbox.service;
 
-import no.acntech.sandbox.domain.Greeting;
+import no.acntech.sandbox.model.Greeting;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.cache.annotation.Cacheable;

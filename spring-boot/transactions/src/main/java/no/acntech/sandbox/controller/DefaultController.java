@@ -1,14 +1,13 @@
 package no.acntech.sandbox.controller;
 
-import no.acntech.sandbox.dto.CreateFoo;
-import no.acntech.sandbox.service.DefaultService;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.ModelAndView;
 
-import javax.validation.Valid;
+import no.acntech.sandbox.model.CreateFooDto;
+import no.acntech.sandbox.service.DefaultService;
 
 @Controller
 public class DefaultController {
@@ -32,7 +31,7 @@ public class DefaultController {
     }
 
     @PostMapping(path = "/foo")
-    public ModelAndView postFoo(@Valid @ModelAttribute("foo") final CreateFoo createFoo) {
+    public ModelAndView postFoo(@ModelAttribute("foo") final CreateFooDto createFoo) {
         defaultService.createFoo(createFoo);
         ModelAndView mav = new ModelAndView("foo");
         mav.addObject("items", defaultService.readAllFoo());

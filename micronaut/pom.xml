@@ -6,13 +6,13 @@
     <!-- PROJECT -->
     <groupId>no.acntech.sandbox</groupId>
     <artifactId>micronaut</artifactId>
+    <version>${revision}</version>
     <packaging>pom</packaging>
-    <version>1.0.0-SNAPSHOT</version>
 
     <!-- PROPERTIES -->
     <properties>
         <!-- Common -->
-        <java.version>11</java.version>
+        <java.version>17</java.version>
         <project.encoding>UTF-8</project.encoding>
         <maven.compiler.source>${java.version}</maven.compiler.source>
         <maven.compiler.target>${java.version}</maven.compiler.target>
@@ -21,6 +21,8 @@
         <downloadSources>true</downloadSources>
         <downloadJavadocs>true</downloadJavadocs>
         <failOnMissingWebXml>false</failOnMissingWebXml>
+
+        <revision>2.0.0-SNAPSHOT</revision>
 
         <micronaut.version>2.4.0</micronaut.version>
         <micronaut-maven-plugin.version>1.1.7</micronaut-maven-plugin.version>

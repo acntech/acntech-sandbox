@@ -2,21 +2,19 @@ package no.acntech.sandbox.config;
 
 import org.springframework.boot.context.properties.ConfigurationProperties;
 
-import javax.validation.constraints.NotEmpty;
-import java.net.URI;
-import java.util.List;
+import jakarta.validation.constraints.NotEmpty;
 
 @ConfigurationProperties(prefix = "spring.elasticsearch")
 public class ElasticsearchProperties {
 
     @NotEmpty
-    private List<URI> hosts;
+    private String[] hosts;
 
-    public List<URI> getHosts() {
+    public String[] getHosts() {
         return hosts;
     }
 
-    public void setHosts(List<URI> hosts) {
+    public void setHosts(String[] hosts) {
         this.hosts = hosts;
     }
 }

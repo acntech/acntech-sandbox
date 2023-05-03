@@ -7,13 +7,13 @@
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
-        <version>3.0.2</version>
+        <version>3.0.6</version>
         <relativePath/>
     </parent>
 
     <groupId>no.acntech.sandbox</groupId>
     <artifactId>spring-boot-kotlin</artifactId>
-    <version>1.0.0-SNAPSHOT</version>
+    <version>${revision}</version>
     <packaging>pom</packaging>
 
     <!-- PROPERTIES -->
@@ -29,6 +29,8 @@
         <downloadSources>true</downloadSources>
         <downloadJavadocs>true</downloadJavadocs>
         <failOnMissingWebXml>false</failOnMissingWebXml>
+
+        <revision>2.0.0-SNAPSHOT</revision>
     </properties>
 
     <!-- MODULES -->

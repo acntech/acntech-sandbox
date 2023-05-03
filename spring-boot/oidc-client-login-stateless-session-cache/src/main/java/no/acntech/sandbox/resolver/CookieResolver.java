@@ -45,12 +45,13 @@ public class CookieResolver extends CookieGenerator {
     }
 
     public static String serialize(Object object) {
-        return Base64.getUrlEncoder()
-                .encodeToString(SerializationUtils.serialize(object));
+        Assert.notNull(object, "Object cannot be null");
+        return Base64.getUrlEncoder().encodeToString(SerializationUtils.serialize(object));
     }
 
     public static <T> T deserialize(String value, Class<T> cls) {
-        return cls.cast(SerializationUtils.deserialize(
-                Base64.getUrlDecoder().decode(value)));
+        Assert.notNull(value, "Value cannot be null");
+        Assert.notNull(cls, "Class cannot be null");
+        return cls.cast(SerializationUtils.deserialize(Base64.getUrlDecoder().decode(value)));
     }
 }

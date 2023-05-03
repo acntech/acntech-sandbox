@@ -1,8 +1,7 @@
 package no.acntech.sandbox.config;
 
+import jakarta.validation.constraints.NotEmpty;
 import org.springframework.boot.context.properties.ConfigurationProperties;
-
-import javax.validation.constraints.NotEmpty;
 
 @ConfigurationProperties(prefix = "spring.elasticsearch")
 public class ElasticsearchProperties {

@@ -11,7 +11,7 @@ import org.springframework.stereotype.Service;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-import no.acntech.sandbox.entity.Author;
+import no.acntech.sandbox.model.AuthorEntity;
 import no.acntech.sandbox.repository.AuthorRepository;
 
 @Service
@@ -26,7 +26,7 @@ public class AuthorConsumerService {
         this.repository = repository;
     }
 
-    public void createAuthor(Author author) {
+    public void createAuthor(AuthorEntity author) {
         repository.save(author);
     }
 
@@ -37,7 +37,7 @@ public class AuthorConsumerService {
                 LOGGER.debug("Consumed new record: {}", record.toString());
             }
             ObjectMapper mapper = new ObjectMapper();
-            Author author = mapper.readValue(record.value(), Author.class);
+            AuthorEntity author = mapper.readValue(record.value(), AuthorEntity.class);
             createAuthor(author);
         } catch (IOException e) {
             LOGGER.error("Error occurred while deserializing record", e);

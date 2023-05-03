@@ -7,13 +7,13 @@
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
-        <version>3.0.2</version>
+        <version>3.0.6</version>
         <relativePath/>
     </parent>
 
     <groupId>no.acntech.sandbox</groupId>
     <artifactId>spring-cloud</artifactId>
-    <version>1.0.0-SNAPSHOT</version>
+    <version>${revision}</version>
     <packaging>pom</packaging>
 
     <!-- PROPERTIES -->
@@ -26,6 +26,8 @@
         <project.build.sourceEncoding>${project.encoding}</project.build.sourceEncoding>
         <project.reporting.outputEncoding>${project.encoding}</project.reporting.outputEncoding>
         <downloadSources>true</downloadSources>
+
+        <revision>2.0.0-SNAPSHOT</revision>
 
         <!-- Dependencies -->
         <spring-cloud.version>2022.0.1</spring-cloud.version>

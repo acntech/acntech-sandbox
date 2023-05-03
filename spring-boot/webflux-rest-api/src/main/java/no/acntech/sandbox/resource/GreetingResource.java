@@ -1,6 +1,6 @@
 package no.acntech.sandbox.resource;
 
-import no.acntech.sandbox.domain.Greeting;
+import no.acntech.sandbox.model.Greeting;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;

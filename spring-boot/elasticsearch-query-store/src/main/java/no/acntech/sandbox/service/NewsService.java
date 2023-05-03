@@ -1,12 +1,11 @@
 package no.acntech.sandbox.service;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import org.elasticsearch.index.query.SimpleQueryStringBuilder;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
-import org.springframework.data.elasticsearch.core.query.NativeSearchQueryBuilder;
+import org.springframework.data.elasticsearch.core.query.StringQuery;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
@@ -55,11 +54,7 @@ public class NewsService {
 
     public Page<NewsDocument> searchByQueryString(final String queryString, final Pageable pageable) {
         LOGGER.debug("Search using query {}", queryString);
-        final var query = new NativeSearchQueryBuilder()
-                .withTrackTotalHits(true)
-                .withPageable(pageable)
-                .withQuery(new SimpleQueryStringBuilder(queryString))
-                .build();
+        final var query = new StringQuery(queryString, pageable);
         return searchElasticsearchClient.search(query, pageable, NewsDocument.class);
     }
 }

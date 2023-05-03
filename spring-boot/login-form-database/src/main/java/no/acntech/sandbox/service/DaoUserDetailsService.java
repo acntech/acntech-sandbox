@@ -1,6 +1,6 @@
 package no.acntech.sandbox.service;
 
-import no.acntech.sandbox.domain.DefaultUserDetails;
+import no.acntech.sandbox.model.DefaultUserDetails;
 import no.acntech.sandbox.repository.UserRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

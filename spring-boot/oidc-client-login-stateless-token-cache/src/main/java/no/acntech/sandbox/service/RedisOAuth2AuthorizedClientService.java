@@ -1,6 +1,6 @@
 package no.acntech.sandbox.service;
 
-import no.acntech.sandbox.store.Store;
+import no.acntech.sandbox.store.OAuth2AuthorizedClientStore;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.oauth2.client.OAuth2AuthorizedClient;
 import org.springframework.security.oauth2.client.OAuth2AuthorizedClientId;
@@ -11,10 +11,10 @@ import org.springframework.util.Assert;
 public class RedisOAuth2AuthorizedClientService implements OAuth2AuthorizedClientService {
 
     private final ClientRegistrationRepository clientRegistrationRepository;
-    private final Store<OAuth2AuthorizedClientId, OAuth2AuthorizedClient> oAuth2AuthorizedClientStore;
+    private final OAuth2AuthorizedClientStore oAuth2AuthorizedClientStore;
 
     public RedisOAuth2AuthorizedClientService(final ClientRegistrationRepository clientRegistrationRepository,
-                                              final Store<OAuth2AuthorizedClientId, OAuth2AuthorizedClient> oAuth2AuthorizedClientStore) {
+                                              final OAuth2AuthorizedClientStore oAuth2AuthorizedClientStore) {
         this.clientRegistrationRepository = clientRegistrationRepository;
         this.oAuth2AuthorizedClientStore = oAuth2AuthorizedClientStore;
     }

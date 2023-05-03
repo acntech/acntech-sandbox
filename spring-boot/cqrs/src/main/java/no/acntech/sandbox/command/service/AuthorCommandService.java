@@ -1,19 +1,17 @@
 package no.acntech.sandbox.command.service;
 
-import java.io.IOException;
-
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.kafka.support.SendResult;
 import org.springframework.stereotype.Service;
-import org.springframework.util.concurrent.ListenableFuture;
-import org.springframework.util.concurrent.ListenableFutureCallback;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
+import java.io.IOException;
+import java.util.concurrent.CompletableFuture;
 
-import no.acntech.sandbox.entity.Author;
+import no.acntech.sandbox.model.AuthorEntity;
 
 @Service
 public class AuthorCommandService {
@@ -27,7 +25,7 @@ public class AuthorCommandService {
         this.kafkaTemplate = kafkaTemplate;
     }
 
-    public void createAuthor(Author author) {
+    public void createAuthor(AuthorEntity author) {
         try {
             ObjectMapper mapper = new ObjectMapper();
             String record = mapper.writeValueAsString(author);
@@ -41,18 +39,12 @@ public class AuthorCommandService {
         if (LOGGER.isDebugEnabled()) {
             LOGGER.debug("Publishing record: {}", record);
         }
-        ListenableFuture<SendResult<String, String>> future = kafkaTemplate.send("authors", record);
-        future.addCallback(new ListenableFutureCallback<SendResult<String, String>>() {
-            @Override
-            public void onSuccess(SendResult<String, String> result) {
-                if (LOGGER.isDebugEnabled()) {
-                    LOGGER.debug("Record published successfully: {}", result.toString());
-                }
-            }
-
-            @Override
-            public void onFailure(Throwable e) {
-                LOGGER.error("Error occurred while publishing record", e);
+        CompletableFuture<SendResult<String, String>> future = kafkaTemplate.send("authors", record);
+        future.whenComplete((result, exception) -> {
+            if (exception == null) {
+                LOGGER.debug("Record published successfully: {}", result.toString());
+            } else {
+                LOGGER.error("Error occurred while publishing record", exception);
             }
         });
     }

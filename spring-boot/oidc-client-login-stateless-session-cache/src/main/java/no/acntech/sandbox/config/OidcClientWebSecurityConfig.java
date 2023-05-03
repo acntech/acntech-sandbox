@@ -3,11 +3,10 @@ package no.acntech.sandbox.config;
 import no.acntech.sandbox.handler.OidcLogoutSuccessHandler;
 import no.acntech.sandbox.repository.HttpCookieOAuth2AuthorizationRequestRepository;
 import no.acntech.sandbox.repository.RedisSecurityContextRepository;
-import no.acntech.sandbox.store.Store;
+import no.acntech.sandbox.store.SecurityContextStore;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
-import org.springframework.security.core.context.SecurityContext;
 import org.springframework.security.oauth2.client.registration.ClientRegistrationRepository;
 import org.springframework.security.oauth2.client.web.AuthorizationRequestRepository;
 import org.springframework.security.oauth2.core.endpoint.OAuth2AuthorizationRequest;
@@ -42,7 +41,7 @@ public class OidcClientWebSecurityConfig {
     }
 
     @Bean
-    public SecurityContextRepository securityContextRepository(final Store<String, SecurityContext> securityContextStore) {
+    public SecurityContextRepository securityContextRepository(final SecurityContextStore securityContextStore) {
         return new RedisSecurityContextRepository(securityContextStore);
     }
 
@@ -53,7 +52,7 @@ public class OidcClientWebSecurityConfig {
 
     @Bean
     public LogoutSuccessHandler logoutSuccessHandler(final ClientRegistrationRepository clientRegistrationRepository,
-                                                     final Store<String, SecurityContext> securityContextStore) {
+                                                     final SecurityContextStore securityContextStore) {
         var logoutSuccessHandler = new OidcLogoutSuccessHandler(clientRegistrationRepository, securityContextStore);
         logoutSuccessHandler.setPostLogoutRedirectUri("http://localhost:8080/");
         return logoutSuccessHandler;

@@ -9,7 +9,7 @@ import com.nimbusds.jose.jwk.RSAKey;
 import com.nimbusds.jwt.JWTClaimsSet;
 import com.nimbusds.jwt.SignedJWT;
 import jakarta.validation.Valid;
-import no.acntech.sandbox.domain.Jwt;
+import no.acntech.sandbox.model.Jwt;
 import no.acntech.sandbox.service.KeyService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;

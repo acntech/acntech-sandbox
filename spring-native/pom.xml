@@ -13,13 +13,13 @@
 
     <groupId>no.acntech.sandbox</groupId>
     <artifactId>spring-native</artifactId>
+    <version>${revision}</version>
     <packaging>pom</packaging>
-    <version>1.0.0-SNAPSHOT</version>
 
     <!-- PROPERTIES -->
     <properties>
         <!-- Common -->
-        <java.version>11</java.version>
+        <java.version>17</java.version>
         <project.encoding>UTF-8</project.encoding>
         <maven.compiler.source>${java.version}</maven.compiler.source>
         <maven.compiler.target>${java.version}</maven.compiler.target>
@@ -29,13 +29,14 @@
         <downloadJavadocs>true</downloadJavadocs>
         <failOnMissingWebXml>false</failOnMissingWebXml>
 
+        <revision>2.0.0-SNAPSHOT</revision>
+
         <spring-native.version>0.11.1</spring-native.version>
         <native-maven-plugin.version>0.9.2</native-maven-plugin.version>
     </properties>
 
     <!-- MODULES -->
     <modules>
-        <module>rest-api</module>
     </modules>
 
     <!-- DEPENDENCIES -->

@@ -1,7 +1,7 @@
 package no.acntech.sandbox.controller;
 
-import no.acntech.sandbox.domain.User;
-import no.acntech.sandbox.domain.UserModel;
+import no.acntech.sandbox.model.User;
+import no.acntech.sandbox.model.UserModel;
 import no.acntech.sandbox.repository.UserRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

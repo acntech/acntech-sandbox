@@ -3,12 +3,10 @@ package no.acntech.sandbox.config;
 import no.acntech.sandbox.handler.OidcLogoutSuccessHandler;
 import no.acntech.sandbox.repository.HttpCookieOAuth2AuthorizationRequestRepository;
 import no.acntech.sandbox.service.RedisOAuth2AuthorizedClientService;
-import no.acntech.sandbox.store.Store;
+import no.acntech.sandbox.store.OAuth2AuthorizedClientStore;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
-import org.springframework.security.oauth2.client.OAuth2AuthorizedClient;
-import org.springframework.security.oauth2.client.OAuth2AuthorizedClientId;
 import org.springframework.security.oauth2.client.OAuth2AuthorizedClientService;
 import org.springframework.security.oauth2.client.registration.ClientRegistrationRepository;
 import org.springframework.security.web.SecurityFilterChain;
@@ -43,13 +41,13 @@ public class OidcClientWebSecurityConfig {
 
     @Bean
     public OAuth2AuthorizedClientService oAuth2AuthorizedClientService(final ClientRegistrationRepository clientRegistrationRepository,
-                                                                       final Store<OAuth2AuthorizedClientId, OAuth2AuthorizedClient> oAuth2AuthorizedClientStore) {
+                                                                       final OAuth2AuthorizedClientStore oAuth2AuthorizedClientStore) {
         return new RedisOAuth2AuthorizedClientService(clientRegistrationRepository, oAuth2AuthorizedClientStore);
     }
 
     @Bean
     public OidcLogoutSuccessHandler oidcLogoutSuccessHandler(final ClientRegistrationRepository clientRegistrationRepository,
-                                                             final Store<OAuth2AuthorizedClientId, OAuth2AuthorizedClient> oAuth2AuthorizedClientStore) {
+                                                             final OAuth2AuthorizedClientStore oAuth2AuthorizedClientStore) {
         var logoutSuccessHandler = new OidcLogoutSuccessHandler(clientRegistrationRepository, oAuth2AuthorizedClientStore);
         logoutSuccessHandler.setPostLogoutRedirectUri("http://localhost:8080/");
         return logoutSuccessHandler;

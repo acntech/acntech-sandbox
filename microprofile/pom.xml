@@ -6,13 +6,13 @@
     <!-- PROJECT -->
     <groupId>no.acntech.sandbox</groupId>
     <artifactId>microprofile</artifactId>
-    <version>1.0.0-SNAPSHOT</version>
+    <version>${revision}</version>
     <packaging>pom</packaging>
 
     <!-- PROPERTIES -->
     <properties>
         <!-- Common -->
-        <java.version>11</java.version>
+        <java.version>17</java.version>
         <project.encoding>UTF-8</project.encoding>
         <maven.compiler.source>${java.version}</maven.compiler.source>
         <maven.compiler.target>${java.version}</maven.compiler.target>
@@ -22,7 +22,9 @@
         <downloadJavadocs>true</downloadJavadocs>
         <failOnMissingWebXml>false</failOnMissingWebXml>
 
-        <microprofile.version>3.2</microprofile.version>
+        <revision>2.0.0-SNAPSHOT</revision>
+
+        <microprofile.version>6.0</microprofile.version>
     </properties>
 
     <!-- MODULES -->

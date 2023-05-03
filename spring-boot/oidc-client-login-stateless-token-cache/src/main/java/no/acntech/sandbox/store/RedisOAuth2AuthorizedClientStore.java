@@ -6,7 +6,7 @@ import org.springframework.security.oauth2.client.OAuth2AuthorizedClientId;
 import org.springframework.stereotype.Component;
 
 @Component
-public class RedisOAuth2AuthorizedClientStore implements Store<OAuth2AuthorizedClientId, OAuth2AuthorizedClient> {
+public class RedisOAuth2AuthorizedClientStore implements OAuth2AuthorizedClientStore {
 
     private final RedisTemplate<OAuth2AuthorizedClientId, OAuth2AuthorizedClient> redisTemplate;
 

@@ -1,11 +1,9 @@
-### Server ###
-server:
-  port: 8080
-  servlet:
-    context-path: /api
-
 ### Logging ###
 logging:
   level:
     org.springframework: INFO
     no.acntech: DEBUG
+
+### Server ###
+server:
+  port: 8080

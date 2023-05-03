@@ -5,7 +5,7 @@ import org.springframework.security.core.context.SecurityContext;
 import org.springframework.stereotype.Component;
 
 @Component
-public class RedisSecurityContextStore implements Store<String, SecurityContext> {
+public class RedisSecurityContextStore implements SecurityContextStore {
 
     private final RedisTemplate<String, SecurityContext> redisTemplate;
 

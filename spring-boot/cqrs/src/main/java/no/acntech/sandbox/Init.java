@@ -6,7 +6,7 @@ import org.springframework.context.event.EventListener;
 import org.springframework.stereotype.Component;
 
 import no.acntech.sandbox.consumer.service.AuthorConsumerService;
-import no.acntech.sandbox.entity.Author;
+import no.acntech.sandbox.model.AuthorEntity;
 
 @Component
 public class Init {
@@ -20,13 +20,13 @@ public class Init {
 
     @EventListener
     public void onApplicationEvent(ContextRefreshedEvent event) {
-        Author author1 = new Author();
+        AuthorEntity author1 = new AuthorEntity();
         author1.setFirstName("Franz");
         author1.setLastName("Kafka");
 
         service.createAuthor(author1);
 
-        Author author2 = new Author();
+        AuthorEntity author2 = new AuthorEntity();
         author2.setFirstName("Alexandre");
         author2.setLastName("Dumas");
 

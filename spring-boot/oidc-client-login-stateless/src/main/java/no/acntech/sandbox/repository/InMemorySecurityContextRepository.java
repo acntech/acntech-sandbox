@@ -3,7 +3,7 @@ package no.acntech.sandbox.repository;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import no.acntech.sandbox.resolver.CookieResolver;
-import no.acntech.sandbox.store.Store;
+import no.acntech.sandbox.store.SecurityContextStore;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.security.core.context.SecurityContext;
@@ -17,9 +17,9 @@ public class InMemorySecurityContextRepository implements SecurityContextReposit
 
     private static final Logger LOGGER = LoggerFactory.getLogger(InMemorySecurityContextRepository.class);
     private static final CookieResolver SESSION_COOKIE_RESOLVER = CookieResolver.sessionCookieResolver();
-    private final Store<String, SecurityContext> securityContextStore;
+    private final SecurityContextStore securityContextStore;
 
-    public InMemorySecurityContextRepository(final Store<String, SecurityContext> securityContextStore) {
+    public InMemorySecurityContextRepository(final SecurityContextStore securityContextStore) {
         this.securityContextStore = securityContextStore;
     }
 

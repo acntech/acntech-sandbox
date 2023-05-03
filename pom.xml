@@ -9,21 +9,6 @@
     <version>1.0.0-SNAPSHOT</version>
     <packaging>pom</packaging>
 
-    <!-- LICENSES -->
-    <licenses>
-        <license>
-            <name>The Apache Software License, Version 2.0</name>
-            <url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
-        </license>
-    </licenses>
-
-    <!-- SCM -->
-    <scm>
-        <url>https://github.com/acntech/acntech-sandbox</url>
-        <connection>scm:git:https://github.com/acntech/acntech-sandbox.git</connection>
-        <developerConnection>scm:git:ssh://github.com:acntech/acntech-sandbox.git</developerConnection>
-    </scm>
-
     <!-- MODULES -->
     <modules>
         <module>spring</module>
@@ -37,5 +22,21 @@
         <module>micronaut</module>
         <module>spring-native</module>
         <module>spring-boot-kotlin</module>
+        <module>ktor</module>
     </modules>
+
+    <!-- LICENSES -->
+    <licenses>
+        <license>
+            <name>The Apache Software License, Version 2.0</name>
+            <url>https://www.apache.org/licenses/LICENSE-2.0.txt</url>
+        </license>
+    </licenses>
+
+    <!-- SCM -->
+    <scm>
+        <url>https://github.com/acntech/acntech-sandbox</url>
+        <connection>scm:git:https://github.com/acntech/acntech-sandbox.git</connection>
+        <developerConnection>scm:git:ssh://github.com:acntech/acntech-sandbox.git</developerConnection>
+    </scm>
 </project>

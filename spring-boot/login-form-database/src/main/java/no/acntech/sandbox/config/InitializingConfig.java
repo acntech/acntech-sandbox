@@ -1,8 +1,8 @@
 package no.acntech.sandbox.config;
 
 import jakarta.annotation.PostConstruct;
-import no.acntech.sandbox.domain.Role;
-import no.acntech.sandbox.domain.User;
+import no.acntech.sandbox.model.Role;
+import no.acntech.sandbox.model.User;
 import no.acntech.sandbox.repository.RoleRepository;
 import no.acntech.sandbox.repository.UserRepository;
 import org.springframework.context.annotation.Configuration;

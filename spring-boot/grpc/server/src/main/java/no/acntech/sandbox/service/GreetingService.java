@@ -18,3 +18,4 @@ public class GreetingService extends GreetingGrpc.GreetingImplBase {
         responseObserver.onCompleted();
     }
 }
+

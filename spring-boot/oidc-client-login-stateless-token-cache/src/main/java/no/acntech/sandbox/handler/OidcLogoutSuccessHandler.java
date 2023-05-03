@@ -4,10 +4,8 @@ import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import no.acntech.sandbox.resolver.CookieResolver;
-import no.acntech.sandbox.store.Store;
+import no.acntech.sandbox.store.OAuth2AuthorizedClientStore;
 import org.springframework.security.core.Authentication;
-import org.springframework.security.oauth2.client.OAuth2AuthorizedClient;
-import org.springframework.security.oauth2.client.OAuth2AuthorizedClientId;
 import org.springframework.security.oauth2.client.oidc.web.logout.OidcClientInitiatedLogoutSuccessHandler;
 import org.springframework.security.oauth2.client.registration.ClientRegistrationRepository;
 import org.springframework.security.web.authentication.logout.LogoutSuccessHandler;
@@ -18,11 +16,11 @@ public class OidcLogoutSuccessHandler implements LogoutSuccessHandler {
 
     private static final CookieResolver SESSION_COOKIE_RESOLVER = CookieResolver.sessionCookieResolver();
     private final OidcClientInitiatedLogoutSuccessHandler delegate;
-    private final Store<OAuth2AuthorizedClientId, OAuth2AuthorizedClient> oAuth2AuthorizedClientStore;
+    private final OAuth2AuthorizedClientStore oAuth2AuthorizedClientStore;
 
     public OidcLogoutSuccessHandler(final ClientRegistrationRepository clientRegistrationRepository,
-                                    final Store<OAuth2AuthorizedClientId, OAuth2AuthorizedClient> oAuth2AuthorizedClientStore) {
-        delegate = new OidcClientInitiatedLogoutSuccessHandler(clientRegistrationRepository);
+                                    final OAuth2AuthorizedClientStore oAuth2AuthorizedClientStore) {
+        this.delegate = new OidcClientInitiatedLogoutSuccessHandler(clientRegistrationRepository);
         this.oAuth2AuthorizedClientStore = oAuth2AuthorizedClientStore;
     }
 

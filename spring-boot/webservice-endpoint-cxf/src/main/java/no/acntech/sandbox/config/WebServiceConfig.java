@@ -1,11 +1,10 @@
 package no.acntech.sandbox.config;
 
+import jakarta.xml.ws.Endpoint;
 import org.apache.cxf.Bus;
 import org.apache.cxf.jaxws.EndpointImpl;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-
-import javax.xml.ws.Endpoint;
 
 import no.acntech.sandbox.service.GreetingWebService;
 
