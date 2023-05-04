@@ -1,9 +1,15 @@
-### Server ###
-server:
-  port: 8080
+### APP ###
+app:
+  integration:
+    names:
+      url: https://names.drycodes.com/{count}?nameOptions=girl_names&separator=space
 
 ### Logging ###
 logging:
   level:
     org.springframework: INFO
     no.acntech: DEBUG
+
+### Server ###
+server:
+  port: 8080
