@@ -63,6 +63,8 @@
         <module>rest-api-hateoas</module>
         <module>rest-api-angular</module>
         <module>rest-api-csrf</module>
+        <module>rest-api-file</module>
+        <module>rest-api-file-webclient</module>
         <module>junit-testing</module>
         <module>login-form-web-mvc</module>
         <module>login-form-thymeleaf</module>

@@ -1,0 +1,14 @@
+### APP ###
+app:
+  file:
+    url: http://localhost:8080/api
+
+### Logging ###
+logging:
+  level:
+    org.springframework: INFO
+    no.acntech: DEBUG
+
+### Server ###
+server:
+  port: 8081
