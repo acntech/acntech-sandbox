@@ -4,9 +4,9 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class SpringBootRestApiFileWebClientApplication {
+public class SpringBootRestApiFileTransferApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(SpringBootRestApiFileWebClientApplication.class, args);
+        SpringApplication.run(SpringBootRestApiFileTransferApplication.class, args);
     }
 }

@@ -63,8 +63,8 @@
         <module>rest-api-hateoas</module>
         <module>rest-api-angular</module>
         <module>rest-api-csrf</module>
-        <module>rest-api-file</module>
-        <module>rest-api-file-webclient</module>
+        <module>rest-api-file-download</module>
+        <module>rest-api-file-transfer</module>
         <module>junit-testing</module>
         <module>login-form-web-mvc</module>
         <module>login-form-thymeleaf</module>
@@ -109,6 +109,7 @@
         <module>server-sent-events</module>
         <module>long-polling</module>
         <module>grpc</module>
+        <module>rest-api-file-upload</module>
     </modules>
 
     <!-- DEPENDENCIES -->

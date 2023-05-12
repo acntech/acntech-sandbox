@@ -26,13 +26,12 @@ public class FileResource {
     @GetMapping
     public ResponseEntity<Resource> get() throws IOException {
         final var file = resource.getFile();
-        final var inputStreamResource = new InputStreamResource(new FileInputStream(file));
         final var headers = new HttpHeaders();
-        headers.add(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=gandalf.jpg");
+        headers.add(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=" + file.getName());
         return ResponseEntity.ok()
                 .headers(headers)
                 .contentLength(file.length())
                 .contentType(MediaType.APPLICATION_OCTET_STREAM)
-                .body(inputStreamResource);
+                .body(new InputStreamResource(new FileInputStream(file)));
     }
 }

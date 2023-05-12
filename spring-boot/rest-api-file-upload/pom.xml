@@ -10,18 +10,18 @@
         <version>${revision}</version>
     </parent>
 
-    <artifactId>spring-boot-rest-api-file-webclient</artifactId>
+    <artifactId>spring-boot-rest-api-file-upload</artifactId>
 
     <!-- DEPENDENCIES -->
     <dependencies>
         <!-- Spring Framework -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-web</artifactId>
+            <artifactId>spring-boot-starter-validation</artifactId>
         </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-webflux</artifactId>
+            <artifactId>spring-boot-starter-web</artifactId>
         </dependency>
     </dependencies>
 

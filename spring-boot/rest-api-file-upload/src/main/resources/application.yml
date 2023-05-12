@@ -1,0 +1,18 @@
+### SPRING ###
+spring:
+  servlet:
+    multipart:
+      enabled: true
+      file-size-threshold: 2KB
+      max-file-size: 200MB
+      max-request-size: 215MB
+
+### Logging ###
+logging:
+  level:
+    org.springframework: INFO
+    no.acntech: DEBUG
+
+### Server ###
+server:
+  port: 8080
