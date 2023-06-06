@@ -8,7 +8,10 @@ import no.acntech.sandbox.model.HelloRequest
 import org.springframework.stereotype.Service
 
 @Service
-class GreetingService(@GrpcClient("grpc-server") val greetingBlockingStub: GreetingGrpc.GreetingBlockingStub) {
+class GreetingService {
+
+    @GrpcClient("grpc-server")
+    lateinit var greetingBlockingStub: GreetingGrpc.GreetingBlockingStub
 
     fun getGreeting(hello: Hello): Greeting {
         val request = HelloRequest.newBuilder()

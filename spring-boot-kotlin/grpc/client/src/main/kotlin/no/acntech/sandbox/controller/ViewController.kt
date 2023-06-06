@@ -10,26 +10,26 @@ import org.springframework.web.bind.annotation.PostMapping
 import org.springframework.web.servlet.ModelAndView
 
 @Controller
-class ViewtController(val greetingService: GreetingService) {
+class ViewController(val greetingService: GreetingService) {
 
     @GetMapping(path = ["/"])
-    fun getIndexPage(): ModelAndView? {
-        val mav = ModelAndView("index")
+    fun getHomePage(): ModelAndView {
+        val mav = ModelAndView("home")
         mav.addObject("hello", Hello())
         return mav
     }
 
     @PostMapping(path = ["/"])
-    fun postIndexPage(@ModelAttribute hello: Hello): ModelAndView? {
+    fun postHomePage(@ModelAttribute hello: Hello): ModelAndView {
         val greeting: Greeting = greetingService.getGreeting(hello)
-        val mav = ModelAndView("index")
+        val mav = ModelAndView("home")
         mav.addObject("hello", Hello())
         mav.addObject("greeting", greeting)
         return mav
     }
 
     @GetMapping(path = ["/about"])
-    fun getAboutPage(): ModelAndView? {
+    fun getAboutPage(): ModelAndView {
         return ModelAndView("about")
     }
 }

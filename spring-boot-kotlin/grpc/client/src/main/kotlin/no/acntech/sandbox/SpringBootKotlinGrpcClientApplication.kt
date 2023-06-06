@@ -4,8 +4,8 @@ import org.springframework.boot.autoconfigure.SpringBootApplication
 import org.springframework.boot.runApplication
 
 @SpringBootApplication
-class SpringBootKotlinRestApiApplication
+class SpringBootKotlinGrpcClientApplication
 
 fun main(args: Array<String>) {
-    runApplication<SpringBootKotlinRestApiApplication>(*args)
+    runApplication<SpringBootKotlinGrpcClientApplication>(*args)
 }
