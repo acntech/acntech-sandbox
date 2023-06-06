@@ -1,0 +1,31 @@
+### gRPC ###
+grpc:
+  client:
+    grpc-server:
+      address: static://localhost:9090
+      enableKeepAlive: true
+      keepAliveWithoutCalls: true
+      negotiationType: plaintext
+
+### Spring ###
+spring:
+  # Application
+  application:
+    name: spring-boot-kotlin-grpc-client
+  # Messages
+  messages:
+    basename: locale/messages
+
+### Logging ###
+logging:
+  level:
+    org.springframework: INFO
+    no.acntech: DEBUG
+
+### Server ###
+server:
+  port: 8080
+  error:
+    include-stacktrace: ALWAYS
+    whitelabel:
+      enabled: false

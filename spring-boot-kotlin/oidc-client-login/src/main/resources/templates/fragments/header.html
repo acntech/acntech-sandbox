@@ -1,0 +1,30 @@
+<header class="header mb-5" th:fragment="header" xmlns:th="http://www.thymeleaf.org">
+    <nav class="navbar navbar-dark bg-dark navbar-expand-lg p-4">
+        <a class="navbar-brand" th:href="@{/}">
+            <img src="/resources/img/logo.png" alt="AcnTech Logo"/>
+        </a>
+        <ul class="navbar-nav ms-auto">
+            <li class="nav-item">
+                <a class="nav-link" th:href="@{/}">
+                    <span th:text="#{navbar.link.home}"></span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" th:href="@{/about}">
+                    <span th:text="#{navbar.link.about}"></span>
+                </a>
+            </li>
+            <li class="nav-item dropdown">
+                <a id="profile-dropdown" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#"
+                   role="button" aria-haspopup="true" aria-expanded="false">Profile</a>
+                <div class="dropdown-menu dropdown-menu-end dropdown-menu-dark" aria-labelledby="profile-dropdown">
+                    <div class="dropdown-item disabled" th:text="${userInfo?.name}"></div>
+                    <div class="dropdown-divider"></div>
+                    <a class="dropdown-item" th:href="@{/logout}">
+                        <span th:text="#{navbar.link.logout}"></span>
+                    </a>
+                </div>
+            </li>
+        </ul>
+    </nav>
+</header>

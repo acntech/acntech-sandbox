@@ -6,11 +6,11 @@
     <!-- PROJECT -->
     <parent>
         <groupId>no.acntech.sandbox</groupId>
-        <artifactId>spring-boot-grpc</artifactId>
+        <artifactId>spring-boot-kotlin-grpc</artifactId>
         <version>${revision}</version>
     </parent>
 
-    <artifactId>spring-boot-grpc-model</artifactId>
+    <artifactId>spring-boot-kotlin-grpc-model</artifactId>
 
     <!-- DEPENDENCIES -->
     <dependencies>
