@@ -1,6 +1,7 @@
 package no.acntech.sandbox.config;
 
 import org.springframework.context.annotation.Bean;
+import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.web.reactive.EnableWebFluxSecurity;
 import org.springframework.security.config.web.server.ServerHttpSecurity;
 import org.springframework.security.oauth2.client.registration.ReactiveClientRegistrationRepository;
@@ -13,11 +14,16 @@ import org.springframework.web.reactive.function.client.WebClient;
 public class OAuth2ResourceServerWebSecurityConfig {
 
     @Bean
-    public SecurityWebFilterChain filterChain(final ServerHttpSecurity httpSecurity) {
-        return httpSecurity.authorizeExchange()
-                .anyExchange().authenticated()
-                .and().oauth2ResourceServer().jwt()
-                .and().and().build();
+    public SecurityWebFilterChain filterChain(final ServerHttpSecurity http) {
+        return http
+                .authorizeExchange(config -> config
+                        .anyExchange()
+                        .authenticated()
+                )
+                .oauth2ResourceServer(config -> config
+                        .jwt(Customizer.withDefaults())
+                )
+                .build();
     }
 
     @Bean

@@ -11,8 +11,8 @@ import org.springframework.kafka.config.TopicBuilder;
 public class KafkaConfig {
 
     @Bean
-    public NewTopic testTopic() {
-        return TopicBuilder.name("acntech.sandbox.test.data")
+    public NewTopic greetingTopic() {
+        return TopicBuilder.name("acntech.sandbox.greetings")
                 .partitions(1)
                 .replicas(1)
                 .compact()

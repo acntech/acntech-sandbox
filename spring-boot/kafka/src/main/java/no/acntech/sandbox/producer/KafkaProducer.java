@@ -23,6 +23,6 @@ public class KafkaProducer {
     public void produce(@Valid final Greeting message) {
         final var key = UUID.randomUUID().toString();
         LOGGER.info("Produced Kafka message with key {}", key);
-        kafkaTemplate.send("acntech.sandbox.test.data", key, message);
+        kafkaTemplate.send("acntech.sandbox.greetings", key, message);
     }
 }

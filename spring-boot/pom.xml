@@ -7,7 +7,7 @@
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
-        <version>3.0.6</version>
+        <version>3.1.2</version>
         <relativePath/>
     </parent>
 
@@ -33,22 +33,22 @@
 
         <!-- Dependencies -->
         <os-maven-plugin.version>1.7.1</os-maven-plugin.version>
-        <spring-security-oauth2-authorization-server.version>1.0.0</spring-security-oauth2-authorization-server.version>
+        <spring-security-oauth2-authorization-server.version>1.1.1</spring-security-oauth2-authorization-server.version>
         <!-- WebJars -->
-        <webjars-jquery.version>3.6.3</webjars-jquery.version>
-        <webjars-bootstrap.version>5.2.3</webjars-bootstrap.version>
-        <webjars-popper.version>2.9.3</webjars-popper.version>
-        <webjars-locator.version>0.46</webjars-locator.version>
+        <webjars-jquery.version>3.7.0</webjars-jquery.version>
+        <webjars-bootstrap.version>5.3.1</webjars-bootstrap.version>
+        <webjars-popper.version>2.11.7</webjars-popper.version>
+        <webjars-locator.version>0.47</webjars-locator.version>
         <webjars-stompjs.version>6.1.2</webjars-stompjs.version>
         <!-- Webservice -->
-        <cxf.version>4.0.0</cxf.version>
+        <cxf.version>4.0.2</cxf.version>
         <jaxws.version>3.0.2</jaxws.version>
         <jaxws-maven-plugin.version>3.0.2</jaxws-maven-plugin.version>
         <!-- Camunda -->
-        <camunda.version>7.18.0</camunda.version>
+        <camunda.version>7.19.0</camunda.version>
         <!-- Protobuf -->
-        <protoc.version>3.20.1</protoc.version>
-        <grpc.version>1.54.1</grpc.version>
+        <protoc.version>3.24.0</protoc.version>
+        <grpc.version>1.57.1</grpc.version>
         <grpc-spring-boot-starter.version>2.14.0.RELEASE</grpc-spring-boot-starter.version>
         <protobuf-maven-plugin.version>0.6.1</protobuf-maven-plugin.version>
     </properties>

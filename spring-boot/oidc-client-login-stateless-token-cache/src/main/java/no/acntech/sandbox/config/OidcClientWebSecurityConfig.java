@@ -1,15 +1,16 @@
 package no.acntech.sandbox.config;
 
-import no.acntech.sandbox.handler.OidcLogoutSuccessHandler;
-import no.acntech.sandbox.repository.HttpCookieOAuth2AuthorizationRequestRepository;
-import no.acntech.sandbox.service.RedisOAuth2AuthorizedClientService;
-import no.acntech.sandbox.store.OAuth2AuthorizedClientStore;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.oauth2.client.OAuth2AuthorizedClientService;
 import org.springframework.security.oauth2.client.registration.ClientRegistrationRepository;
 import org.springframework.security.web.SecurityFilterChain;
+
+import no.acntech.sandbox.handler.OidcLogoutSuccessHandler;
+import no.acntech.sandbox.repository.HttpCookieOAuth2AuthorizationRequestRepository;
+import no.acntech.sandbox.service.RedisOAuth2AuthorizedClientService;
+import no.acntech.sandbox.store.OAuth2AuthorizedClientStore;
 
 import static org.springframework.security.config.http.SessionCreationPolicy.STATELESS;
 
@@ -21,16 +22,22 @@ public class OidcClientWebSecurityConfig {
                                                    final OidcLogoutSuccessHandler oidcLogoutSuccessHandler,
                                                    final HttpCookieOAuth2AuthorizationRequestRepository httpCookieOAuth2AuthorizationRequestRepository) throws Exception {
         return http
-                .csrf().disable()
-                .sessionManagement().sessionCreationPolicy(STATELESS)
-                .and()
-                .authorizeHttpRequests().anyRequest().authenticated()
-                .and()
-                .logout().clearAuthentication(true).logoutSuccessHandler(oidcLogoutSuccessHandler)
-                .and()
-                .oauth2Login().authorizationEndpoint().authorizationRequestRepository(httpCookieOAuth2AuthorizationRequestRepository)
-                .and()
-                .and()
+                .sessionManagement(config -> config
+                        .sessionCreationPolicy(STATELESS)
+                )
+                .authorizeHttpRequests(config -> config
+                        .anyRequest()
+                        .authenticated()
+                )
+                .logout(config -> config
+                        .clearAuthentication(true)
+                        .logoutSuccessHandler(oidcLogoutSuccessHandler)
+                )
+                .oauth2Login(config -> config
+                        .authorizationEndpoint(endpoint -> endpoint
+                                .authorizationRequestRepository(httpCookieOAuth2AuthorizationRequestRepository)
+                        )
+                )
                 .build();
     }
 

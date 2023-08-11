@@ -1,15 +1,16 @@
 package no.acntech.sandbox.config;
 
-import no.acntech.sandbox.handler.OidcLogoutSuccessHandler;
-import no.acntech.sandbox.repository.HttpCookieOAuth2AuthorizationRequestRepository;
-import no.acntech.sandbox.repository.InMemorySecurityContextRepository;
-import no.acntech.sandbox.store.SecurityContextStore;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.oauth2.client.registration.ClientRegistrationRepository;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.context.SecurityContextRepository;
+
+import no.acntech.sandbox.handler.OidcLogoutSuccessHandler;
+import no.acntech.sandbox.repository.HttpCookieOAuth2AuthorizationRequestRepository;
+import no.acntech.sandbox.repository.InMemorySecurityContextRepository;
+import no.acntech.sandbox.store.SecurityContextStore;
 
 import static org.springframework.security.config.http.SessionCreationPolicy.STATELESS;
 
@@ -22,18 +23,25 @@ public class OidcClientWebSecurityConfig {
                                                    final OidcLogoutSuccessHandler oidcLogoutSuccessHandler,
                                                    final HttpCookieOAuth2AuthorizationRequestRepository httpCookieOAuth2AuthorizationRequestRepository) throws Exception {
         return http
-                .csrf().disable()
-                .sessionManagement().sessionCreationPolicy(STATELESS)
-                .and()
-                .authorizeHttpRequests().anyRequest().authenticated()
-                .and()
-                .securityContext().securityContextRepository(securityContextRepository)
-                .and()
-                .logout().clearAuthentication(true).logoutSuccessHandler(oidcLogoutSuccessHandler)
-                .and()
-                .oauth2Login().authorizationEndpoint().authorizationRequestRepository(httpCookieOAuth2AuthorizationRequestRepository)
-                .and()
-                .and()
+                .sessionManagement(config -> config
+                        .sessionCreationPolicy(STATELESS)
+                )
+                .authorizeHttpRequests(config -> config
+                        .anyRequest()
+                        .authenticated()
+                )
+                .securityContext(config -> config
+                        .securityContextRepository(securityContextRepository)
+                )
+                .logout(config -> config
+                        .clearAuthentication(true)
+                        .logoutSuccessHandler(oidcLogoutSuccessHandler)
+                )
+                .oauth2Login(config -> config
+                        .authorizationEndpoint(endpoint -> endpoint
+                                .authorizationRequestRepository(httpCookieOAuth2AuthorizationRequestRepository)
+                        )
+                )
                 .build();
     }
 
