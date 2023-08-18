@@ -1,10 +1,8 @@
 ### Spring ###
 spring:
-  # Web
-  mvc:
-    view:
-      prefix: /WEB-INF/views/
-      suffix: .jsp
+  # Application
+  application:
+    name: spring-boot-basic-auth
   # Messages
   messages:
     basename: locale/messages
@@ -14,8 +12,11 @@ logging:
   level:
     org.springframework: INFO
     no.acntech: DEBUG
-    web: DEBUG
 
 ### Server ###
 server:
   port: 8080
+  error:
+    include-stacktrace: ALWAYS
+    whitelabel:
+      enabled: false

@@ -1,15 +1,16 @@
 package no.acntech.sandbox.config;
 
-import jakarta.annotation.PostConstruct;
-import no.acntech.sandbox.model.Role;
-import no.acntech.sandbox.model.User;
-import no.acntech.sandbox.repository.RoleRepository;
-import no.acntech.sandbox.repository.UserRepository;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
+import jakarta.annotation.PostConstruct;
 import java.util.Arrays;
 import java.util.Collections;
+
+import no.acntech.sandbox.model.RoleEntity;
+import no.acntech.sandbox.model.UserEntity;
+import no.acntech.sandbox.repository.RoleRepository;
+import no.acntech.sandbox.repository.UserRepository;
 
 @Configuration(proxyBeanMethods = false)
 public class InitializingConfig {
@@ -28,28 +29,31 @@ public class InitializingConfig {
 
     @PostConstruct
     public void initialize() {
-        Role userRole = Role.builder()
+        final var userRole = RoleEntity.builder()
                 .role("USER")
                 .description("Basic user")
                 .build();
-        Role savedUserRole = roleRepository.save(userRole);
-        Role adminRole = Role.builder()
+        final var savedUserRole = roleRepository.save(userRole);
+        final var adminRole = RoleEntity.builder()
                 .role("ADMIN")
                 .description("Administrator")
                 .build();
-        Role savedAdminRole = roleRepository.save(adminRole);
-
-        User user = User.builder()
+        final var savedAdminRole = roleRepository.save(adminRole);
+        final var user = UserEntity.builder()
                 .username("user")
+                .firstName("The")
+                .lastName("User")
                 .password(passwordEncoder.encode("user"))
-                .email("user@email.com")
+                .email("user@acntech.no")
                 .roles(Collections.singletonList(savedUserRole))
                 .build();
         userRepository.save(user);
-        User admin = User.builder()
+        final var admin = UserEntity.builder()
                 .username("admin")
+                .firstName("The")
+                .lastName("Admin")
                 .password(passwordEncoder.encode("admin"))
-                .email("admin@email.com")
+                .email("admin@acntech.no")
                 .roles(Arrays.asList(savedUserRole, savedAdminRole))
                 .build();
         userRepository.save(admin);

@@ -1,31 +1,34 @@
 package no.acntech.sandbox.service;
 
-import no.acntech.sandbox.model.Greeting;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
+import java.time.Instant;
 import java.util.HashMap;
 import java.util.Map;
+
+import no.acntech.sandbox.model.GreetingDto;
+import no.acntech.sandbox.model.GreetingEntity;
 
 @Service
 public class GreetingService {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(GreetingService.class);
-    private static final Map<String, String> GREETINGS = new HashMap<>();
-
-    static {
-        GREETINGS.put("john", "Hello John! :)");
-        GREETINGS.put("jane", "Hi Jane! :)");
-        GREETINGS.put("jim", "Howdy Jim! :)");
-        GREETINGS.put("jill", "Hello Jill! :)");
-    }
+    private static final Map<String, GreetingEntity> GREETINGS = new HashMap<>();
 
     @Cacheable("greetings")
-    public Greeting getGreeting(String name) {
+    public GreetingDto getGreeting(final String name) {
         LOGGER.info("Getting greeting for name {}", name);
-        String greeting = GREETINGS.getOrDefault(name, "Name not found :(");
-        return new Greeting(greeting);
+        final var key = name.toLowerCase();
+        final GreetingEntity greetingEntity;
+        if (GREETINGS.containsKey(key)) {
+            greetingEntity = GREETINGS.get(key);
+        } else {
+            greetingEntity = new GreetingEntity("Hello " + name + "!", Instant.now());
+            GREETINGS.put(key, greetingEntity);
+        }
+        return new GreetingDto(greetingEntity.message(), greetingEntity.created(), Instant.now());
     }
 }

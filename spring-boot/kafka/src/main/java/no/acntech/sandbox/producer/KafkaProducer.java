@@ -1,11 +1,11 @@
 package no.acntech.sandbox.producer;
 
-import jakarta.validation.Valid;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.stereotype.Service;
 
+import jakarta.validation.Valid;
 import java.util.UUID;
 
 import no.acntech.sandbox.model.Greeting;
@@ -20,9 +20,9 @@ public class KafkaProducer {
         this.kafkaTemplate = kafkaTemplate;
     }
 
-    public void produce(@Valid final Greeting message) {
+    public void produce(@Valid final Greeting greeting) {
         final var key = UUID.randomUUID().toString();
-        LOGGER.info("Produced Kafka message with key {}", key);
-        kafkaTemplate.send("acntech.sandbox.greetings", key, message);
+        LOGGER.info("Produced Kafka greeting with key {}", key);
+        kafkaTemplate.send("acntech.sandbox.greetings", key, greeting);
     }
 }

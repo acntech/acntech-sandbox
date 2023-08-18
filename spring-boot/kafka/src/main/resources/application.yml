@@ -6,8 +6,7 @@ spring:
   # Kafka
   kafka:
     bootstrap-servers:
-      - sandbox_kafka:9092
-
+      - localhost:9092
     consumer:
       client-id: ${spring.application.name}-consumer
       group-id: ${spring.application.name}-consumer-group

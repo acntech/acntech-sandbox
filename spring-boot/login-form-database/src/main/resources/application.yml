@@ -1,9 +1,26 @@
-### AcnTech ###
-acntech:
-
-### Server ###
-server:
-  port: 8080
+### Spring ###
+spring:
+  # Application
+  application:
+    name: spring-boot-login-form-database
+  # Messages
+  messages:
+    basename: locale/messages
+  # JPA
+  jpa:
+    database-platform: org.hibernate.dialect.H2Dialect
+    hibernate:
+      ddl-auto: none
+  # H2 Database
+  datasource:
+    driver-class-name: org.h2.Driver
+    url: jdbc:h2:mem:sandbox;DB_CLOSE_ON_EXIT=FALSE;DB_CLOSE_DELAY=-1
+    username: sa
+    password:
+  # Enable H2 database console
+  h2:
+    console:
+      enabled: true
 
 ### Logging ###
 logging:
@@ -11,33 +28,6 @@ logging:
     org.springframework: INFO
     no.acntech: DEBUG
 
-### Spring ###
-spring:
-  # Web
-  mvc:
-    view:
-      prefix: /WEB-INF/views/
-      suffix: .jsp
-
-  # Messages
-  messages:
-    basename: locale/messages
-
-  # H2 Database
-  datasource:
-    driver-class-name: org.h2.Driver
-    url: jdbc:h2:mem:sandbox;DB_CLOSE_ON_EXIT=FALSE;DB_CLOSE_DELAY=-1
-    username: sa
-    password:
-
-  # JPA
-  jpa:
-    database-platform: org.hibernate.dialect.H2Dialect
-    show-sql: true
-    hibernate:
-      ddl-auto: none
-
-  # Enable H2 database console
-  h2:
-    console:
-      enabled: true
+### Server ###
+server:
+  port: 8080

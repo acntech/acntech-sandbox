@@ -95,10 +95,8 @@
         <module>webflux-tomcat</module>
         <module>webflux-war-deployment</module>
         <module>webflux-oidc-resource-server</module>
-        <!--<module>webservice-client-jaxws</module>
-        <module>webservice-endpoint-jaxws</module>-->
-        <module>webservice-client-cxf</module>
-        <module>webservice-endpoint-cxf</module>
+        <!--<module>webservice-jaxws</module>-->
+        <module>webservice-cxf</module>
         <module>camunda-delegate</module>
         <module>camunda-external-task</module>
         <module>camunda-multi-module</module>

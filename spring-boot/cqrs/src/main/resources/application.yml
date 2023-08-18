@@ -1,6 +1,41 @@
-### Server ###
-server:
-  port: 8080
+### String ###
+spring:
+  # Application
+  application:
+    name: spring-boot-cqrs
+  # Messages
+  messages:
+    basename: locale/messages
+  # JPA
+  jpa:
+    database-platform: org.hibernate.dialect.H2Dialect
+    hibernate:
+      ddl-auto: update
+  # Datasource
+  datasource:
+    driver-class-name: org.h2.Driver
+    url: jdbc:h2:mem:sandbox;DB_CLOSE_ON_EXIT=FALSE;DB_CLOSE_DELAY=-1
+    username: sa
+    password:
+  # H2 Database
+  h2:
+    console:
+      enabled: true
+  # Kafka
+  kafka:
+    bootstrap-servers:
+      - localhost:9092
+    consumer:
+      client-id: ${spring.application.name}-consumer
+      group-id: ${spring.application.name}-consumer-group
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      value-deserializer: org.springframework.kafka.support.serializer.JsonDeserializer
+      properties:
+        spring.json.trusted.packages: "no.acntech.sandbox.model"
+    producer:
+      client-id: ${spring.application.name}-producer
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
 
 ### Logging ###
 logging:
@@ -10,32 +45,10 @@ logging:
     org.apache.kafka.clients.producer.ProducerConfig: WARN
     no.acntech: DEBUG
 
-### String ###
-spring:
-  # Web
-  mvc:
-    view:
-      prefix: /WEB-INF/views/
-      suffix: .jsp
-
-  # Messages
-  messages:
-    basename: locale/messages
-
-  # JPA
-  jpa:
-    database-platform: org.hibernate.dialect.H2Dialect
-    hibernate:
-      ddl-auto: update
-
-  # Datasource
-  datasource:
-    driver-class-name: org.h2.Driver
-    url: jdbc:h2:mem:sandbox;DB_CLOSE_ON_EXIT=FALSE;DB_CLOSE_DELAY=-1
-    username: sa
-    password:
-
-  # H2 Database
-  h2:
-    console:
-      enabled: true
+### Server ###
+server:
+  port: 8080
+  error:
+    include-stacktrace: ALWAYS
+    whitelabel:
+      enabled: false

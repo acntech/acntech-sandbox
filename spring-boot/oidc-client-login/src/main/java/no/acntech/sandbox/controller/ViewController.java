@@ -13,9 +13,9 @@ import java.util.Map;
 public class ViewController {
 
     @GetMapping(path = "/")
-    public ModelAndView getHomePage(final Authentication authentication) {
+    public ModelAndView getIndexPage(final Authentication authentication) {
         final var model = getModel(authentication);
-        return new ModelAndView("home", model);
+        return new ModelAndView("index", model);
     }
 
     @GetMapping(path = "/about")

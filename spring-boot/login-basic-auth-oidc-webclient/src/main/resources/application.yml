@@ -1,10 +1,8 @@
 ### Spring ###
 spring:
-  # Web
-  mvc:
-    view:
-      prefix: /WEB-INF/views/
-      suffix: .jsp
+  # Application
+  application:
+    name: spring-boot-basic-auth-oidc-webclient
   # Messages
   messages:
     basename: locale/messages
@@ -13,17 +11,18 @@ spring:
     oauth2:
       client:
         registration:
-          generic-resource-server:
-            provider: uua
+          generic-client:
+            provider: keycloak
+            client-id: acntech-generic-client
+            client-secret: abcdefgh12345678
             authorization-grant-type: client_credentials
-            client-id: generic-resource-server
-            client-secret: 0kX3bvZe
             scope:
               - openid
               - profile
+              - roles
         provider:
-          uua:
-            issuer-uri: http://localhost:8888/uaa/oauth/token
+          keycloak:
+            issuer-uri: http://localhost:8888/realms/acntech
 
 ### Logging ###
 logging:

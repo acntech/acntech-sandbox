@@ -1,0 +1,29 @@
+<!DOCTYPE HTML>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layouts/default}">
+<head>
+    <title th:text="#{navbar.brand}"></title>
+</head>
+<body>
+<div layout:fragment="content" class="container">
+    <main class="content" role="main">
+        <div class="starter-template">
+            <div class="jumbotron mb-5">
+                <h1 th:text="#{index.page.title}"></h1>
+            </div>
+            <div class="row mb-3">
+                <div class="alert alert-success" role="alert" sec:authorize="isAuthenticated()">
+                    <span th:text="#{index.page.authenticated(${#authentication.name})}"></span>
+                </div>
+                <div class="alert alert-danger" role="alert" sec:authorize="!isAuthenticated()">
+                    <span th:text="#{index.page.unauthenticated}"></span>
+                </div>
+            </div>
+        </div>
+    </main>
+</div>
+</body>
+</html>

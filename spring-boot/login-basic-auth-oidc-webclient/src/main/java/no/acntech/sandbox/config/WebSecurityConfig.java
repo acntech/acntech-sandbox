@@ -2,6 +2,7 @@ package no.acntech.sandbox.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityCustomizer;
@@ -17,11 +18,10 @@ public class WebSecurityConfig {
     @Bean
     public SecurityFilterChain securityFilterChain(final HttpSecurity http) throws Exception {
         return http
-                .authorizeHttpRequests()
-                .anyRequest().authenticated()
-                .and()
-                .httpBasic()
-                .and()
+                .authorizeHttpRequests(config -> config
+                        .anyRequest().authenticated()
+                )
+                .httpBasic(Customizer.withDefaults())
                 .build();
     }
 
@@ -35,17 +35,17 @@ public class WebSecurityConfig {
     public UserDetailsService userDetailsService() {
         final var user = User.builder()
                 .username("user")
-                .password("user")
+                .password("{noop}user")
                 .roles("USER")
                 .build();
         final var admin = User.builder()
                 .username("admin")
-                .password("admin")
+                .password("{noop}admin")
                 .roles("USER", "ADMIN")
                 .build();
         final var anonymous = User.builder()
                 .username("anonymous")
-                .password("anonymous")
+                .password("{noop}anonymous")
                 .roles("ANONYMOUS")
                 .build();
         return new InMemoryUserDetailsManager(user, admin, anonymous);
