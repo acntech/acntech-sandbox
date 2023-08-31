@@ -1,11 +1,12 @@
 package no.acntech.sandbox.service;
 
 import net.devh.boot.grpc.client.inject.GrpcClient;
-import no.acntech.sandbox.model.Greeting;
-import no.acntech.sandbox.model.GreetingGrpc;
-import no.acntech.sandbox.model.Hello;
-import no.acntech.sandbox.model.HelloRequest;
 import org.springframework.stereotype.Service;
+
+import no.acntech.sandbox.model.FormData;
+import no.acntech.sandbox.model.GreetingDto;
+import no.acntech.sandbox.model.GreetingGrpc;
+import no.acntech.sandbox.model.HelloRequest;
 
 @Service
 public class GreetingService {
@@ -13,11 +14,11 @@ public class GreetingService {
     @GrpcClient("grpc-server")
     private GreetingGrpc.GreetingBlockingStub greetingBlockingStub;
 
-    public Greeting getGreeting(Hello hello) {
+    public GreetingDto getGreeting(FormData formData) {
         var request = HelloRequest.newBuilder()
-                .setName(hello.getName())
+                .setName(formData.getName())
                 .build();
         var response = greetingBlockingStub.sayHello(request);
-        return new Greeting(response.getMessage());
+        return new GreetingDto(response.getMessage());
     }
 }

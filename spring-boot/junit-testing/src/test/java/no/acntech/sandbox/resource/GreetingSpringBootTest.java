@@ -12,7 +12,7 @@ import org.springframework.web.client.RestTemplate;
 
 import java.net.URI;
 
-import no.acntech.sandbox.model.Greeting;
+import no.acntech.sandbox.model.GreetingDto;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.ArgumentMatchers.any;
@@ -49,7 +49,7 @@ public class GreetingSpringBootTest {
         when(restTemplateMock.getForObject(any(URI.class), any(Class.class)))
                 .thenReturn(new String[]{"Jane", "Julie"});
 
-        var entity = testRestTemplate.getForEntity("http://localhost:" + port + "/api/remote-greetings", Greeting[].class);
+        var entity = testRestTemplate.getForEntity("http://localhost:" + port + "/api/remote-greetings", GreetingDto[].class);
 
         assertThat(entity)
                 .isNotNull();

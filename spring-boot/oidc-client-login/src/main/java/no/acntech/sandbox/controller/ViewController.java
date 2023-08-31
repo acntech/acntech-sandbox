@@ -3,32 +3,28 @@ package no.acntech.sandbox.controller;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.oauth2.core.user.OAuth2User;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.servlet.ModelAndView;
-
-import java.util.LinkedHashMap;
-import java.util.Map;
+import org.springframework.web.bind.annotation.ModelAttribute;
 
 @Controller
 public class ViewController {
 
     @GetMapping(path = "/")
-    public ModelAndView getIndexPage(final Authentication authentication) {
-        final var model = getModel(authentication);
-        return new ModelAndView("index", model);
+    public String getIndexPage() {
+        return "index";
     }
 
     @GetMapping(path = "/about")
-    public ModelAndView getAboutPage(final Authentication authentication) {
-        final var model = getModel(authentication);
-        return new ModelAndView("about", model);
+    public String getAboutPage() {
+        return "about";
     }
 
-    private Map<String, Object> getModel(final Authentication authentication) {
-        final var model = new LinkedHashMap<String, Object>();
+    @ModelAttribute
+    public void getModel(final Authentication authentication,
+                         final Model model) {
         if (authentication.getPrincipal() instanceof OAuth2User oAuth2User) {
-            model.put("userInfo", oAuth2User.getAttributes());
+            model.addAttribute("userInfo", oAuth2User.getAttributes());
         }
-        return model;
     }
 }

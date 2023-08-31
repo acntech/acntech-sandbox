@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import no.acntech.sandbox.model.Greeting;
+import no.acntech.sandbox.model.GreetingDto;
 import no.acntech.sandbox.producer.KafkaProducer;
 
 @RequestMapping(path = "/api/greetings")
@@ -20,8 +20,8 @@ public class GreetingResource {
     }
 
     @PostMapping
-    public ResponseEntity<Greeting> get(@RequestParam(name = "name", defaultValue = "Nobody") String name) {
-        kafkaProducer.produce(new Greeting("Hello " + name + "!"));
+    public ResponseEntity<GreetingDto> get(@RequestParam(name = "name", defaultValue = "Nobody") String name) {
+        kafkaProducer.produce(new GreetingDto("Hello " + name + "!"));
         return ResponseEntity.ok().build();
     }
 }

@@ -7,30 +7,15 @@
     <title th:text="#{navbar.brand}"></title>
 </head>
 <body>
-<div layout:fragment="content" class="container">
-    <main class="container" role="main">
-        <div class="starter-template">
-            <div class="jumbotron">
-                <h1 th:text="#{index.page.title}"></h1>
-            </div>
-            <div>
-                <table class="table">
-                    <thead>
-                    <tr>
-                        <th class="id-col" scope="col" th:text="#{greeting.table.id}"></th>
-                        <th scope="col" th:text="#{greeting.table.message}"></th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    <tr th:each="g: ${greetings}">
-                        <td th:text="${g.id}"></td>
-                        <td th:text="${g.message}"></td>
-                    </tr>
-                    </tbody>
-                </table>
-            </div>
+<main layout:fragment="content" class="container" role="main">
+    <div class="jumbotron">
+        <h1 th:text="#{index.page.title}"></h1>
+    </div>
+    <div id="greetings">
+        <div class="alert alert-success" role="alert" th:each="greeting: ${greetings}">
+            <span th:text="${greeting.message}"></span>
         </div>
-    </main>
-</div>
+    </div>
+</main>
 </body>
 </html>

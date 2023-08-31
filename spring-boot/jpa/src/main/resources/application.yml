@@ -24,6 +24,12 @@ spring:
     username: sa
     password:
 
+### Logging ###
+logging:
+  level:
+    org.springframework: INFO
+    no.acntech: DEBUG
+
 ### Server ###
 server:
   port: 8080
@@ -31,9 +37,3 @@ server:
     include-stacktrace: ALWAYS
     whitelabel:
       enabled: false
-
-### Logging ###
-logging:
-  level:
-    org.springframework: INFO
-    no.acntech: DEBUG

@@ -1,10 +1,10 @@
-<header class="header"
+<header class="header mb-5"
         th:fragment="header"
         xmlns:th="http://www.thymeleaf.org"
         xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <nav class="navbar navbar-dark bg-dark navbar-expand-lg p-4">
         <a class="navbar-brand" th:href="@{/}">
-            <span th:text="#{navbar.brand}"></span>
+            <img th:src="@{/assets/img/logo.png}" alt="AcnTech Logo"/>
         </a>
         <div id="navbar-toggle" sec:authorize="isAuthenticated()">
             <ul class="navbar-nav mr-auto">

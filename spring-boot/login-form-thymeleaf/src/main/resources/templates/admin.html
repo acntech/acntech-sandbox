@@ -8,17 +8,25 @@
     <title th:text="#{navbar.brand}"></title>
 </head>
 <body>
-    <div layout:fragment="content" class="container">
-        <main class="container" role="main">
-            <div class="starter-template" sec:authorize="hasRole('ADMIN')">
-                <div class="jumbotron">
-                    <h1 th:text="#{admin.page.title}"></h1>
-                </div>
-            </div>
-            <div class="alert alert-danger" role="alert" sec:authorize="!hasRole('ADMIN')">
-                <span th:text="#{login.message.error}"></span>
-            </div>
-        </main>
+<main layout:fragment="content" class="container" role="main">
+    <div class="content" sec:authorize="hasRole('ADMIN')">
+        <div class="jumbotron mb-5">
+            <h1 th:text="#{admin.page.title}"></h1>
+        </div>
+        <div class="mb-3">
+            <h3 th:text="#{about.page.users.paragraph}"></h3>
+            <ul>
+                <li th:each="user: ${users}">
+                    <span th:text="${user.username}"></span>
+                </li>
+            </ul>
+        </div>
     </div>
+    <div class="content" sec:authorize="!hasRole('ADMIN')">
+        <div class="alert alert-danger" role="alert">
+            <span th:text="#{login.message.error}"></span>
+        </div>
+    </div>
+</main>
 </body>
 </html>

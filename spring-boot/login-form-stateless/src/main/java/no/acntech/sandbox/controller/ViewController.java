@@ -8,17 +8,17 @@ import org.springframework.web.servlet.ModelAndView;
 public class ViewController {
 
     @GetMapping("/")
-    public ModelAndView indexPage() {
+    public ModelAndView getIndexPage() {
         return new ModelAndView("index");
     }
 
     @GetMapping("/about")
-    public ModelAndView aboutPage() {
+    public ModelAndView getAboutPage() {
         return new ModelAndView("about");
     }
 
     @GetMapping("/login")
-    public ModelAndView loginPage() {
+    public ModelAndView getLoginPage() {
         return new ModelAndView("login");
     }
 }

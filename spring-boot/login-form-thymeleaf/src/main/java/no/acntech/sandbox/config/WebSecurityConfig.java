@@ -19,27 +19,33 @@ public class WebSecurityConfig {
     @Bean
     public SecurityFilterChain securityFilterChain(final HttpSecurity http) throws Exception {
         return http
-                .authorizeHttpRequests()
-                .requestMatchers("/**").hasRole("USER")
-                .anyRequest().authenticated()
-                .and()
-                .formLogin().loginPage("/login").defaultSuccessUrl("/").failureUrl("/login?error").permitAll()
-                .and()
-                .logout()
-                .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
-                .logoutSuccessUrl("/login?logout")
-                .deleteCookies("JSESSIONID")
-                .invalidateHttpSession(true).permitAll()
-                .and()
-                .csrf().requireCsrfProtectionMatcher(new AntPathRequestMatcher("**/login"))
-                .and()
+                .authorizeHttpRequests(config -> config
+                        .requestMatchers("/**").hasRole("USER")
+                        .anyRequest().authenticated()
+                )
+                .formLogin(config -> config
+                        .loginPage("/login")
+                        .defaultSuccessUrl("/")
+                        .failureUrl("/login?error")
+                        .permitAll()
+                )
+                .logout(config -> config
+                        .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
+                        .logoutSuccessUrl("/login?logout")
+                        .deleteCookies("JSESSIONID")
+                        .invalidateHttpSession(true)
+                        .permitAll()
+                )
+                .csrf(config -> config
+                        .requireCsrfProtectionMatcher(new AntPathRequestMatcher("**/login"))
+                )
                 .build();
     }
 
     @Bean
     public WebSecurityCustomizer webSecurityCustomizer() {
         return (web) -> web
-                .ignoring().requestMatchers("/webjars/**", "/resources/**");
+                .ignoring().requestMatchers("/webjars/**", "/assets/**");
     }
 
     @Bean

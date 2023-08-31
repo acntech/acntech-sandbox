@@ -9,17 +9,15 @@
 </head>
 <body>
 <main layout:fragment="content" class="container" role="main">
-    <div class="content">
-        <div class="jumbotron mb-5">
-            <h1 th:text="#{index.page.title}"></h1>
+    <div class="jumbotron mb-5">
+        <h1 th:text="#{index.page.title}"></h1>
+    </div>
+    <div class="row mb-3">
+        <div class="alert alert-success" role="alert" sec:authorize="isAuthenticated()">
+            <span th:text="#{index.page.authenticated(${#authentication.name})}"></span>
         </div>
-        <div class="row mb-3">
-            <div class="alert alert-success" role="alert" sec:authorize="isAuthenticated()">
-                <span th:text="#{index.page.authenticated(${#authentication.name})}"></span>
-            </div>
-            <div class="alert alert-danger" role="alert" sec:authorize="!isAuthenticated()">
-                <span th:text="#{index.page.unauthenticated}"></span>
-            </div>
+        <div class="alert alert-danger" role="alert" sec:authorize="!isAuthenticated()">
+            <span th:text="#{index.page.unauthenticated}"></span>
         </div>
     </div>
 </main>

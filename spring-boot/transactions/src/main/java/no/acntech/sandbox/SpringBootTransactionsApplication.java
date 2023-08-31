@@ -11,7 +11,7 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
         basePackages = {"no.acntech.sandbox.repository"})
 @EntityScan(
         basePackageClasses = {Jsr310JpaConverters.class},
-        basePackages = {"no.acntech.sandbox.domain"})
+        basePackages = {"no.acntech.sandbox.model"})
 @EnableTransactionManagement
 @SpringBootApplication
 public class SpringBootTransactionsApplication {

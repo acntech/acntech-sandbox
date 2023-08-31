@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
-import no.acntech.sandbox.model.Greeting;
+import no.acntech.sandbox.model.GreetingDto;
 import no.acntech.sandbox.service.GreetingService;
 
 @RequestMapping(path = "/api")
@@ -22,12 +22,12 @@ public class GreetingResource {
     }
 
     @GetMapping(path = "/local-greetings/{name}")
-    public Greeting getLocal(@PathVariable(value = "name") String name) {
+    public GreetingDto getLocal(@PathVariable(value = "name") String name) {
         return greetingService.getLocalGreeting(name);
     }
 
     @GetMapping(path = "/remote-greetings")
-    public List<Greeting> getRemote(@RequestParam(name = "count", defaultValue = "1") final int count) {
+    public List<GreetingDto> getRemote(@RequestParam(name = "count", defaultValue = "1") final int count) {
         return greetingService.getRemoteGreeting(count);
     }
 }

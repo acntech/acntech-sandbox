@@ -1,22 +1,19 @@
-### Server ###
-server:
-  port: 8080
+### Spring ###
+spring:
+  # Messages
+  messages:
+    basename: locale/messages
 
 ### Logging ###
 logging:
   level:
     org.springframework: INFO
     no.acntech: DEBUG
-    web: DEBUG
 
-### Spring ###
-spring:
-  # Web
-  mvc:
-    view:
-      prefix: /WEB-INF/views/
-      suffix: .jsp
-
-  # Messages
-  messages:
-    basename: locale/messages
+### Server ###
+server:
+  port: 8080
+  error:
+    include-stacktrace: ALWAYS
+    whitelabel:
+      enabled: false

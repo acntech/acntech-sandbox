@@ -8,32 +8,30 @@
 </head>
 <body>
 <main layout:fragment="content" class="container" role="main">
-    <div class="content login-content">
-        <div>
-            <h1 th:text="#{login.page.title}"></h1>
-        </div>
-        <div class="row mb-3">
-            <form th:action="@{/login}" method="post">
-                <div class="form-group mb-3">
-                    <label for="username" th:text="#{login.form.username}"></label>
-                    <input type="text" class="form-control" id="username" name="username">
-                </div>
-                <div class="form-group mb-3">
-                    <label for="password" th:text="#{login.form.password}"></label>
-                    <input type="password" class="form-control" id="password" name="password">
-                </div>
-                <div class="form-group mb-3">
-                    <button type="submit" class="btn btn-success" th:text="#{login.form.button}"></button>
-                </div>
-                <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
-            </form>
-        </div>
-        <div class="alert alert-danger" role="alert" th:if="${param.error != null}">
-            <span th:text="#{login.message.error}"></span>
-        </div>
-        <div class="alert alert-success" role="alert" th:if="${param.logout != null}">
-            <span th:text="#{logout.message.successful}"></span>
-        </div>
+    <div class="jumbotron">
+        <h1 th:text="#{login.page.title}"></h1>
+    </div>
+    <div class="row mb-3">
+        <form th:action="@{/login}" method="post">
+            <div class="form-group mb-3">
+                <label for="username" th:text="#{login.form.username}"></label>
+                <input type="text" class="form-control" id="username" name="username">
+            </div>
+            <div class="form-group mb-3">
+                <label for="password" th:text="#{login.form.password}"></label>
+                <input type="password" class="form-control" id="password" name="password">
+            </div>
+            <div class="form-group mb-3">
+                <button type="submit" class="btn btn-success" th:text="#{login.form.button}"></button>
+            </div>
+            <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+        </form>
+    </div>
+    <div class="alert alert-danger" role="alert" th:if="${param.error != null}">
+        <span th:text="#{login.message.error}"></span>
+    </div>
+    <div class="alert alert-success" role="alert" th:if="${param.logout != null}">
+        <span th:text="#{logout.message.successful}"></span>
     </div>
 </main>
 </body>

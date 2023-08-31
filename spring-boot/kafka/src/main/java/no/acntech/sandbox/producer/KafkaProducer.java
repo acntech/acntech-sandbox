@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
 import jakarta.validation.Valid;
 import java.util.UUID;
 
-import no.acntech.sandbox.model.Greeting;
+import no.acntech.sandbox.model.GreetingDto;
 
 @Service
 public class KafkaProducer {
@@ -20,7 +20,7 @@ public class KafkaProducer {
         this.kafkaTemplate = kafkaTemplate;
     }
 
-    public void produce(@Valid final Greeting greeting) {
+    public void produce(@Valid final GreetingDto greeting) {
         final var key = UUID.randomUUID().toString();
         LOGGER.info("Produced Kafka greeting with key {}", key);
         kafkaTemplate.send("acntech.sandbox.greetings", key, greeting);

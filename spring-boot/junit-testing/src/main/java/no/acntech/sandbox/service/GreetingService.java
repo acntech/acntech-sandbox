@@ -12,7 +12,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import no.acntech.sandbox.model.Greeting;
+import no.acntech.sandbox.model.GreetingDto;
 
 @Service
 public class GreetingService {
@@ -26,11 +26,11 @@ public class GreetingService {
         this.namesUrl = namesUrl;
     }
 
-    public Greeting getLocalGreeting(@Valid final String name) {
-        return new Greeting("Hello " + name + "!");
+    public GreetingDto getLocalGreeting(@Valid final String name) {
+        return new GreetingDto("Hello " + name + "!");
     }
 
-    public List<Greeting> getRemoteGreeting(int count) {
+    public List<GreetingDto> getRemoteGreeting(int count) {
         final var uri = UriComponentsBuilder.fromUriString(namesUrl)
                 .build(count);
         final var names = restTemplate.getForObject(uri, String[].class);
@@ -38,7 +38,7 @@ public class GreetingService {
             throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR);
         }
         return Arrays.stream(names)
-                .map(name -> new Greeting("Hello " + name + "!"))
+                .map(name -> new GreetingDto("Hello " + name + "!"))
                 .collect(Collectors.toList());
     }
 }

@@ -1,6 +1,13 @@
-### Server ###
-server:
-  port: 8080
+### Spring ###
+spring:
+  # Web
+  mvc:
+    view:
+      prefix: /WEB-INF/views/
+      suffix: .jsp
+  # Messages
+  messages:
+    basename: locale/messages
 
 ### Logging ###
 logging:
@@ -9,14 +16,10 @@ logging:
     org.springframework.security: DEBUG
     no.acntech: DEBUG
 
-### Spring ###
-spring:
-  # Web
-  mvc:
-    view:
-      prefix: /WEB-INF/views/
-      suffix: .jsp
-
-  # Messages
-  messages:
-    basename: locale/messages
+### Server ###
+server:
+  port: 8080
+  error:
+    include-stacktrace: ALWAYS
+    whitelabel:
+      enabled: false

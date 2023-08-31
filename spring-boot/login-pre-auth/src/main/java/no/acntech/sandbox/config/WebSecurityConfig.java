@@ -1,6 +1,5 @@
 package no.acntech.sandbox.config;
 
-import no.acntech.sandbox.service.DefaultUserDetailsService;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -18,6 +17,8 @@ import org.springframework.security.web.authentication.preauth.RequestHeaderAuth
 
 import java.util.Collections;
 
+import no.acntech.sandbox.service.DefaultUserDetailsService;
+
 @SuppressWarnings("Duplicates")
 @EnableWebSecurity
 @Configuration(proxyBeanMethods = false)
@@ -28,17 +29,17 @@ public class WebSecurityConfig {
                                                    final RequestHeaderAuthenticationFilter authenticationFilter) throws Exception {
         return http
                 .addFilterAfter(authenticationFilter, RequestHeaderAuthenticationFilter.class)
-                .authorizeHttpRequests()
-                .anyRequest().authenticated()
-                .anyRequest().hasRole("USER")
-                .and()
+                .authorizeHttpRequests(config -> config
+                        .anyRequest().authenticated()
+                        .anyRequest().hasRole("USER")
+                )
                 .build();
     }
 
     @Bean
     public WebSecurityCustomizer webSecurityCustomizer() {
         return (web) -> web
-                .ignoring().requestMatchers("/webjars/**", "/resources/**");
+                .ignoring().requestMatchers("/webjars/**", "/assets/**");
     }
 
     @Bean

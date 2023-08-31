@@ -28,7 +28,7 @@ public class WebSecurityConfig {
     @Bean
     public WebSecurityCustomizer webSecurityCustomizer() {
         return (web) -> web
-                .ignoring().requestMatchers("/webjars/**", "/resources/**");
+                .ignoring().requestMatchers("/webjars/**", "/assets/**");
     }
 
     @Bean

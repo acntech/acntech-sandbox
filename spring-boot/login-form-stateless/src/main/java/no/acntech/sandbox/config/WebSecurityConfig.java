@@ -1,7 +1,5 @@
 package no.acntech.sandbox.config;
 
-import no.acntech.sandbox.repository.InMemorySecurityContextRepository;
-import no.acntech.sandbox.resolver.CookieResolver;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -15,6 +13,9 @@ import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.context.SecurityContextRepository;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
+import no.acntech.sandbox.repository.InMemorySecurityContextRepository;
+import no.acntech.sandbox.resolver.CookieResolver;
+
 @SuppressWarnings("Duplicates")
 @EnableWebSecurity
 @Configuration(proxyBeanMethods = false)
@@ -24,30 +25,36 @@ public class WebSecurityConfig {
     public SecurityFilterChain securityFilterChain(final HttpSecurity http,
                                                    final SecurityContextRepository securityContextRepository) throws Exception {
         return http
-                .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
-                .and()
-                .securityContext().securityContextRepository(securityContextRepository)
-                .and()
-                .authorizeHttpRequests()
-                .requestMatchers("/**").hasRole("USER")
-                .anyRequest().authenticated()
-                .and()
-                .formLogin().loginPage("/login").defaultSuccessUrl("/").failureUrl("/login?error").permitAll()
-                .and()
-                .logout()
-                .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
-                .logoutSuccessUrl("/login?logout")
-                .deleteCookies(CookieResolver.SESSION_COOKIE_NAME)
-                .and()
-                .csrf().requireCsrfProtectionMatcher(new AntPathRequestMatcher("**/login"))
-                .and()
+                .sessionManagement(config -> config
+                        .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
+                )
+                .securityContext(config -> config
+                        .securityContextRepository(securityContextRepository)
+                )
+                .authorizeHttpRequests(config -> config
+                        .requestMatchers("/**").hasRole("USER")
+                        .anyRequest().authenticated()
+                )
+                .formLogin(config -> config
+                        .loginPage("/login")
+                        .defaultSuccessUrl("/")
+                        .failureUrl("/login?error")
+                        .permitAll()
+                )
+                .logout(config -> config
+                        .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
+                        .logoutSuccessUrl("/login?logout")
+                        .deleteCookies(CookieResolver.SESSION_COOKIE_NAME)
+                )
+                .csrf(config -> config
+                        .requireCsrfProtectionMatcher(new AntPathRequestMatcher("**/login")))
                 .build();
     }
 
     @Bean
     public WebSecurityCustomizer webSecurityCustomizer() {
         return (web) -> web
-                .ignoring().requestMatchers("/webjars/**", "/resources/**");
+                .ignoring().requestMatchers("/webjars/**", "/assets/**");
     }
 
     @Bean

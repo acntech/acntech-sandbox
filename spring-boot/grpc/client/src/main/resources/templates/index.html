@@ -1,0 +1,34 @@
+<!DOCTYPE HTML>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layouts/default}">
+<head>
+    <title th:text="#{navbar.brand}"></title>
+</head>
+<body>
+<div layout:fragment="content" class="container">
+    <main class="content" role="main">
+        <div class="starter-template">
+            <div class="jumbotron mb-5">
+                <h1 th:text="#{index.page.title}"></h1>
+            </div>
+            <div class="row mb-3">
+                <form action="#" th:action="@{/}" th:object="${formData}" method="post">
+                    <div class="form-group mb-3">
+                        <input type="text" th:field="*{name}" class="form-control"
+                               th:placeholder="#{form.name.placeholder}">
+                    </div>
+                    <div class="form-group mb-3">
+                        <button type="submit" class="btn btn-primary w-100" th:text="#{form.button.text}"></button>
+                    </div>
+                </form>
+            </div>
+            <div th:if="${greeting != null}" class="alert alert-success" role="alert">
+                <span th:text="${greeting}"></span>
+            </div>
+        </div>
+    </main>
+</div>
+</body>
+</html>

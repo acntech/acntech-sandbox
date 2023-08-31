@@ -10,7 +10,7 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
         basePackages = {"no.acntech.sandbox.repository"})
 @EntityScan(
         basePackageClasses = {Jsr310JpaConverters.class},
-        basePackages = {"no.acntech.sandbox.domain"})
+        basePackages = {"no.acntech.sandbox.model"})
 @SpringBootApplication
 public class SpringBootJpaApplication {
 

@@ -1,9 +1,13 @@
-### Server ###
-server:
-  port: 8080
-  servlet:
-    session:
-      tracking-modes: COOKIE
+### Spring ###
+spring:
+  # Web
+  mvc:
+    view:
+      prefix: /WEB-INF/views/
+      suffix: .jsp
+  # Messages
+  messages:
+    basename: locale/messages
 
 ### Logging ###
 logging:
@@ -12,14 +16,9 @@ logging:
     org.springframework.security: DEBUG
     no.acntech: DEBUG
 
-### Spring ###
-spring:
-  # Web
-  mvc:
-    view:
-      prefix: /WEB-INF/views/
-      suffix: .jsp
-
-  # Messages
-  messages:
-    basename: locale/messages
+### Server ###
+server:
+  port: 8080
+  servlet:
+    session:
+      tracking-modes: COOKIE

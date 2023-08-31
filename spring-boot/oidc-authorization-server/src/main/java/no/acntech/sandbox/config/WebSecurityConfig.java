@@ -15,9 +15,9 @@ public class WebSecurityConfig {
     @Bean
     public SecurityFilterChain defaultSecurityFilterChain(final HttpSecurity http) throws Exception {
         return http
-                .authorizeHttpRequests()
-                .anyRequest().authenticated()
-                .and()
+                .authorizeHttpRequests(config -> config
+                        .anyRequest().authenticated()
+                )
                 .formLogin(Customizer.withDefaults())
                 .build();
     }

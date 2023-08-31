@@ -1,12 +1,12 @@
 package no.acntech.sandbox.controller;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.servlet.ModelAndView;
 
-import no.acntech.sandbox.model.Hello;
+import no.acntech.sandbox.model.FormData;
 import no.acntech.sandbox.service.GreetingService;
 
 @Controller
@@ -19,23 +19,23 @@ public class ViewController {
     }
 
     @GetMapping(path = "/")
-    public ModelAndView getHomePage() {
-        var mav = new ModelAndView("home");
-        mav.addObject("hello", new Hello());
-        return mav;
+    public String getIndexPage(final Model model) {
+        model.addAttribute("formData", new FormData());
+        model.addAttribute("greeting", null);
+        return "index";
     }
 
     @PostMapping(path = "/")
-    public ModelAndView postHomePage(@ModelAttribute Hello hello) {
-        var greeting = greetingService.getGreeting(hello);
-        var mav = new ModelAndView("home");
-        mav.addObject("hello", new Hello());
-        mav.addObject("greeting", greeting);
-        return mav;
+    public String postIndexPage(@ModelAttribute FormData formData,
+                                final Model model) {
+        final var greeting = greetingService.getGreeting(formData);
+        model.addAttribute("formData", new FormData());
+        model.addAttribute("greeting", greeting);
+        return "index";
     }
 
     @GetMapping(path = "/about")
-    public ModelAndView getAboutPage() {
-        return new ModelAndView("about");
+    public String getAboutPage() {
+        return "about";
     }
 }
