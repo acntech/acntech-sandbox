@@ -1,6 +1,6 @@
 package no.acntech.sandbox.resource;
 
-import no.acntech.sandbox.model.Greeting;
+import no.acntech.sandbox.model.GreetingDto;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -13,7 +13,7 @@ import reactor.core.publisher.Mono;
 public class GreetingResource {
 
     @GetMapping
-    public Mono<ResponseEntity<Greeting>> get(@RequestParam(name = "name", defaultValue = "Nobody") String name) {
-        return Mono.just(ResponseEntity.ok(new Greeting("Hello " + name + "!")));
+    public Mono<ResponseEntity<GreetingDto>> get(@RequestParam(name = "name", defaultValue = "Nobody") String name) {
+        return Mono.just(ResponseEntity.ok(new GreetingDto("Hello " + name + "!")));
     }
 }

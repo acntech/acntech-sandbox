@@ -1,9 +1,14 @@
-### Server ###
-server:
-  port: 8080
+### Spring ###
+spring:
+  application:
+    name: spring-boot-webflux-war-deployment
 
 ### Logging ###
 logging:
   level:
     org.springframework: INFO
     no.acntech: DEBUG
+
+### Server ###
+server:
+  port: 8080

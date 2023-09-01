@@ -1,6 +1,15 @@
-### Server ###
-server:
-  port: 8080
+### Webservice ###
+cxf:
+  path: /ws
+
+### Spring ###
+spring:
+  # Application
+  application:
+    name: spring-boot-webservice-endpoint-cxf
+  # Messages
+  messages:
+    basename: locale/messages
 
 ### Logging ###
 logging:
@@ -8,6 +17,11 @@ logging:
     org.springframework: INFO
     no.acntech: DEBUG
 
-### Webservice ###
-cxf:
-  path: /ws
+### Server ###
+server:
+  port: 8081
+  error:
+    include-stacktrace: ALWAYS
+    whitelabel:
+      enabled: false
+

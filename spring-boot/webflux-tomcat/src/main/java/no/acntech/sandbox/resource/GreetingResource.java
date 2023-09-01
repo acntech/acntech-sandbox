@@ -8,14 +8,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import no.acntech.sandbox.model.Greeting;
+import no.acntech.sandbox.model.GreetingDto;
 
 @RequestMapping(path = "greetings")
 @RestController
 public class GreetingResource {
 
     @GetMapping
-    public Mono<ResponseEntity<Greeting>> get(@RequestParam(name = "name", defaultValue = "Nobody") String name) {
-        return Mono.just(ResponseEntity.ok(new Greeting("Hello " + name + "!")));
+    public Mono<ResponseEntity<GreetingDto>> get(@RequestParam(name = "name", defaultValue = "Nobody") String name) {
+        return Mono.just(ResponseEntity.ok(new GreetingDto("Hello " + name + "!")));
     }
 }

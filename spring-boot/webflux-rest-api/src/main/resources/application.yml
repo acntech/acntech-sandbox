@@ -1,9 +1,16 @@
-### Server ###
-server:
-  port: 8080
+########################
+# SPRING Configuration #
+########################
+spring:
+  application:
+    name: spring-boot-webflux-resp-api
 
 ### Logging ###
 logging:
   level:
     org.springframework: INFO
     no.acntech: DEBUG
+
+### Server ###
+server:
+  port: 8080

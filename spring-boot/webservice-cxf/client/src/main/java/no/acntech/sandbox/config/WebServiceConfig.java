@@ -12,7 +12,7 @@ public class WebServiceConfig {
 
     @Bean
     public GreetingClient greetingConsumer(@Value("${acntech.webservice.url}") String webServiceUrl) {
-        JaxWsProxyFactoryBean jaxWsProxyFactoryBean = new JaxWsProxyFactoryBean();
+        final var jaxWsProxyFactoryBean = new JaxWsProxyFactoryBean();
         jaxWsProxyFactoryBean.setServiceClass(GreetingClient.class);
         jaxWsProxyFactoryBean.setAddress(webServiceUrl);
         return (GreetingClient) jaxWsProxyFactoryBean.create();

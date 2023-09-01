@@ -10,7 +10,7 @@ import org.springframework.security.web.authentication.HttpStatusEntryPoint;
 import org.springframework.security.web.savedrequest.RequestCache;
 
 @Configuration(proxyBeanMethods = false)
-public class OidcClientWebSecurityConfig {
+public class WebSecurityConfig {
 
     @Bean
     public SecurityFilterChain securityFilterChain(final HttpSecurity http,

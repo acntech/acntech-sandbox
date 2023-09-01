@@ -11,7 +11,7 @@ import org.springframework.security.web.server.SecurityWebFilterChain;
 import org.springframework.web.reactive.function.client.WebClient;
 
 @EnableWebFluxSecurity
-public class OAuth2ResourceServerWebSecurityConfig {
+public class WebSecurityConfig {
 
     @Bean
     public SecurityWebFilterChain filterChain(final ServerHttpSecurity http) {

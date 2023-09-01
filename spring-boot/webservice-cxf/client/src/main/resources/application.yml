@@ -1,11 +1,16 @@
 ### AcnTech ###
 acntech:
   webservice:
-    url: http://localhost:8080/ws/v1/greeting
+    url: http://localhost:8081/ws/v1/greeting
 
-### Server ###
-server:
-  port: 8081
+### Spring ###
+spring:
+  # Application
+  application:
+    name: spring-boot-webservice-client-cxf
+  # Messages
+  messages:
+    basename: locale/messages
 
 ### Logging ###
 logging:
@@ -13,14 +18,10 @@ logging:
     org.springframework: INFO
     no.acntech: DEBUG
 
-### Spring ###
-spring:
-  # Web
-  mvc:
-    view:
-      prefix: /WEB-INF/views/
-      suffix: .jsp
-
-  # Messages
-  messages:
-    basename: locale/messages
+### Server ###
+server:
+  port: 8080
+  error:
+    include-stacktrace: ALWAYS
+    whitelabel:
+      enabled: false

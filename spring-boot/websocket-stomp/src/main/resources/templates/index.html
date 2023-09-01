@@ -7,59 +7,55 @@
     <title th:text="#{navbar.brand}"></title>
 </head>
 <body>
-<div layout:fragment="content" class="container">
-    <main class="container" role="main">
-        <div class="starter-template">
-            <div class="jumbotron">
-                <h1 th:text="#{index.page.title}"></h1>
-            </div>
-            <div class="row row-cols-1 row-cols-md-3 mt-5">
-                <div class="col text-center">
-                    <div class="row">
-                        <div class="col">
-                            <div class="card mb-4 rounded-3">
-                                <div class="card-header py-3">
-                                    <h5 th:text="#{index.page.connect.heading}"></h5>
-                                </div>
-                                <div class="card-body">
-                                    <button id="connect-button" type="button" class="btn"
-                                            th:text="#{index.page.form.connect-button}"></button>
-                                </div>
-                            </div>
+<main layout:fragment="content" class="container" role="main">
+    <div class="jumbotron">
+        <h1 th:text="#{index.page.title}"></h1>
+    </div>
+    <div class="row row-cols-1 row-cols-md-3 mt-5">
+        <div class="col text-center">
+            <div class="row">
+                <div class="col">
+                    <div class="card mb-4 rounded-3">
+                        <div class="card-header py-3">
+                            <h5 th:text="#{index.page.connect.heading}"></h5>
                         </div>
-                    </div>
-                    <div class="row">
-                        <div id="publish-container" class="col">
-                            <div class="card mb-4 rounded-3">
-                                <div class="card-header py-3">
-                                    <h5 th:text="#{index.page.publish.heading}"></h5>
-                                </div>
-                                <div class="card-body">
-                                    <input id="name-input" type="text" th:placeholder="#{index.page.form.name-input}">
-                                    <button id="publish-button" type="button" class="btn"
-                                            th:text="#{index.page.form.publish-button}"></button>
-                                </div>
-                            </div>
+                        <div class="card-body">
+                            <button id="connect-button" type="button" class="btn"
+                                    th:text="#{index.page.form.connect-button}"></button>
                         </div>
                     </div>
                 </div>
-                <div class="col">
-                    <div class="row">
-                        <div id="messages-container" class="col">
-                            <div class="card mb-4 rounded-3">
-                                <div class="card-header py-3">
-                                    <h5 th:text="#{index.page.receive.heading}"></h5>
-                                </div>
-                                <div class="card-body">
-                                    <ul id="messages-list"></ul>
-                                </div>
-                            </div>
+            </div>
+            <div class="row">
+                <div id="publish-container" class="col">
+                    <div class="card mb-4 rounded-3">
+                        <div class="card-header py-3">
+                            <h5 th:text="#{index.page.publish.heading}"></h5>
+                        </div>
+                        <div class="card-body">
+                            <input id="name-input" type="text" th:placeholder="#{index.page.form.name-input}">
+                            <button id="publish-button" type="button" class="btn"
+                                    th:text="#{index.page.form.publish-button}"></button>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-    </main>
-</div>
+        <div class="col">
+            <div class="row">
+                <div id="messages-container" class="col">
+                    <div class="card mb-4 rounded-3">
+                        <div class="card-header py-3">
+                            <h5 th:text="#{index.page.receive.heading}"></h5>
+                        </div>
+                        <div class="card-body">
+                            <ul id="messages-list"></ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
 </body>
 </html>
