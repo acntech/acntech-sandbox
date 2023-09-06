@@ -8,10 +8,8 @@
     </jsp:attribute>
     <jsp:body>
         <main class="container" role="main">
-            <div class="starter-template">
-                <div class="jumbotron">
-                    <h1><spring:message code="index.page.title"/></h1>
-                </div>
+            <div class="jumbotron">
+                <h1><spring:message code="index.page.title"/></h1>
             </div>
         </main>
     </jsp:body>

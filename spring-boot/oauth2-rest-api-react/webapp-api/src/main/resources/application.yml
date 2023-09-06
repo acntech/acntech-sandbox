@@ -1,0 +1,39 @@
+### Spring ###
+spring:
+  # Application
+  application:
+    name: spring-boot-oauth2-rest-api-react
+  # Security
+  security:
+    oauth2:
+      client:
+        registration:
+          acntech-generic-client:
+            provider: keycloak
+            client-id: acntech-generic-client
+            client-secret: abcdefgh12345678
+            authorization-grant-type: authorization_code
+            scope:
+              - openid
+              - profile
+              - roles
+            redirect-uri: http://localhost:3000/login/oauth2/code/acntech-generic-client
+        provider:
+          keycloak:
+            issuer-uri: http://localhost:8888/realms/acntech
+
+### Logging ###
+logging:
+  level:
+    root: INFO
+    web: INFO
+    no.acntech: DEBUG
+    org.springframework: INFO
+
+### Server ###
+server:
+  port: 8080
+  error:
+    include-stacktrace: ALWAYS
+    whitelabel:
+      enabled: false

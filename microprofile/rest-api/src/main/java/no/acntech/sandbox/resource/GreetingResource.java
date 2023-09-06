@@ -6,14 +6,14 @@ import jakarta.ws.rs.Produces;
 import jakarta.ws.rs.QueryParam;
 import jakarta.ws.rs.core.MediaType;
 
-import no.acntech.sandbox.model.Greeting;
+import no.acntech.sandbox.model.GreetingDto;
 
 @Path("greetings")
 public class GreetingResource {
 
     @GET
     @Produces(MediaType.APPLICATION_JSON)
-    public Greeting get(@QueryParam("name") String name) {
-        return new Greeting("Hello " + (name != null ? name : "Nobody") + "!");
+    public GreetingDto get(@QueryParam("name") String name) {
+        return new GreetingDto("Hello " + (name != null ? name : "Nobody") + "!");
     }
 }

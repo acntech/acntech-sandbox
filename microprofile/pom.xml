@@ -25,6 +25,7 @@
         <revision>2.0.0-SNAPSHOT</revision>
 
         <microprofile.version>6.0</microprofile.version>
+        <validation-api.version>3.0.2</validation-api.version>
     </properties>
 
     <!-- MODULES -->
@@ -45,6 +46,11 @@
 
     <dependencyManagement>
         <dependencies>
+            <dependency>
+                <groupId>jakarta.validation</groupId>
+                <artifactId>jakarta.validation-api</artifactId>
+                <version>${validation-api.version}</version>
+            </dependency>
         </dependencies>
     </dependencyManagement>
 

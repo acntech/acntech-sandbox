@@ -40,6 +40,8 @@
         <webjars-popper.version>2.11.7</webjars-popper.version>
         <webjars-locator.version>0.47</webjars-locator.version>
         <webjars-stompjs.version>6.1.2</webjars-stompjs.version>
+        <!-- OpenAPI -->
+        <springdoc-openapi-webmvc.version>2.2.0</springdoc-openapi-webmvc.version>
         <!-- Webservice -->
         <cxf.version>4.0.2</cxf.version>
         <jaxws.version>3.0.2</jaxws.version>
@@ -57,12 +59,16 @@
     <modules>
         <module>web-mvc-jstl</module>
         <module>web-mvc-csrf</module>
-        <module>thymeleaf</module>
-        <module>thymeleaf-form</module>
+        <module>web-mvc-thymeleaf</module>
+        <module>web-mvc-form</module>
         <module>rest-api</module>
         <module>rest-api-hateoas</module>
         <module>rest-api-angular</module>
         <module>rest-api-csrf</module>
+        <module>rest-api-openapi</module>
+        <module>rest-api-jackson-module</module>
+        <module>rest-api-jackson-module-openapi</module>
+        <module>rest-api-file-upload</module>
         <module>rest-api-file-download</module>
         <module>rest-api-file-transfer</module>
         <module>junit-testing</module>
@@ -74,13 +80,13 @@
         <module>login-basic-auth-oidc-webclient</module>
         <module>login-pre-auth</module>
         <module>jwt-generator</module>
-        <module>oidc-client-login</module>
-        <module>oidc-client-login-stateless</module>
-        <module>oidc-client-login-stateless-session-cache</module>
-        <module>oidc-client-login-stateless-token-cache</module>
-        <module>oidc-rest-api-react</module>
-        <module>oidc-resource-server</module>
-        <module>oidc-authorization-server</module>
+        <module>oauth2-client-login</module>
+        <module>oauth2-client-login-stateless</module>
+        <module>oauth2-client-login-stateless-session-cache</module>
+        <module>oauth2-client-login-stateless-token-cache</module>
+        <module>oauth2-rest-api-react</module>
+        <module>oauth2-resource-server</module>
+        <module>oauth2-authorization-server</module>
         <module>access-control-rest-api</module>
         <module>access-control-thymeleaf</module>
         <module>access-control-permission-evaluator</module>
@@ -95,7 +101,6 @@
         <module>webflux-tomcat</module>
         <module>webflux-war-deployment</module>
         <module>webflux-oidc-resource-server</module>
-        <!--<module>webservice-jaxws</module>-->
         <module>webservice-cxf</module>
         <module>camunda-delegate</module>
         <module>camunda-external-task</module>
@@ -107,7 +112,6 @@
         <module>server-sent-events</module>
         <module>long-polling</module>
         <module>grpc</module>
-        <module>rest-api-file-upload</module>
     </modules>
 
     <!-- DEPENDENCIES -->
@@ -138,6 +142,13 @@
                 <groupId>org.webjars.npm</groupId>
                 <artifactId>stomp__stompjs</artifactId>
                 <version>${webjars-stompjs.version}</version>
+            </dependency>
+
+            <!-- OpenAPI -->
+            <dependency>
+                <groupId>org.springdoc</groupId>
+                <artifactId>springdoc-openapi-starter-webmvc-ui</artifactId>
+                <version>${springdoc-openapi-webmvc.version}</version>
             </dependency>
 
             <!-- Webservice -->

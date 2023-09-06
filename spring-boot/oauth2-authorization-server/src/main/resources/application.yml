@@ -1,0 +1,28 @@
+### Spring ###
+spring:
+  # Application
+  application:
+    name: spring-boot-oauth2-authorization-server
+  # H2
+  h2:
+    console:
+      enabled: true
+      path: /h2
+
+### SECURITY ###
+security:
+  oauth2:
+    client:
+      client-id: generic-client
+      client-secret: abcd1234
+
+### Server ###
+server:
+  port: 8000
+
+### Logging ###
+logging:
+  level:
+    org.springframework: DEBUG
+    org.springframework.security.oauth2: DEBUG
+    no.acntech: DEBUG

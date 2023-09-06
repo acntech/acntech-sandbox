@@ -51,7 +51,7 @@
     <modules>
         <module>rest-api</module>
         <module>grpc</module>
-        <module>oidc-client-login</module>
+        <module>oauth2-client-login</module>
     </modules>
 
     <!-- DEPENDENCIES -->

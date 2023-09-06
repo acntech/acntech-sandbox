@@ -5,6 +5,9 @@
         <a class="navbar-brand" href="${pageContext.request.contextPath}/">
             <spring:message code="navbar.brand"/>
         </a>
+        <a class="navbar-brand" href="${pageContext.request.contextPath}/">
+            <img src="${pageContext.request.contextPath}/assets/img/logo.png" alt="AcnTech Logo"/>
+        </a>
         <div id="navbar-toggle">
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item active">

@@ -1,3 +1,9 @@
+### Spring ###
+spring:
+  # Application
+  application:
+    name: spring-boot-rest-api
+
 ### Logging ###
 logging:
   level:
@@ -7,3 +13,7 @@ logging:
 ### Server ###
 server:
   port: 8080
+  error:
+    include-stacktrace: ALWAYS
+    whitelabel:
+      enabled: false

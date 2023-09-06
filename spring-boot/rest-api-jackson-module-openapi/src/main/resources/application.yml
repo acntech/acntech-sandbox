@@ -1,0 +1,26 @@
+### Spring ###
+spring:
+  # Application
+  application:
+    name: spring-boot-rest-api-jackson-module-openapi
+
+### SPRINGDOC ###
+springdoc:
+  api-docs:
+    path: /api/docs
+  swagger-ui:
+    path: /api/docs.html
+
+### Logging ###
+logging:
+  level:
+    org.springframework: INFO
+    no.acntech: DEBUG
+
+### Server ###
+server:
+  port: 8080
+  error:
+    include-stacktrace: ALWAYS
+    whitelabel:
+      enabled: false

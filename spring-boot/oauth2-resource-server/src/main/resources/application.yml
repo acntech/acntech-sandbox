@@ -1,0 +1,24 @@
+### Spring ###
+spring:
+  # Application
+  application:
+    name: spring-boot-oauth2-resource-server
+  # Security
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          issuer-uri: http://localhost:8888/realms/acntech
+
+### Logging ###
+logging:
+  level:
+    org.springframework: INFO
+    org.springframework.security: DEBUG
+    no.acntech: DEBUG
+
+### Server ###
+server:
+  port: 8080
+  servlet:
+    context-path: /api

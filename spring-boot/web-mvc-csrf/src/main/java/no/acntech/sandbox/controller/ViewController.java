@@ -1,29 +1,37 @@
 package no.acntech.sandbox.controller;
 
-import no.acntech.sandbox.model.FormData;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import no.acntech.sandbox.model.FormData;
+import no.acntech.sandbox.service.GreetingService;
+
 @Controller
 public class ViewController {
 
+    private final GreetingService greetingService;
+
+    public ViewController(final GreetingService greetingService) {
+        this.greetingService = greetingService;
+    }
+
     @GetMapping(path = "/")
-    public String getHomePage(final Model model) {
+    public String getIndexPage(final Model model) {
         model.addAttribute("formData", new FormData());
-        return "home";
+        model.addAttribute("greeting", null);
+        return "index";
     }
 
     @PostMapping(path = "/")
-    public String postHomePage(@ModelAttribute("formData") final FormData formData,
-                               final Model model) {
-        final var name = StringUtils.hasText(formData.getName()) ? formData.getName() : "Unknown";
-        model.addAttribute("formData", formData);
-        model.addAttribute("greeting", "Hello " + name + "!");
-        return "home";
+    public String postIndexPage(@ModelAttribute FormData formData,
+                                final Model model) {
+        final var greeting = greetingService.getGreeting(formData.getName());
+        model.addAttribute("formData", new FormData());
+        model.addAttribute("greeting", greeting);
+        return "index";
     }
 
     @GetMapping(path = "/about")
