@@ -20,7 +20,7 @@ const webpackConfig = (env): Configuration => ({
     module: {
         rules: [
             {
-                test: /\.(png|jpg|jpeg|gif)$/i,
+                test: /\.(png|jpg|jpeg|gif|ico|svg)$/i,
                 loader: "file-loader"
             },
             {
@@ -45,7 +45,9 @@ const webpackConfig = (env): Configuration => ({
     },
     plugins: [
         new HtmlWebpackPlugin({
-            template: "./public/index.html"
+            filename: "index.html",
+            template: path.join(__dirname, "public", "index.html"),
+            favicon: path.join(__dirname, "public", "favicon.ico")
         }),
         new webpack.DefinePlugin({
             "process.env.PRODUCTION": env.production || !env.development,
