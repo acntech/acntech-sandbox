@@ -1,0 +1,41 @@
+### Spring ###
+spring:
+  # Application
+  application:
+    name: spring-boot-webflux-oauth2-client-login-token-cache
+  # Messages
+  messages:
+    basename: locale/messages
+  # Security
+  security:
+    oauth2:
+      client:
+        registration:
+          generic-client:
+            provider: keycloak
+            client-id: acntech-generic-client
+            client-secret: abcdefgh12345678
+            authorization-grant-type: authorization_code
+            scope:
+              - openid
+              - profile
+              - roles
+        provider:
+          keycloak:
+            issuer-uri: http://localhost:8888/realms/acntech
+
+### Logging ###
+logging:
+  level:
+    root: INFO
+    web: INFO
+    no.acntech: DEBUG
+    org.springframework: INFO
+
+### Server ###
+server:
+  port: 8080
+  error:
+    include-stacktrace: ALWAYS
+    whitelabel:
+      enabled: false

@@ -1,69 +1,69 @@
 package no.acntech.sandbox.repository;
 
-import jakarta.servlet.http.HttpServletRequest;
-import jakarta.servlet.http.HttpServletResponse;
-import no.acntech.sandbox.resolver.CookieResolver;
-import no.acntech.sandbox.store.SecurityContextStore;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.security.core.context.SecurityContext;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.web.context.HttpRequestResponseHolder;
 import org.springframework.security.web.context.SecurityContextRepository;
 
+import jakarta.servlet.http.Cookie;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
+import java.util.Arrays;
 import java.util.UUID;
 
 public class RedisSecurityContextRepository implements SecurityContextRepository {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger(RedisSecurityContextRepository.class);
-    private static final CookieResolver SESSION_COOKIE_RESOLVER = CookieResolver.sessionCookieResolver();
-    private final SecurityContextStore securityContextStore;
+    private static final String SESSION_COOKIE_NAME = "oidc_session";
+    private static final int SESSION_COOKIE_EXPIRE_SECONDS = -1;
+    private final RedisTemplate<String, SecurityContext> redisTemplate;
 
-    public RedisSecurityContextRepository(final SecurityContextStore securityContextStore) {
-        this.securityContextStore = securityContextStore;
+    public RedisSecurityContextRepository(final RedisTemplate<String, SecurityContext> redisTemplate) {
+        this.redisTemplate = redisTemplate;
     }
 
     @Override
     public SecurityContext loadContext(final HttpRequestResponseHolder requestResponseHolder) {
-        final var request = requestResponseHolder.getRequest();
-        var sessionId = SESSION_COOKIE_RESOLVER.readCookie(request);
-        if (sessionId != null) {
-            final var securityContext = securityContextStore.load(sessionId);
-            if (securityContext != null) {
-                LOGGER.debug("Load SecurityContext from store. Found SecurityContext for session id {} ( request to {} )", sessionId, request.getServletPath());
-                return securityContext;
-            } else {
-                LOGGER.debug("Load SecurityContext from store. No SecurityContext found for session id {}. Creating empty SecurityContext ( request to {} )", sessionId, request.getServletPath());
-            }
+        var request = requestResponseHolder.getRequest();
+        Cookie[] cookies = request.getCookies();
+        if (cookies == null) {
+            return null;
+        } else {
+            return Arrays.stream(cookies)
+                    .filter(cookie -> cookie.getName().equals(SESSION_COOKIE_NAME))
+                    .map(Cookie::getValue)
+                    .findFirst()
+                    .map(redisTemplate.opsForValue()::get)
+                    .orElseGet(SecurityContextHolder::createEmptyContext);
         }
-        return SecurityContextHolder.createEmptyContext();
     }
 
     @Override
     public void saveContext(final SecurityContext context,
                             final HttpServletRequest request,
                             final HttpServletResponse response) {
-        var sessionId = SESSION_COOKIE_RESOLVER.readCookie(request);
-        if (sessionId != null) {
-            LOGGER.debug("Save SecurityContext to store. Using exiting session id {} ( request to {} )", sessionId, request.getServletPath());
-        } else {
-            sessionId = UUID.randomUUID().toString();
-            LOGGER.debug("Save SecurityContext to store. Generating new session id {} ( request to {} )", sessionId, request.getServletPath());
-            SESSION_COOKIE_RESOLVER.addCookie(response, sessionId);
-        }
-        securityContextStore.save(sessionId, context);
+        var cookies = request.getCookies();
+        var sessionId = Arrays.stream(cookies)
+                .filter(cookie -> cookie.getName().equals(SESSION_COOKIE_NAME))
+                .map(Cookie::getValue)
+                .findFirst()
+                .orElseGet(UUID.randomUUID()::toString);
+        var cookie = new Cookie(SESSION_COOKIE_NAME, sessionId);
+        cookie.setMaxAge(SESSION_COOKIE_EXPIRE_SECONDS);
+        cookie.setHttpOnly(true);
+        cookie.setPath("/");
+        response.addCookie(cookie);
+        redisTemplate.opsForValue().set(sessionId, context);
     }
 
     @Override
     public boolean containsContext(final HttpServletRequest request) {
-        var sessionId = SESSION_COOKIE_RESOLVER.readCookie(request);
-        if (sessionId != null) {
-            var containsContext = securityContextStore.contains(sessionId);
-            LOGGER.debug("Check if store contains SecurityContext. Using exiting session id {} with result '{}' ( request to {} )", sessionId, containsContext, request.getServletPath());
-            return containsContext;
-        } else {
-            LOGGER.debug("Check if store contains SecurityContext. No session id found ( request to {} )", request.getServletPath());
-            return false;
-        }
+        var cookies = request.getCookies();
+        return Arrays.stream(cookies)
+                .filter(cookie -> cookie.getName().equals(SESSION_COOKIE_NAME))
+                .map(Cookie::getValue)
+                .findFirst()
+                .map(redisTemplate::hasKey)
+                .orElse(false);
     }
 }

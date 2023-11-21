@@ -3,17 +3,18 @@ package no.acntech.sandbox.config;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.oauth2.client.registration.ClientRegistrationRepository;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.context.SecurityContextRepository;
 
 import no.acntech.sandbox.handler.OidcLogoutSuccessHandler;
-import no.acntech.sandbox.repository.HttpCookieOAuth2AuthorizationRequestRepository;
+import no.acntech.sandbox.repository.CookieAuthorizationRequestRepository;
 import no.acntech.sandbox.repository.InMemorySecurityContextRepository;
-import no.acntech.sandbox.store.SecurityContextStore;
 
 import static org.springframework.security.config.http.SessionCreationPolicy.STATELESS;
 
+@EnableWebSecurity
 @Configuration(proxyBeanMethods = false)
 public class WebSecurityConfig {
 
@@ -21,7 +22,7 @@ public class WebSecurityConfig {
     public SecurityFilterChain securityFilterChain(final HttpSecurity http,
                                                    final SecurityContextRepository securityContextRepository,
                                                    final OidcLogoutSuccessHandler oidcLogoutSuccessHandler,
-                                                   final HttpCookieOAuth2AuthorizationRequestRepository httpCookieOAuth2AuthorizationRequestRepository) throws Exception {
+                                                   final CookieAuthorizationRequestRepository httpCookieOAuth2AuthorizationRequestRepository) throws Exception {
         return http
                 .sessionManagement(config -> config
                         .sessionCreationPolicy(STATELESS)
@@ -46,19 +47,18 @@ public class WebSecurityConfig {
     }
 
     @Bean
-    public SecurityContextRepository securityContextRepository(final SecurityContextStore securityContextStore) {
-        return new InMemorySecurityContextRepository(securityContextStore);
+    public SecurityContextRepository securityContextRepository() {
+        return new InMemorySecurityContextRepository();
     }
 
     @Bean
-    public HttpCookieOAuth2AuthorizationRequestRepository httpCookieOAuth2AuthorizationRequestRepository() {
-        return new HttpCookieOAuth2AuthorizationRequestRepository();
+    public CookieAuthorizationRequestRepository httpCookieOAuth2AuthorizationRequestRepository() {
+        return new CookieAuthorizationRequestRepository();
     }
 
     @Bean
-    public OidcLogoutSuccessHandler oidcLogoutSuccessHandler(final ClientRegistrationRepository clientRegistrationRepository,
-                                                             final SecurityContextStore securityContextStore) {
-        var logoutSuccessHandler = new OidcLogoutSuccessHandler(clientRegistrationRepository, securityContextStore);
+    public OidcLogoutSuccessHandler oidcLogoutSuccessHandler(final ClientRegistrationRepository clientRegistrationRepository) {
+        var logoutSuccessHandler = new OidcLogoutSuccessHandler(clientRegistrationRepository);
         logoutSuccessHandler.setPostLogoutRedirectUri("http://localhost:8080/");
         return logoutSuccessHandler;
     }

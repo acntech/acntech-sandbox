@@ -1,22 +1,24 @@
 package no.acntech.sandbox.config;
 
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
+import org.springframework.security.core.context.SecurityContext;
 import org.springframework.security.oauth2.client.registration.ClientRegistrationRepository;
-import org.springframework.security.oauth2.client.web.AuthorizationRequestRepository;
-import org.springframework.security.oauth2.core.endpoint.OAuth2AuthorizationRequest;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.logout.LogoutSuccessHandler;
 import org.springframework.security.web.context.SecurityContextRepository;
 
 import no.acntech.sandbox.handler.OidcLogoutSuccessHandler;
-import no.acntech.sandbox.repository.HttpCookieOAuth2AuthorizationRequestRepository;
+import no.acntech.sandbox.repository.CookieAuthorizationRequestRepository;
 import no.acntech.sandbox.repository.RedisSecurityContextRepository;
-import no.acntech.sandbox.store.SecurityContextStore;
 
 import static org.springframework.security.config.http.SessionCreationPolicy.STATELESS;
 
+@EnableWebSecurity
 @Configuration(proxyBeanMethods = false)
 public class WebSecurityConfig {
 
@@ -24,7 +26,7 @@ public class WebSecurityConfig {
     public SecurityFilterChain securityFilterChain(final HttpSecurity http,
                                                    final SecurityContextRepository securityContextRepository,
                                                    final LogoutSuccessHandler logoutSuccessHandler,
-                                                   final AuthorizationRequestRepository<OAuth2AuthorizationRequest> authorizationRequestRepository) throws Exception {
+                                                   final CookieAuthorizationRequestRepository authorizationRequestRepository) throws Exception {
         return http
                 .sessionManagement(config -> config
                         .sessionCreationPolicy(STATELESS)
@@ -49,19 +51,19 @@ public class WebSecurityConfig {
     }
 
     @Bean
-    public SecurityContextRepository securityContextRepository(final SecurityContextStore securityContextStore) {
-        return new RedisSecurityContextRepository(securityContextStore);
+    public RedisSecurityContextRepository redisSecurityContextRepository(
+            @Qualifier("securityContextRedisTemplate") final RedisTemplate<String, SecurityContext> redisTemplate) {
+        return new RedisSecurityContextRepository(redisTemplate);
     }
 
     @Bean
-    public AuthorizationRequestRepository<OAuth2AuthorizationRequest> authorizationRequestRepository() {
-        return new HttpCookieOAuth2AuthorizationRequestRepository();
+    public CookieAuthorizationRequestRepository cookieAuthorizationRequestRepository() {
+        return new CookieAuthorizationRequestRepository();
     }
 
     @Bean
-    public LogoutSuccessHandler logoutSuccessHandler(final ClientRegistrationRepository clientRegistrationRepository,
-                                                     final SecurityContextStore securityContextStore) {
-        var logoutSuccessHandler = new OidcLogoutSuccessHandler(clientRegistrationRepository, securityContextStore);
+    public LogoutSuccessHandler logoutSuccessHandler(final ClientRegistrationRepository clientRegistrationRepository) {
+        var logoutSuccessHandler = new OidcLogoutSuccessHandler(clientRegistrationRepository);
         logoutSuccessHandler.setPostLogoutRedirectUri("http://localhost:8080/");
         return logoutSuccessHandler;
     }

@@ -1,6 +1,7 @@
 <header class="header mb-5"
         th:fragment="header"
-        xmlns:th="http://www.thymeleaf.org">
+        xmlns:th="http://www.thymeleaf.org"
+        xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
     <nav class="navbar navbar-dark bg-dark navbar-expand-lg p-4">
         <a class="navbar-brand" th:href="@{/}">
             <img th:src="@{/assets/img/logo.png}" alt="AcnTech Logo"/>
@@ -16,11 +17,11 @@
                     <span th:text="#{navbar.link.about}"></span>
                 </a>
             </li>
-            <li class="nav-item dropdown">
+            <li class="nav-item dropdown" sec:authorize="isAuthenticated()">
                 <a id="profile-dropdown" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#"
                    role="button" aria-haspopup="true" aria-expanded="false">Profile</a>
                 <div class="dropdown-menu dropdown-menu-end dropdown-menu-dark" aria-labelledby="profile-dropdown">
-                    <div class="dropdown-item disabled" th:text="${userInfo?.name}"></div>
+                    <div class="dropdown-item disabled" th:text="${#authentication.name}"></div>
                     <div class="dropdown-divider"></div>
                     <a class="dropdown-item" th:href="@{/logout}">
                         <span th:text="#{navbar.link.logout}"></span>

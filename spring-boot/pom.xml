@@ -33,7 +33,6 @@
 
         <!-- Dependencies -->
         <os-maven-plugin.version>1.7.1</os-maven-plugin.version>
-        <spring-security-oauth2-authorization-server.version>1.1.1</spring-security-oauth2-authorization-server.version>
         <!-- WebJars -->
         <webjars-jquery.version>3.7.0</webjars-jquery.version>
         <webjars-bootstrap.version>5.3.1</webjars-bootstrap.version>
@@ -83,7 +82,7 @@
         <module>oauth2-client-login</module>
         <module>oauth2-client-login-stateless</module>
         <module>oauth2-client-login-stateless-session-cache</module>
-        <module>oauth2-client-login-stateless-token-cache</module>
+        <module>oauth2-client-login-token-cache</module>
         <module>oauth2-rest-api-react</module>
         <module>oauth2-resource-server</module>
         <module>oauth2-authorization-server</module>
@@ -100,7 +99,9 @@
         <module>webflux-rest-api</module>
         <module>webflux-tomcat</module>
         <module>webflux-war-deployment</module>
-        <module>webflux-oidc-resource-server</module>
+        <module>webflux-oauth2-client-login</module>
+        <module>webflux-oauth2-client-login-token-cache</module>
+        <module>webflux-oauth2-resource-server</module>
         <module>webservice-cxf</module>
         <module>camunda-delegate</module>
         <module>camunda-external-task</module>
@@ -166,18 +167,6 @@
                 <groupId>com.sun.xml.ws</groupId>
                 <artifactId>jaxws-tools</artifactId>
                 <version>${jaxws.version}</version>
-            </dependency>
-
-            <!-- Security -->
-            <dependency>
-                <groupId>org.springframework.security</groupId>
-                <artifactId>spring-security-oauth2-jose</artifactId>
-                <version>${spring-security.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>org.springframework.security</groupId>
-                <artifactId>spring-security-oauth2-authorization-server</artifactId>
-                <version>${spring-security-oauth2-authorization-server.version}</version>
             </dependency>
 
             <!-- Camunda -->

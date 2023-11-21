@@ -10,7 +10,7 @@ import org.springframework.security.core.context.SecurityContext;
 public class RedisCacheConfig {
 
     @Bean
-    public RedisTemplate<String, SecurityContext> redisTemplate(final RedisConnectionFactory connectionFactory) {
+    public RedisTemplate<String, SecurityContext> securityContextRedisTemplate(final RedisConnectionFactory connectionFactory) {
         var redisTemplate = new RedisTemplate<String, SecurityContext>();
         redisTemplate.setConnectionFactory(connectionFactory);
         return redisTemplate;
