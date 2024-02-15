@@ -1,0 +1,27 @@
+########################
+# SPRING Configuration #
+########################
+spring:
+  application:
+    name: spring-cloud-gateway-mvc
+  cloud:
+    gateway:
+      mvc:
+        routes:
+          - id: all
+            uri: http://localhost:8080
+            predicates:
+              - Path=/**
+
+### Logging ###
+logging:
+  level:
+    root: INFO
+    no.acntech: DEBUG
+    org.springframework.boot: INFO
+    org.springframework.cloud: DEBUG
+    org.springframework.web: INFO
+
+### Server ###
+server:
+  port: 8000
